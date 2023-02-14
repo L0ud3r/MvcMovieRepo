@@ -291,3 +291,5 @@ C:\Programming\MvcMovie\MvcMovie\bin\Debug\net6.0\MvcMovieDAL.dll
 C:\Programming\MvcMovie\MvcMovie\bin\Debug\net6.0\MvcMovieDAL.pdb
 C:\Programming\MvcMovie\MvcMovie\bin\Debug\net6.0\MvcMovieInfra.dll
 C:\Programming\MvcMovie\MvcMovie\bin\Debug\net6.0\MvcMovieInfra.pdb
+C:\Programming\MvcMovie\MvcMovie\bin\Debug\net6.0\Microsoft.AspNetCore.SpaServices.Extensions.dll
+C:\Programming\MvcMovie\MvcMovie\bin\Debug\net6.0\VueCliMiddleware.dll

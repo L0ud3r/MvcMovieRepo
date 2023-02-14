@@ -6,6 +6,141 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\COMMIT_EDITMSG" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\config" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\description" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\FETCH_HEAD" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\HEAD" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\hooks\applypatch-msg.sample" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\hooks\commit-msg.sample" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\hooks\fsmonitor-watchman.sample" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\hooks\post-update.sample" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\hooks\pre-applypatch.sample" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\hooks\pre-commit.sample" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\hooks\pre-merge-commit.sample" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\hooks\pre-push.sample" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\hooks\pre-rebase.sample" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\hooks\pre-receive.sample" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\hooks\prepare-commit-msg.sample" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\hooks\update.sample" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\index" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\info\exclude" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\logs\HEAD" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\logs\refs\heads\main" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\logs\refs\remotes\origin\main" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\06\9ae39b69f1a3141516589f8744f5d4ec7b02ab" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\0d\257a7984ab587f77fb23b0d85247d1129d5dea" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\1d\6fd95f545431a5e2a4d2a37c87c9f75b05e537" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\1e\89c8b8e363df26d1ed2b56032694a42ed6ca16" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\2a\2bc1f38710bcee7c53b81b470c5c236bd290f8" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\2f\da183dbf470cb0dab1854b7bab2e61d77ab601" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\31\5212d69a7ba5cc02f13ef35b14a8010fe04319" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\37\3ed040d9418d35df79d04b4cc12bb1fd2b0888" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\38\c3bcf08aca52933684b45f2dd505e1b13d0e63" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\3f\87eef3f92b31ac49176f0cdfdfa8e0da2bc264" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\56\a8b72d4a729df925225f1aa676c0e1636279de" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\58\599870745eba388fc97d64b5824085feb3c321" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\5b\63879b3645e6d03f4d9720a2a6546c2970c0ac" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\5f\11c16f476127c95ea1ddd6bdc6de41d9ff8911" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\62\4f5c43413807b448f4b3394bddab87215c2590" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\67\09792f643ae6bf598dfea9a13a06c05d978f27" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\6f\9509c88bed7080d496fc5e1d87a9315e30549d" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\73\a06f3026f2cc154ac5ba2dd93aab7bce19c52b" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\78\60484e54dfbc385048fa3c3ad41d9af07e51a7" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\7d\fb8854b30459d4b46c68772c3895692856b511" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\81\d99eb8ac06cdee97b3a8f460d60f15060ebf77" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\82\06f87691964803d959f151223b7b662e0e4055" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\87\bc1fa54102619618c3693e12ea0f320902f681" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\88\eaec1bab5cd3e1d62c1ba37d545a1e4db01dda" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\8c\2e0fc3cd118ea090d7320e9c3f2e1fa2086f92" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\8f\7104c5e3b3cc0a549a1303b6adecabd4b0546f" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\96\bb01e7dd1fcd9b131ec736a3be2570721d4c8c" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\97\b2cc19758995aa6ab1741ca69f0fb0f9e7eb2b" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\97\bccf820e2c97b7af8028960a391f299109c555" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\9b\ed43f2d3a607927b56c6ac0f0ce4153a48e9c1" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\a0\042ab74fa174a984434fc8ea67d20ae78bb42a" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\af\25a4f47452a390e16f439b8048acc888067f46" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\af\413ad2665ca6adb90fed3ee47e96880b6a26f3" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\bc\a0b42fe5601fe8d43a0bda9bb1c60392ea3099" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\bd\6b8da1ee624cb45185d159cf4039bfadad044d" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\c1\9ec8a06ba0d83b5e2c527b9abb91b125c5d9c5" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\c5\6169c0bb51ad2e3ad48f6722f1ebdb723d7e77" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\ce\4a380bbbe7d6ccc4a06aeead77e40cf8a6b8e7" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\d3\f0151a39d470990f56b3cacdbaf3800a7088a3" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\df\36fcfb72584e00488330b560ebcf34a41c64c2" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\df\e0770424b2a19faf507a501ebfc23be8f54e7b" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\f3\a94a0c5abd2f3676919e95ae76b7b1fe5509b2" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\refs\heads\main" />
+    <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\refs\remotes\origin\main" />
+    <None Include="wwwroot\v-dashboard\.git\COMMIT_EDITMSG" />
+    <None Include="wwwroot\v-dashboard\.git\config" />
+    <None Include="wwwroot\v-dashboard\.git\description" />
+    <None Include="wwwroot\v-dashboard\.git\FETCH_HEAD" />
+    <None Include="wwwroot\v-dashboard\.git\HEAD" />
+    <None Include="wwwroot\v-dashboard\.git\hooks\applypatch-msg.sample" />
+    <None Include="wwwroot\v-dashboard\.git\hooks\commit-msg.sample" />
+    <None Include="wwwroot\v-dashboard\.git\hooks\fsmonitor-watchman.sample" />
+    <None Include="wwwroot\v-dashboard\.git\hooks\post-update.sample" />
+    <None Include="wwwroot\v-dashboard\.git\hooks\pre-applypatch.sample" />
+    <None Include="wwwroot\v-dashboard\.git\hooks\pre-commit.sample" />
+    <None Include="wwwroot\v-dashboard\.git\hooks\pre-merge-commit.sample" />
+    <None Include="wwwroot\v-dashboard\.git\hooks\pre-push.sample" />
+    <None Include="wwwroot\v-dashboard\.git\hooks\pre-rebase.sample" />
+    <None Include="wwwroot\v-dashboard\.git\hooks\pre-receive.sample" />
+    <None Include="wwwroot\v-dashboard\.git\hooks\prepare-commit-msg.sample" />
+    <None Include="wwwroot\v-dashboard\.git\hooks\update.sample" />
+    <None Include="wwwroot\v-dashboard\.git\index" />
+    <None Include="wwwroot\v-dashboard\.git\info\exclude" />
+    <None Include="wwwroot\v-dashboard\.git\logs\HEAD" />
+    <None Include="wwwroot\v-dashboard\.git\logs\refs\heads\main" />
+    <None Include="wwwroot\v-dashboard\.git\logs\refs\remotes\origin\main" />
+    <None Include="wwwroot\v-dashboard\.git\objects\06\9ae39b69f1a3141516589f8744f5d4ec7b02ab" />
+    <None Include="wwwroot\v-dashboard\.git\objects\0d\257a7984ab587f77fb23b0d85247d1129d5dea" />
+    <None Include="wwwroot\v-dashboard\.git\objects\1d\6fd95f545431a5e2a4d2a37c87c9f75b05e537" />
+    <None Include="wwwroot\v-dashboard\.git\objects\1e\89c8b8e363df26d1ed2b56032694a42ed6ca16" />
+    <None Include="wwwroot\v-dashboard\.git\objects\2a\2bc1f38710bcee7c53b81b470c5c236bd290f8" />
+    <None Include="wwwroot\v-dashboard\.git\objects\2f\da183dbf470cb0dab1854b7bab2e61d77ab601" />
+    <None Include="wwwroot\v-dashboard\.git\objects\31\5212d69a7ba5cc02f13ef35b14a8010fe04319" />
+    <None Include="wwwroot\v-dashboard\.git\objects\37\3ed040d9418d35df79d04b4cc12bb1fd2b0888" />
+    <None Include="wwwroot\v-dashboard\.git\objects\38\c3bcf08aca52933684b45f2dd505e1b13d0e63" />
+    <None Include="wwwroot\v-dashboard\.git\objects\3f\87eef3f92b31ac49176f0cdfdfa8e0da2bc264" />
+    <None Include="wwwroot\v-dashboard\.git\objects\56\a8b72d4a729df925225f1aa676c0e1636279de" />
+    <None Include="wwwroot\v-dashboard\.git\objects\58\599870745eba388fc97d64b5824085feb3c321" />
+    <None Include="wwwroot\v-dashboard\.git\objects\5b\63879b3645e6d03f4d9720a2a6546c2970c0ac" />
+    <None Include="wwwroot\v-dashboard\.git\objects\5f\11c16f476127c95ea1ddd6bdc6de41d9ff8911" />
+    <None Include="wwwroot\v-dashboard\.git\objects\62\4f5c43413807b448f4b3394bddab87215c2590" />
+    <None Include="wwwroot\v-dashboard\.git\objects\67\09792f643ae6bf598dfea9a13a06c05d978f27" />
+    <None Include="wwwroot\v-dashboard\.git\objects\6f\9509c88bed7080d496fc5e1d87a9315e30549d" />
+    <None Include="wwwroot\v-dashboard\.git\objects\73\a06f3026f2cc154ac5ba2dd93aab7bce19c52b" />
+    <None Include="wwwroot\v-dashboard\.git\objects\78\60484e54dfbc385048fa3c3ad41d9af07e51a7" />
+    <None Include="wwwroot\v-dashboard\.git\objects\7d\fb8854b30459d4b46c68772c3895692856b511" />
+    <None Include="wwwroot\v-dashboard\.git\objects\81\d99eb8ac06cdee97b3a8f460d60f15060ebf77" />
+    <None Include="wwwroot\v-dashboard\.git\objects\82\06f87691964803d959f151223b7b662e0e4055" />
+    <None Include="wwwroot\v-dashboard\.git\objects\87\bc1fa54102619618c3693e12ea0f320902f681" />
+    <None Include="wwwroot\v-dashboard\.git\objects\88\eaec1bab5cd3e1d62c1ba37d545a1e4db01dda" />
+    <None Include="wwwroot\v-dashboard\.git\objects\8c\2e0fc3cd118ea090d7320e9c3f2e1fa2086f92" />
+    <None Include="wwwroot\v-dashboard\.git\objects\8f\7104c5e3b3cc0a549a1303b6adecabd4b0546f" />
+    <None Include="wwwroot\v-dashboard\.git\objects\96\bb01e7dd1fcd9b131ec736a3be2570721d4c8c" />
+    <None Include="wwwroot\v-dashboard\.git\objects\97\b2cc19758995aa6ab1741ca69f0fb0f9e7eb2b" />
+    <None Include="wwwroot\v-dashboard\.git\objects\97\bccf820e2c97b7af8028960a391f299109c555" />
+    <None Include="wwwroot\v-dashboard\.git\objects\9b\ed43f2d3a607927b56c6ac0f0ce4153a48e9c1" />
+    <None Include="wwwroot\v-dashboard\.git\objects\a0\042ab74fa174a984434fc8ea67d20ae78bb42a" />
+    <None Include="wwwroot\v-dashboard\.git\objects\af\25a4f47452a390e16f439b8048acc888067f46" />
+    <None Include="wwwroot\v-dashboard\.git\objects\af\413ad2665ca6adb90fed3ee47e96880b6a26f3" />
+    <None Include="wwwroot\v-dashboard\.git\objects\bc\a0b42fe5601fe8d43a0bda9bb1c60392ea3099" />
+    <None Include="wwwroot\v-dashboard\.git\objects\bd\6b8da1ee624cb45185d159cf4039bfadad044d" />
+    <None Include="wwwroot\v-dashboard\.git\objects\c1\9ec8a06ba0d83b5e2c527b9abb91b125c5d9c5" />
+    <None Include="wwwroot\v-dashboard\.git\objects\c5\6169c0bb51ad2e3ad48f6722f1ebdb723d7e77" />
+    <None Include="wwwroot\v-dashboard\.git\objects\ce\4a380bbbe7d6ccc4a06aeead77e40cf8a6b8e7" />
+    <None Include="wwwroot\v-dashboard\.git\objects\d3\f0151a39d470990f56b3cacdbaf3800a7088a3" />
+    <None Include="wwwroot\v-dashboard\.git\objects\df\36fcfb72584e00488330b560ebcf34a41c64c2" />
+    <None Include="wwwroot\v-dashboard\.git\objects\df\e0770424b2a19faf507a501ebfc23be8f54e7b" />
+    <None Include="wwwroot\v-dashboard\.git\objects\f3\a94a0c5abd2f3676919e95ae76b7b1fe5509b2" />
+    <None Include="wwwroot\v-dashboard\.git\refs\heads\main" />
+    <None Include="wwwroot\v-dashboard\.git\refs\remotes\origin\main" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -16,11 +151,21 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
+    <PackageReference Include="VueCliMiddleware" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MvcMovieDAL\MvcMovieDAL.csproj" />
     <ProjectReference Include="..\MvcMovieInfra\MvcMovieInfra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\info\" />
+    <Folder Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\pack\" />
+    <Folder Include="wwwroot\lib\bootstrap\v-dashboard\.git\refs\tags\" />
+    <Folder Include="wwwroot\v-dashboard\.git\objects\info\" />
+    <Folder Include="wwwroot\v-dashboard\.git\objects\pack\" />
+    <Folder Include="wwwroot\v-dashboard\.git\refs\tags\" />
   </ItemGroup>
 
 </Project>
