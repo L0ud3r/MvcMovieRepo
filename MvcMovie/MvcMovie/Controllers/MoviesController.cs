@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
 using MvcMovieDAL;
 using MvcMovieDAL.Entities;
+using System.Linq;
 
 namespace MvcMovie.Controllers
 {
@@ -119,7 +120,8 @@ namespace MvcMovie.Controllers
 
                 Genre genre = _genreRepository.Get().Where(x => x.Name == movie.Genre).SingleOrDefault();
 
-                if (genre == null){
+                if (genre == null)
+                {
                     movieInsert.Genre = new Genre();
                     movieInsert.Genre.Name = movie.Genre;
                 }
@@ -274,11 +276,40 @@ namespace MvcMovie.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        [HttpGet]
+        public async Task<JsonResult> Paginate(int offset, int? limit = null)
+        {
+            limit = limit.HasValue ? limit.Value : int.MaxValue;
+
+            var query = _movieRepository.Get().Include(x => x.Genre);
+
+            var result = await query.Skip(offset).Take(limit.Value).Select(x => new
+            {
+                x.Id,
+                x.Title,
+                x.ReleaseDate,
+                GenreName = x.Genre.Name,
+                x.Price,
+                x.Rating
+            }).ToListAsync();
+
+
+            var _count = query.Count();
+
+            return Json(new
+            {
+                rows = result,
+                total = _count,
+                totalNotFiltered = _count
+            });
+        }
+
         private bool MovieExists(int id)
         {
             var entity = _movieRepository.Get().Where(x => x.Id == id).Include(x => x.Genre).SingleOrDefault();
 
-            if(entity != null)
+            if (entity != null)
                 return true;
 
             return false;

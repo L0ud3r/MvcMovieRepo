@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Programming\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj": {}
+    "D:\\IPCATeam\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj": {}
   },
   "projects": {
-    "C:\\Programming\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj": {
+    "D:\\IPCATeam\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Programming\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj",
+        "projectUniqueName": "D:\\IPCATeam\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj",
         "projectName": "MvcMovieDAL",
-        "projectPath": "C:\\Programming\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj",
-        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Programming\\MvcMovie\\MvcMovieDAL\\obj\\",
+        "projectPath": "D:\\IPCATeam\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj",
+        "packagesPath": "C:\\Users\\ricar\\.nuget\\packages\\",
+        "outputPath": "D:\\IPCATeam\\MvcMovie\\MvcMovieDAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ricar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,7 +28,8 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/4devcoding/_packaging/Core/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -72,24 +74,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Programming\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj": {
+    "D:\\IPCATeam\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Programming\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj",
+        "projectUniqueName": "D:\\IPCATeam\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj",
         "projectName": "MvcMovieInfra",
-        "projectPath": "C:\\Programming\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj",
-        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Programming\\MvcMovie\\MvcMovieInfra\\obj\\",
+        "projectPath": "D:\\IPCATeam\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj",
+        "packagesPath": "C:\\Users\\ricar\\.nuget\\packages\\",
+        "outputPath": "D:\\IPCATeam\\MvcMovie\\MvcMovieInfra\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ricar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -99,14 +102,15 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/4devcoding/_packaging/Core/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Programming\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj": {
-                "projectPath": "C:\\Programming\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj"
+              "D:\\IPCATeam\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj": {
+                "projectPath": "D:\\IPCATeam\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj"
               }
             }
           }
@@ -136,7 +140,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

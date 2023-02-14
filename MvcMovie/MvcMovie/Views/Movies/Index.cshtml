@@ -1,29 +1,9 @@
 ﻿@model MvcMovie.Models.MovieGenreViewModel
 
 @{
+    Layout = "/Views/Shared/App/_Layout.cshtml";
     ViewData["Title"] = "Index";
 }
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Dashboard</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="~/Template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
-
-    <link href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css" rel="stylesheet">
-
-
-    <!-- Custom styles for this template-->
-    <link href="~/Template/css/sb-admin-2.min.css" rel="stylesheet">
-</head>
 
 <h1>Index</h1>
 
@@ -41,54 +21,24 @@
     </p>
 </form>
 
-<table class="table">
+<table id="table"
+       data-toggle="table"
+       @*data-url="json/data1.json"*@
+       data-pagination="true"
+       data-id-field="id"
+       data-page-list="[10, 25, 50, 100, all]"
+       data-show-footer="true"
+       data-side-pagination="server"
+       data-url="/Movies/paginate">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Movies[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movies[0].ReleaseDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movies[0].Genre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movies[0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movies[0].Rating)
-            </th>
-            <th></th>
+            <th data-field="id">ID</th>
+            <th data-field="title">Title</th>
+            <th data-field="releaseDate">Release Date</th>
+            <th data-field="genreName">Genre</th>
+            <th data-field="" data-formatter="operateFormatter">Actions</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var item in Model.Movies)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReleaseDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Genre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
-                </td>
-                <td>
-                    <button asp-action="Edit" asp-route-id="@item.Id" class="bg-info rounded btn-outline-light text-white">Edit</button> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
 </table>
 
 <style>
@@ -107,28 +57,6 @@
         <i class="fa fa-trash"></i> Delete
     </button>
 </div>
-<table id="table"
-       data-toolbar="#toolbar"
-       data-search="true"
-       data-show-refresh="true"
-       data-show-toggle="true"
-       data-show-fullscreen="true"
-       data-show-columns="true"
-       data-show-columns-toggle-all="true"
-       data-detail-view="true"
-       data-show-export="true"
-       data-click-to-select="true"
-       data-detail-formatter="detailFormatter"
-       data-minimum-count-columns="2"
-       data-show-pagination-switch="true"
-       data-pagination="true"
-       data-id-field="id"
-       data-page-list="[10, 25, 50, 100, all]"
-       data-show-footer="true"
-       data-side-pagination="server"
-       data-url="https://examples.wenzhixin.net.cn/examples/bootstrap_table/data"
-       data-response-handler="responseHandler">
-</table>
 
 <script>
     var $table = $('#table')
@@ -163,6 +91,9 @@
             '</a>  ',
             '<a class="remove" href="javascript:void(0)" title="Remove">',
             '<i class="fa fa-trash"></i>',
+            '</a>',
+            '<a class="add" href="javascript:void(0)" title="Add">',
+            '<i class="fa fa-plus"></i>',
             '</a>'
         ].join('')
     }
