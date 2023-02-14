@@ -1,0 +1,15 @@
+C:\Programming\MvcMovie\MvcMovieInfra\bin\Debug\net6.0\MvcMovieInfra.deps.json
+C:\Programming\MvcMovie\MvcMovieInfra\bin\Debug\net6.0\MvcMovieInfra.dll
+C:\Programming\MvcMovie\MvcMovieInfra\bin\Debug\net6.0\MvcMovieInfra.pdb
+C:\Programming\MvcMovie\MvcMovieInfra\obj\Debug\net6.0\MvcMovieInfra.csproj.AssemblyReference.cache
+C:\Programming\MvcMovie\MvcMovieInfra\obj\Debug\net6.0\MvcMovieInfra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Programming\MvcMovie\MvcMovieInfra\obj\Debug\net6.0\MvcMovieInfra.AssemblyInfoInputs.cache
+C:\Programming\MvcMovie\MvcMovieInfra\obj\Debug\net6.0\MvcMovieInfra.AssemblyInfo.cs
+C:\Programming\MvcMovie\MvcMovieInfra\obj\Debug\net6.0\MvcMovieInfra.csproj.CoreCompileInputs.cache
+C:\Programming\MvcMovie\MvcMovieInfra\obj\Debug\net6.0\MvcMovieInfra.dll
+C:\Programming\MvcMovie\MvcMovieInfra\obj\Debug\net6.0\refint\MvcMovieInfra.dll
+C:\Programming\MvcMovie\MvcMovieInfra\obj\Debug\net6.0\MvcMovieInfra.pdb
+C:\Programming\MvcMovie\MvcMovieInfra\obj\Debug\net6.0\ref\MvcMovieInfra.dll
+C:\Programming\MvcMovie\MvcMovieInfra\bin\Debug\net6.0\MvcMovieDAL.dll
+C:\Programming\MvcMovie\MvcMovieInfra\bin\Debug\net6.0\MvcMovieDAL.pdb
+C:\Programming\MvcMovie\MvcMovieInfra\obj\Debug\net6.0\MvcMovieInfra.csproj.CopyComplete

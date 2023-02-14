@@ -1,0 +1,12 @@
+C:\Programming\MvcMovie\MvcMovieApplication\bin\Debug\net6.0\MvcMovieApplication.deps.json
+C:\Programming\MvcMovie\MvcMovieApplication\bin\Debug\net6.0\MvcMovieApplication.dll
+C:\Programming\MvcMovie\MvcMovieApplication\bin\Debug\net6.0\MvcMovieApplication.pdb
+C:\Programming\MvcMovie\MvcMovieApplication\obj\Debug\net6.0\MvcMovieApplication.csproj.AssemblyReference.cache
+C:\Programming\MvcMovie\MvcMovieApplication\obj\Debug\net6.0\MvcMovieApplication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Programming\MvcMovie\MvcMovieApplication\obj\Debug\net6.0\MvcMovieApplication.AssemblyInfoInputs.cache
+C:\Programming\MvcMovie\MvcMovieApplication\obj\Debug\net6.0\MvcMovieApplication.AssemblyInfo.cs
+C:\Programming\MvcMovie\MvcMovieApplication\obj\Debug\net6.0\MvcMovieApplication.csproj.CoreCompileInputs.cache
+C:\Programming\MvcMovie\MvcMovieApplication\obj\Debug\net6.0\MvcMovieApplication.dll
+C:\Programming\MvcMovie\MvcMovieApplication\obj\Debug\net6.0\refint\MvcMovieApplication.dll
+C:\Programming\MvcMovie\MvcMovieApplication\obj\Debug\net6.0\MvcMovieApplication.pdb
+C:\Programming\MvcMovie\MvcMovieApplication\obj\Debug\net6.0\ref\MvcMovieApplication.dll
