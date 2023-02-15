@@ -97,6 +97,15 @@
       "MessagePackAnalyzer/2.1.152": {
         "type": "package"
       },
+      "Microsoft.AspNet.ScriptManager.MSAjax/5.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Microsoft.ScriptManager.MSAjax.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.ScriptManager.MSAjax.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Mvc.Razor.Extensions/6.0.14": {
         "type": "package",
         "dependencies": {
@@ -3948,6 +3957,29 @@
         "messagepackanalyzer.nuspec",
         "tools/install.ps1",
         "tools/uninstall.ps1"
+      ]
+    },
+    "Microsoft.AspNet.ScriptManager.MSAjax/5.0.0": {
+      "sha512": "D6dJkw+xm/kXeL5rblPAhyeKrpNaDWeHBoG6tjMrOrvFX1A6GwwEY6y+cyFPR6ZWz5XBgC3xJPIBi/p3YIj40Q==",
+      "type": "package",
+      "path": "microsoft.aspnet.scriptmanager.msajax/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/Scripts/WebForms/MSAjax/MicrosoftAjax.js",
+        "content/Scripts/WebForms/MSAjax/MicrosoftAjaxApplicationServices.js",
+        "content/Scripts/WebForms/MSAjax/MicrosoftAjaxComponentModel.js",
+        "content/Scripts/WebForms/MSAjax/MicrosoftAjaxCore.js",
+        "content/Scripts/WebForms/MSAjax/MicrosoftAjaxGlobalization.js",
+        "content/Scripts/WebForms/MSAjax/MicrosoftAjaxHistory.js",
+        "content/Scripts/WebForms/MSAjax/MicrosoftAjaxNetwork.js",
+        "content/Scripts/WebForms/MSAjax/MicrosoftAjaxSerialization.js",
+        "content/Scripts/WebForms/MSAjax/MicrosoftAjaxTimer.js",
+        "content/Scripts/WebForms/MSAjax/MicrosoftAjaxWebForms.js",
+        "content/Scripts/WebForms/MSAjax/MicrosoftAjaxWebServices.js",
+        "lib/net45/Microsoft.ScriptManager.MSAjax.dll",
+        "microsoft.aspnet.scriptmanager.msajax.5.0.0.nupkg.sha512",
+        "microsoft.aspnet.scriptmanager.msajax.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Mvc.Razor.Extensions/6.0.14": {
@@ -10792,6 +10824,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Microsoft.AspNet.ScriptManager.MSAjax >= 5.0.0",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 6.0.14",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.2",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.2",
@@ -10799,6 +10832,7 @@
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.11",
       "MvcMovieDAL >= 1.0.0",
       "MvcMovieInfra >= 1.0.0",
+      "System.Text.Encodings.Web >= 7.0.0",
       "VueCliMiddleware >= 6.0.0"
     ]
   },
@@ -10854,6 +10888,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Microsoft.AspNet.ScriptManager.MSAjax": {
+            "target": "Package",
+            "version": "[5.0.0, )"
+          },
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
             "target": "Package",
             "version": "[6.0.14, )"
@@ -10877,6 +10915,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.11, )"
+          },
+          "System.Text.Encodings.Web": {
+            "target": "Package",
+            "version": "[7.0.0, )"
           },
           "VueCliMiddleware": {
             "target": "Package",
@@ -10905,5 +10947,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.ScriptManager.MSAjax 5.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.ScriptManager.MSAjax",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

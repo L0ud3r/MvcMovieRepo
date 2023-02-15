@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XMG3M5/mV/n8Bx3Qa0aMgg31t+dZPr4yruVjR7ufY7E=",
+  "Hash": "fOPg/nswAziFh+iU4Uhl6b8LbOuvJKdYcHmfrXpd+Sg=",
   "Source": "MvcMovie",
   "BasePath": "_content/MvcMovie",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\js\\genreexistsjson.js",
+      "SourceId": "MvcMovie",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\",
+      "BasePath": "_content/MvcMovie",
+      "RelativePath": "js/genreexistsjson.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\genreexistsjson.js"
     },
     {
       "Identity": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\js\\jsonsearch.js",

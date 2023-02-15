@@ -1152,3 +1152,4 @@ C:\Programming\MvcMovieRepo\MvcMovie\MvcMovie\obj\Debug\net6.0\refint\MvcMovie.d
 C:\Programming\MvcMovieRepo\MvcMovie\MvcMovie\obj\Debug\net6.0\MvcMovie.pdb
 C:\Programming\MvcMovieRepo\MvcMovie\MvcMovie\obj\Debug\net6.0\MvcMovie.genruntimeconfig.cache
 C:\Programming\MvcMovieRepo\MvcMovie\MvcMovie\obj\Debug\net6.0\ref\MvcMovie.dll
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovie\bin\Debug\net6.0\Microsoft.ScriptManager.MSAjax.dll

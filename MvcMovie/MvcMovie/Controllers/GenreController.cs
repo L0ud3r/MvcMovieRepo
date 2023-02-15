@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
 using MvcMovieDAL;
 using MvcMovieDAL.Entities;
+using System.Web;
 
 
 namespace MvcMovie.Controllers
@@ -17,6 +18,7 @@ namespace MvcMovie.Controllers
         {
             _movieRepository = movieRepository;
             _genreRepository = genreRepository;
+
         }
 
         // GET: Genre/Create
@@ -36,20 +38,31 @@ namespace MvcMovie.Controllers
             {
                 Genre genreInsert = new Genre();
 
-                //Verificar se genero ja existe
-                //se existir, cancelar e avisar
-                //Senao adicionar
+                var genreDb = _genreRepository.Get().Where(x => x.Name == genre.Name).SingleOrDefault();
 
-                genreInsert.Name = genreInsert.Name;
-                genreInsert.Id = genre.Id;
+                if (genreDb == null)
+                {
+                    genreInsert.Name = genre.Name;
 
-                genreInsert.CreatedDate = DateTime.Now;
-                genreInsert.UpdatedDate = DateTime.Now;
-                genreInsert.Active = true;
+                    genreInsert.CreatedDate = DateTime.Now;
+                    genreInsert.UpdatedDate = DateTime.Now;
+                    genreInsert.Active = true;
 
-                _genreRepository.Insert(genreInsert);
-                _genreRepository.Save();
-                return RedirectToAction(nameof(Index));
+                    _genreRepository.Insert(genreInsert);
+                    _genreRepository.Save();
+                }
+                else
+                {
+                    /*
+                     * 
+                     * 
+                        ALERT USER!!!
+                     *
+                     *
+                     */
+                }
+
+                return RedirectToAction("Index", "Movies");
             }
             return View(genre);
         }

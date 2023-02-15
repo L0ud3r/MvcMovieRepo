@@ -7397,6 +7397,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\js\\genreexistsjson.js",
+      "PackagePath": "staticwebassets\\js\\genreexistsjson.js"
+    },
+    {
       "Id": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\js\\jsonsearch.js",
       "PackagePath": "staticwebassets\\js\\jsonsearch.js"
     },
