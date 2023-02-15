@@ -285,7 +285,7 @@ namespace MvcMovie.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> Paginate(int offset, int? limit = null)
+        public async Task<JsonResult> Paginate(int offset, List<BootstrapTableFilter> search = null, int? limit = null)
         {
             limit = limit.HasValue ? limit.Value : int.MaxValue;
 
