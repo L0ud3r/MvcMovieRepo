@@ -13,7 +13,17 @@ builder.Services.AddScoped<IRepository<Movie>, Repository<Movie, MvcMovieContext
 builder.Services.AddScoped<IRepository<Genre>, Repository<Genre, MvcMovieContext>>();
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+//builder.Services.AddControllersWithViews().AddRazorOptions(options => options.AllowRecompilingViewsOnFileChange.Date = true);
+
+//#if (DEBUG)
+//mvcviews.AddRazorRuntimeCompilation();
+//#endif
+
+var mvcviews = builder.Services.AddControllersWithViews();
+
+#if (DEBUG)
+    mvcviews.AddRazorRuntimeCompilation();
+#endif
 
 var app = builder.Build();
 

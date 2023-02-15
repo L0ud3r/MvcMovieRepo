@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
 using MvcMovieDAL;
 using MvcMovieDAL.Entities;
-using System.Linq;
 
 namespace MvcMovie.Controllers
 {
@@ -24,8 +23,8 @@ namespace MvcMovie.Controllers
         {
             // Use LINQ to get list of genres.
             IQueryable<string> genreQuery = (from m in _movieRepository.Get()
-                                             orderby m.Title
-                                             select m.Title).AsQueryable();
+                                             orderby m.Genre.Name
+                                             select m.Genre.Name).AsQueryable();
 
             var movies = (from m in _movieRepository.Get()
                           select m).AsQueryable();
@@ -49,7 +48,7 @@ namespace MvcMovie.Controllers
                     Title = x.Title,
                     Id = x.Id,
                     Rating = x.Rating,
-                    ReleaseDate = x.ReleaseDate,
+                    ReleaseDate = x.ReleaseDate.Date,
                     Price = x.Price,
                 }).ToListAsync()
             };
@@ -88,7 +87,7 @@ namespace MvcMovie.Controllers
 
             movieDetails.Id = movie.Id;
             movieDetails.Title = movie.Title;
-            movieDetails.ReleaseDate = movie.ReleaseDate;
+            movieDetails.ReleaseDate = movie.ReleaseDate.Date;
             movieDetails.Rating = movie.Rating;
             movieDetails.Price = movie.Price;
             movieDetails.Genre = movie.GenreName;
@@ -120,8 +119,7 @@ namespace MvcMovie.Controllers
 
                 Genre genre = _genreRepository.Get().Where(x => x.Name == movie.Genre).SingleOrDefault();
 
-                if (genre == null)
-                {
+                if (genre == null){
                     movieInsert.Genre = new Genre();
                     movieInsert.Genre.Name = movie.Genre;
                 }
@@ -276,6 +274,15 @@ namespace MvcMovie.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        private bool MovieExists(int id)
+        {
+            var entity = _movieRepository.Get().Where(x => x.Id == id).Include(x => x.Genre).SingleOrDefault();
+
+            if(entity != null)
+                return true;
+
+            return false;
+        }
 
         [HttpGet]
         public async Task<JsonResult> Paginate(int offset, int? limit = null)
@@ -284,35 +291,25 @@ namespace MvcMovie.Controllers
 
             var query = _movieRepository.Get().Include(x => x.Genre);
 
-            var result = await query.Skip(offset).Take(limit.Value).Select(x => new
+            var moviesList = await query.Skip(offset).Take(limit.Value).Select(x => new
             {
                 x.Id,
                 x.Title,
-                x.ReleaseDate,
                 GenreName = x.Genre.Name,
+                x.ReleaseDate,
                 x.Price,
                 x.Rating
             }).ToListAsync();
-
 
             var _count = query.Count();
 
             return Json(new
             {
-                rows = result,
+                rows = moviesList,
                 total = _count,
+                //To fix
                 totalNotFiltered = _count
             });
-        }
-
-        private bool MovieExists(int id)
-        {
-            var entity = _movieRepository.Get().Where(x => x.Id == id).Include(x => x.Genre).SingleOrDefault();
-
-            if (entity != null)
-                return true;
-
-            return false;
         }
     }
 }

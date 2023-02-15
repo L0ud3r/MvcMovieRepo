@@ -1,6 +1,7 @@
 ﻿@model MvcMovie.Models.MovieViewModel
 
 @{
+    Layout = "/Views/Shared/App/_Layout.cshtml";
     ViewData["Title"] = "Delete";
 }
 
@@ -45,7 +46,13 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+
+        <a asp-action="Index" class="btn btn-dark btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-arrow-left"></i>
+            </span>
+            <span class="text">Back to List</span>
+        </a>
     </form>
 </div>

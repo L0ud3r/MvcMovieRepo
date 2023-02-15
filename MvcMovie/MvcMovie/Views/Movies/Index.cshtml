@@ -5,20 +5,51 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Movies</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+
 <form asp-controller="Movies" asp-action="Index" method="get">
-    <p>
-        <select asp-for="MovieGenre" asp-items="Model.Genres">
-            <option value="">All</option>
-        </select>
+    <div class="row mt-4 mb-3 align-items-center">
+        <div class="col-2 text-left">
+            <div style="display: flex; gap: 10px;">
+                <div style="align-self: center">
+                    Genre:
+                </div>
+                <select class="form-select" style="width: 200px" asp-for="MovieGenre" asp-items="Model.Genres">
+                    <option value="">All</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-3" style="display: flex; gap: 10px; width: 200px;">
+            <div style="align-self: center">
+                Title:
+            </div>
+            <div>
+                <input type="text" style="border: 1px solid  gray;" class="form-control bg-gray small" asp-for="SearchString" />
+            </div>
+        </div>
+        <div class="col-4">
 
-        Title: <input type="text" asp-for="SearchString" />
-        <input type="submit" value="Filter" />
-    </p>
+        </div>
+        <div class="col-3">
+            <div style="display:flex; gap: 5px; justify-content: right">
+                <div>
+                    <input type="submit" class="form-control" value="Filter" />
+
+                </div>
+                <div>
+                    <a asp-action="Create" class="btn btn-primary btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fa fa-plus"></i>
+                        </span>
+                        <span class="text">Add Movie</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 </form>
 
 <table id="table"
@@ -27,7 +58,6 @@
        data-pagination="true"
        data-id-field="id"
        data-page-list="[10, 25, 50, 100, all]"
-       data-show-footer="true"
        data-side-pagination="server"
        data-url="/Movies/paginate">
     <thead>
@@ -51,12 +81,6 @@
         margin-right: 10px;
     }
 </style>
-
-<div id="toolbar">
-    <button id="remove" class="btn btn-danger" disabled>
-        <i class="fa fa-trash"></i> Delete
-    </button>
-</div>
 
 <script>
     var $table = $('#table')
@@ -84,30 +108,27 @@
         return html.join('')
     }
 
-    function operateFormatter(value, row, index) {
-        return [
-            '<a class="like" href="javascript:void(0)" title="Like">',
-            '<i class="fa fa-heart"></i>',
-            '</a>  ',
-            '<a class="remove" href="javascript:void(0)" title="Remove">',
-            '<i class="fa fa-trash"></i>',
-            '</a>',
-            '<a class="add" href="javascript:void(0)" title="Add">',
-            '<i class="fa fa-plus"></i>',
-            '</a>'
-        ].join('')
+    function favAlert() {
+        alert("Added to favourites!");
     }
 
-    window.operateEvents = {
-        'click .like': function (e, value, row, index) {
-            alert('You click like action, row: ' + JSON.stringify(row))
-        },
-        'click .remove': function (e, value, row, index) {
-            $table.bootstrapTable('remove', {
-                field: 'id',
-                values: [row.id]
-            })
-        }
+    function operateFormatter(value, row, index) {
+        return [
+            '<div style="display: flex; gap: 10px">',
+            `<a class="remove" href="/Movies/Delete/${row.id}" title="Remove">`,
+            '<i class="fa fa-trash"></i>',
+            '</a>  ',
+            `<a class="edit" href="/Movies/Edit/${row.id}" title="Edit">`,
+            '<i class="fa fa-pen"></i>',
+            '</a>  ',
+            `<a class="details" href="/Movies/Details/${row.id}" title="Details">`,
+            '<i class="fa fa-eye"></i>',
+            '</a>',
+            `<a class="like" href="javascript:void(0)" title="Like" onclick="alert(\'${row.title} added to favourites!\')">`,
+            '<i class="fa fa-heart"></i>',
+            '</a>  ',
+            '</div>'
+        ].join('');
     }
 
     function totalTextFormatter(data) {
@@ -208,76 +229,6 @@
 <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table-locale-all.min.js"></script>
 <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/extensions/export/bootstrap-table-export.min.js"></script>
 
-
-<div id="wrapper">
-    <!-- Color System -->
-    <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="card bg-primary text-white shadow">
-                <div class="card-body">
-                    Primary
-                    <div class="text-white-50 small">#4e73df</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card bg-success text-white shadow">
-                <div class="card-body">
-                    Success
-                    <div class="text-white-50 small">#1cc88a</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card bg-info text-white shadow">
-                <div class="card-body">
-                    Info
-                    <div class="text-white-50 small">#36b9cc</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card bg-warning text-white shadow">
-                <div class="card-body">
-                    Warning
-                    <div class="text-white-50 small">#f6c23e</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card bg-danger text-white shadow">
-                <div class="card-body">
-                    Danger
-                    <div class="text-white-50 small">#e74a3b</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card bg-secondary text-white shadow">
-                <div class="card-body">
-                    Secondary
-                    <div class="text-white-50 small">#858796</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card bg-light text-black shadow">
-                <div class="card-body">
-                    Light
-                    <div class="text-black-50 small">#f8f9fc</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card bg-dark text-white shadow">
-                <div class="card-body">
-                    Dark
-                    <div class="text-white-50 small">#5a5c69</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Bootstrap core JavaScript-->
 <script src="~/Template/vendor/jquery/jquery.min.js"></script>

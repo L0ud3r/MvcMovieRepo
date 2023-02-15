@@ -1,6 +1,7 @@
 ﻿@model MvcMovie.Models.MovieViewModel
 
 @{
+    Layout = "/Views/Shared/App/_Layout.cshtml";
     ViewData["Title"] = "Details";
 }
 
@@ -44,5 +45,10 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-dark btn-icon-split">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-left"></i>
+        </span>
+        <span class="text">Back to List</span>
+    </a>
 </div>
