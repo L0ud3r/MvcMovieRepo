@@ -1,10 +1,19 @@
 ﻿namespace MvcMovie.Models
 {
+    public class BootstrapModel
+    {
+        public BootstrapModel() { }
+
+        public int Offset { get; set; }
+        public int? Limit { get; set; }
+        public IList<BootstrapTableFilter> Search { get; set; }
+    }
+
     public class BootstrapTableFilter
     {
         public BootstrapTableFilter() { }
 
-        public string stringName { get; set; }
-        public string stringValue { get; set; }
+        public string Name { get; set; }
+        public string Value { get; set; }
     }
 }

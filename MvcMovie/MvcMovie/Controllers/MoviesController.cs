@@ -98,7 +98,19 @@ namespace MvcMovie.Controllers
         // GET: Movies/Create
         public IActionResult Create()
         {
-            return View();
+            // Use LINQ to get list of genres.
+            IQueryable<string> genreQuery = (from m in _genreRepository.Get()
+                                             orderby m.Name
+                                             select m.Name).AsQueryable();
+
+            //Verificar quando estiver vazio
+
+            var movieGenreVM = new MovieAllGenresViewModel
+            (
+                new SelectList(genreQuery)
+            );
+
+            return View(movieGenreVM);
         }
 
         // POST: Movies/Create
@@ -155,16 +167,25 @@ namespace MvcMovie.Controllers
                 x.Rating
             }).SingleOrDefault();
 
-            MovieViewModel movieView = new MovieViewModel();
+            // Use LINQ to get list of genres.
+            IQueryable<string> genreQuery = (from m in _genreRepository.Get()
+                                             orderby m.Name
+                                             select m.Name).AsQueryable();
 
-            movieView.Id = movie.Id;
-            movieView.Title = movie.Title;
-            movieView.Price = movie.Price;
-            movieView.ReleaseDate = movie.ReleaseDate;
-            movieView.Rating = movie.Rating;
-            movieView.Genre = movie.GenreName;
+            //Verificar quando estiver vazio
 
-            return View(movieView);
+            var movieGenreVM = new MovieAllGenresViewModel(
+                new SelectList(genreQuery),
+                movie.Id,
+                movie.Title,
+                movie.Price,
+                movie.ReleaseDate,
+                movie.Rating
+            );
+
+            movieGenreVM.Genre = movie.GenreName;
+
+            return View(movieGenreVM);
         }
 
         // POST: Movies/Edit/5
@@ -284,19 +305,34 @@ namespace MvcMovie.Controllers
             return false;
         }
 
-        [HttpGet]
-        public async Task<JsonResult> Paginate(int offset, List<BootstrapTableFilter> search = null, int? limit = null)
+        [HttpPost]
+        public async Task<JsonResult> Paginate([FromBody] BootstrapModel model)
         {
-            limit = limit.HasValue ? limit.Value : int.MaxValue;
+            model.Limit = model.Limit.HasValue ? model.Limit.Value : int.MaxValue;
 
-            var query = _movieRepository.Get().Include(x => x.Genre);
+            var query = _movieRepository.Get();
 
-            var moviesList = await query.Skip(offset).Take(limit.Value).Select(x => new
+            var genreName = model.Search.FirstOrDefault(x => x.Name == "Genre");
+
+            if (genreName != null && !string.IsNullOrEmpty(genreName.Value))
+            {
+                query = query.Where(x => x.Genre.Name.ToUpper().StartsWith(genreName.Value.ToUpper()));
+            }
+
+            var title = model.Search.FirstOrDefault(x => x.Name == "Title");
+            if (title != null && !string.IsNullOrEmpty(title.Value))
+            {
+                query = query.Where(x => x.Title.ToUpper().StartsWith(title.Value.ToUpper()));
+            }
+
+            query = query.Include(x => x.Genre);
+
+            var result = await query.Skip(model.Offset).Take(model.Limit.Value).Select(x => new
             {
                 x.Id,
                 x.Title,
-                GenreName = x.Genre.Name,
                 x.ReleaseDate,
+                GenreName = x.Genre.Name,
                 x.Price,
                 x.Rating
             }).ToListAsync();
@@ -305,7 +341,7 @@ namespace MvcMovie.Controllers
 
             return Json(new
             {
-                rows = moviesList,
+                rows = result,
                 total = _count,
                 //To fix
                 totalNotFiltered = _count
