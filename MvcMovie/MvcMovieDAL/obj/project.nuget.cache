@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "M9oi72oMg2F5F1Be7i/bCW2aJQ9fNsHFfaYeSx91leTXF5gbZsIAFDVuNV0iw40DUZL/V66PZEC16RlURe6K5g==",
+  "dgSpecHash": "VQypzgWtkD9MrO6aGYYs0Qv7erQNktasgNkko0QwCaf2NFyQOcxYaXkvFbbLfYxrIQ93EK+rsD8T9pz1Bi6UGw==",
   "success": true,
-  "projectFilePath": "C:\\Programming\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj",
+  "projectFilePath": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Asus\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

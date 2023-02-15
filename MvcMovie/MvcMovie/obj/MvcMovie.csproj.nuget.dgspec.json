@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Programming\\MvcMovie\\MvcMovie\\MvcMovie.csproj": {}
+    "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\MvcMovie.csproj": {}
   },
   "projects": {
-    "C:\\Programming\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj": {
+    "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Programming\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj",
+        "projectUniqueName": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj",
         "projectName": "MvcMovieDAL",
-        "projectPath": "C:\\Programming\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj",
+        "projectPath": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj",
         "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Programming\\MvcMovie\\MvcMovieDAL\\obj\\",
+        "outputPath": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieDAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -76,14 +76,14 @@
         }
       }
     },
-    "C:\\Programming\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj": {
+    "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Programming\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj",
+        "projectUniqueName": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj",
         "projectName": "MvcMovieInfra",
-        "projectPath": "C:\\Programming\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj",
+        "projectPath": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj",
         "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Programming\\MvcMovie\\MvcMovieInfra\\obj\\",
+        "outputPath": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieInfra\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -105,8 +105,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Programming\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj": {
-                "projectPath": "C:\\Programming\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj"
+              "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj": {
+                "projectPath": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj"
               }
             }
           }
@@ -140,14 +140,14 @@
         }
       }
     },
-    "C:\\Programming\\MvcMovie\\MvcMovie\\MvcMovie.csproj": {
+    "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\MvcMovie.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Programming\\MvcMovie\\MvcMovie\\MvcMovie.csproj",
+        "projectUniqueName": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\MvcMovie.csproj",
         "projectName": "MvcMovie",
-        "projectPath": "C:\\Programming\\MvcMovie\\MvcMovie\\MvcMovie.csproj",
+        "projectPath": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\MvcMovie.csproj",
         "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Programming\\MvcMovie\\MvcMovie\\obj\\",
+        "outputPath": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -169,11 +169,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Programming\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj": {
-                "projectPath": "C:\\Programming\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj"
+              "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj": {
+                "projectPath": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieDAL\\MvcMovieDAL.csproj"
               },
-              "C:\\Programming\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj": {
-                "projectPath": "C:\\Programming\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj"
+              "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj": {
+                "projectPath": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovieInfra\\MvcMovieInfra.csproj"
               }
             }
           }

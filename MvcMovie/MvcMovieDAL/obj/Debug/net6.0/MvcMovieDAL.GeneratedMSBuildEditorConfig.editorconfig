@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MvcMovieDAL
-build_property.ProjectDir = C:\Programming\MvcMovie\MvcMovieDAL\
+build_property.ProjectDir = C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\
