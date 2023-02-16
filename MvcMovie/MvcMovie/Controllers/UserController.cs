@@ -138,17 +138,20 @@ namespace MvcMovie.Controllers
         }
 
         #region Login
-        public static bool VerifyAccount(User account)
+        public bool VerifyAccount(User account)
         {
-            //Verificar se existe user na databse com mail e ativo   
-            //se for null -> return false
+            //Verificar se existe user na databse com mail e ativo
+            var user = _userRepository.Get().Where(x => x.Email == account.Email).FirstOrDefault();
+
+            if (user == null) return false;
+
             // verficar pass:
-            /*
-                if (!MvcMovie.HashSaltPW.VerifyPasswordHash(account.Pass, Convert.FromBase64String(cliente.Pass), Convert.FromBase64String(cliente.PassSalt)))
-                {
-                    throw new ArgumentException("Password Errada.", "account");
-                }
-            */
+            if (!VerifyPasswordHash(user.PassHash, Convert.FromBase64String(account.PassHash), Convert.FromBase64String(account.PassSalt)))
+            {
+                //throw new ArgumentException("Password Errada.", "account");
+                return false;
+            }
+            
             return true;
         }
 
@@ -191,7 +194,7 @@ namespace MvcMovie.Controllers
 
         [Route("Login")]
         [HttpPost]
-        public IActionResult Login([Bind("Username, Password")] UserViewModel account)
+        public IActionResult Login([Bind("Email, Password")] UserViewModel account)
         {
             //Procurar na database user com email
             var user = _userRepository.Get().Where(x => x.Email == account.Email).FirstOrDefault();
@@ -209,7 +212,7 @@ namespace MvcMovie.Controllers
                 else
                     return new JsonResult("Wrong Pass");
 
-                return RedirectToAction(nameof(Index));
+                 return RedirectToAction("Index", "Movies");
             }
 
             return new JsonResult("Wrong Email");
