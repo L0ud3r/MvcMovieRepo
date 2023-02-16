@@ -10472,6 +10472,10 @@ a:focus {
   margin: 0 1rem 1rem;
 }
 
+.sidebar-interaction{
+
+}
+
 .sidebar .sidebar-heading {
   text-align: center;
   padding: 0 1rem;
@@ -10625,8 +10629,12 @@ a:focus {
   }
 }
 
+.sidebar-item:hover {
+    background-color: red;
+}
+
 .sidebar-light .sidebar-brand {
-  color: #6e707e;
+    color: #6e707e;
 }
 
 .sidebar-light hr.sidebar-divider {

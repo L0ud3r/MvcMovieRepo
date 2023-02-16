@@ -23,17 +23,6 @@
     <span class="text">Add Genre</span>
 </a>
 
-<form id="search-form" asp-controller="Movies" asp-action="Index" method="get">
-    <div class="d-flex flex-row mt-4 mb-2 align-items-center">
-        <div class="col-0">
-            <select id="genre-filter" multiples="multiples" asp-for="MovieGenre" asp-items="Model.Genres" class="select2-genre" style="width:200px">
-                <option value="">All Genres</option>
-            </select>
-        </div>
-        
-    </div>
-</form>
-
 <table id="table"
        data-toggle="table"
        data-pagination="true"

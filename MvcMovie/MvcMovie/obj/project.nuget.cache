@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NqXz1N0TDYMcSONT9trn/7PJ2PYj0DtlmJB07OJrV7qWCFQ8dpE+IGu1fsZ8XrR2F7HQkk1iYqByxGuLa7Y3fQ==",
+  "dgSpecHash": "mwqWZFJZr2a7oHrVqb6B1pFRRG1qHLR86KmwIYXdJDuz+e+ds0aVifWRTLnI7Xkqr5ozdjA63afCjuU1da6RKg==",
   "success": true,
   "projectFilePath": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\MvcMovie.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Asus\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.aspnet.scriptmanager.msajax\\5.0.0\\microsoft.aspnet.scriptmanager.msajax.5.0.0.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.14\\microsoft.aspnetcore.authentication.jwtbearer.6.0.14.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.14\\microsoft.aspnetcore.mvc.razor.extensions.6.0.14.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\6.0.14\\microsoft.aspnetcore.mvc.razor.runtimecompilation.6.0.14.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.14\\microsoft.aspnetcore.razor.language.6.0.14.nupkg.sha512",

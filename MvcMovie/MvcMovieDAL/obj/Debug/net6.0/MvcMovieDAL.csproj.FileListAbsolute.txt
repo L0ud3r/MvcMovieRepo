@@ -12,3 +12,17 @@ C:\Programming\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\refint\MvcMovieDAL.dll
 C:\Programming\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\MvcMovieDAL.pdb
 C:\Programming\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\MvcMovieDAL.genruntimeconfig.cache
 C:\Programming\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\ref\MvcMovieDAL.dll
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\bin\Debug\net6.0\MvcMovieDAL.deps.json
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\bin\Debug\net6.0\MvcMovieDAL.runtimeconfig.json
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\bin\Debug\net6.0\MvcMovieDAL.dll
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\bin\Debug\net6.0\MvcMovieDAL.pdb
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\MvcMovieDAL.csproj.AssemblyReference.cache
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\MvcMovieDAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\MvcMovieDAL.AssemblyInfoInputs.cache
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\MvcMovieDAL.AssemblyInfo.cs
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\MvcMovieDAL.csproj.CoreCompileInputs.cache
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\MvcMovieDAL.dll
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\refint\MvcMovieDAL.dll
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\MvcMovieDAL.pdb
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\MvcMovieDAL.genruntimeconfig.cache
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovieDAL\obj\Debug\net6.0\ref\MvcMovieDAL.dll

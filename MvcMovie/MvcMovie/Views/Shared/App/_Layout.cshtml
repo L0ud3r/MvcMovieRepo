@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MvcMovie.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/styles.cf58507dd785c10c7bc8.css" asp-append-version="true" />
     <!-- Custom fonts for this template-->
     <link href="~/startbootstrap-sb-admin-2-gh-pages/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -16,7 +17,7 @@
     <link href="~/startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MvcMovie.styles.css" asp-append-version="true" />
+    
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body id="page-top">
@@ -40,7 +41,7 @@
 
             <!-- Nav Item - Movies -->
             <li class="nav-item active">
-                <a class="nav-link" href="/Movies">
+                <a class="nav-link" href="@Url.Action("Index", "Movies")">
                     <i class="fas fa-ticket-alt"></i>
                     <span>Movies</span>
                 </a>
@@ -324,6 +325,7 @@
     </div>
 
     <partial name="/Views/Shared/App/_scripts.cshtml"></partial>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

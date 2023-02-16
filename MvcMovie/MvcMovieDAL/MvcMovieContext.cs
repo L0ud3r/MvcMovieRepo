@@ -12,5 +12,6 @@ namespace MvcMovieDAL
 
         public DbSet<Movie> Movie { get; set; } = default!;
         public DbSet<Genre> Genres { get; set; } = default!;
+        public DbSet<User> Users { get; set; } = default!;
     }
 }
