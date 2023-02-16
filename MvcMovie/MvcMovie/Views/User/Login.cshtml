@@ -1,14 +1,14 @@
 ﻿@model MvcMovie.Models.UserViewModel
 
 @{
-    Layout = "/Views/Shared/App/_Layout.cshtml";
+    Layout = "/Views/Shared/App/_LayoutAuth.cshtml";
     ViewData["Title"] = "Login";
 }
 
-<h1>Login</h1>
+<h1 class="text-center">Login</h1>
 
-<hr />
-<div class="row">
+<br /> 
+<div class="row" style="justify-content:center;">
     <div class="col-md-4">
         <form asp-action="Login">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -26,12 +26,13 @@
                 <div class="form-group">
                     <input type="submit" value="Login" class="btn btn-primary" />
                 </div>
+                <div>
+                    <a href="@Url.Action("Create", "User")" class="btn btn-secondary text-center">
+                        <span class="text">Register</span>
+                    </a>
+                </div>
             </div>
         </form>
     </div>
 </div>
-<div>
-    <a href="@Url.Action("Create", "User")" class="btn btn-secondary">
-        <span class="text">Back to List</span>
-    </a>
-</div>
+

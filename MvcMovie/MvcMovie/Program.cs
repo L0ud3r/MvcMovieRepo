@@ -41,6 +41,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
+builder.Services.AddSession(options => {
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+});
+
 var app = builder.Build();
 
 /*using (var scope = app.Services.CreateScope())
@@ -62,6 +67,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseAuthentication();
+
+app.UseSession();
 
 app.UseRouting();
 

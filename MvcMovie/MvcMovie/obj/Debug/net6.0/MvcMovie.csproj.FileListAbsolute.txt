@@ -1154,3 +1154,4 @@ C:\Programming\MvcMovieRepo\MvcMovie\MvcMovie\obj\Debug\net6.0\MvcMovie.genrunti
 C:\Programming\MvcMovieRepo\MvcMovie\MvcMovie\obj\Debug\net6.0\ref\MvcMovie.dll
 C:\Programming\MvcMovieRepo\MvcMovie\MvcMovie\bin\Debug\net6.0\Microsoft.ScriptManager.MSAjax.dll
 C:\Programming\MvcMovieRepo\MvcMovie\MvcMovie\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Programming\MvcMovieRepo\MvcMovie\MvcMovie\obj\Debug\net6.0\scopedcss\Views\Shared\App\_LayoutAuth.cshtml.rz.scp.css

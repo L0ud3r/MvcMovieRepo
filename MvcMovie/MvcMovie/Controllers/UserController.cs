@@ -7,6 +7,7 @@ using MvcMovie.Models;
 using MvcMovieDAL;
 using MvcMovieDAL.Entities;
 using NuGet.Common;
+using System.Drawing;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -72,7 +73,7 @@ namespace MvcMovie.Controllers
 
                     _userRepository.Insert(userInsert);
                     _userRepository.Save();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Login");
                 }
 
                 return View();
@@ -138,23 +139,6 @@ namespace MvcMovie.Controllers
         }
 
         #region Login
-        public bool VerifyAccount(User account)
-        {
-            //Verificar se existe user na databse com mail e ativo
-            var user = _userRepository.Get().Where(x => x.Email == account.Email).FirstOrDefault();
-
-            if (user == null) return false;
-
-            // verficar pass:
-            if (!VerifyPasswordHash(user.PassHash, Convert.FromBase64String(account.PassHash), Convert.FromBase64String(account.PassSalt)))
-            {
-                //throw new ArgumentException("Password Errada.", "account");
-                return false;
-            }
-            
-            return true;
-        }
-
         public static bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512(passwordSalt))
@@ -192,7 +176,6 @@ namespace MvcMovie.Controllers
             return View(new UserViewModel());
         }
 
-        [Route("Login")]
         [HttpPost]
         public IActionResult Login([Bind("Email, Password")] UserViewModel account)
         {
@@ -201,18 +184,19 @@ namespace MvcMovie.Controllers
 
             if(user != null)
             {
-                bool check = VerifyAccount(user);
-                string token = String.Empty;
-
-                if (check)
+                if (!VerifyPasswordHash(account.Password, Convert.FromBase64String(user.PassHash), Convert.FromBase64String(user.PassSalt)))
                 {
-                    token = CreateToken(user);
-                    Console.WriteLine(token);
-                }
-                else
                     return new JsonResult("Wrong Pass");
+                }
 
-                 return RedirectToAction("Index", "Movies");
+                string token = CreateToken(user);
+
+                // Armazenar token de sessão
+                HttpContext.Session.SetString("token", token);
+
+                Console.WriteLine(HttpContext.Session.GetString("token"));
+
+                return RedirectToAction("Index", "Movies");
             }
 
             return new JsonResult("Wrong Email");
