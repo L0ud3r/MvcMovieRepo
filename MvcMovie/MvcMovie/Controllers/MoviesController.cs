@@ -48,7 +48,7 @@ namespace MvcMovie.Controllers
                     Title = x.Title,
                     Id = x.Id,
                     Rating = x.Rating,
-                    ReleaseDate = x.ReleaseDate.Date,
+                    ReleaseDate = x.ReleaseDate,
                     Price = x.Price,
                 }).ToListAsync()
             };

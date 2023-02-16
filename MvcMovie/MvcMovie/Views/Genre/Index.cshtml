@@ -1,8 +1,129 @@
-﻿@model MvcMovie.Models.MovieViewModel
+﻿@model MvcMovie.Models.MovieGenreViewModel
 
 @{
     Layout = "/Views/Shared/App/_Layout.cshtml";
     ViewData["Title"] = "Index";
 }
 
-<h1>Boas</h1>
+<h1>Genres</h1>
+
+<form id="form-filter" asp-controller="Genre" asp-action="Index" method="get">
+    <p>
+        <div class="input-group" style="width: 50%">
+            <input type="text" id="genre-filter" asp-for="MovieGenre" class="form-control" placeholder="Genre..." />
+            <input type="submit" id="search-button" value="Filter" class="btn btn-primary" />
+        </div>
+    </p>
+</form>
+
+<a asp-action="Create" class="btn btn-primary btn-icon-split mb-3">
+    <span class="icon text-white-50">
+        <i class="fa fa-plus"></i>
+    </span>
+    <span class="text">Add Genre</span>
+</a>
+
+<form id="search-form" asp-controller="Movies" asp-action="Index" method="get">
+    <div class="d-flex flex-row mt-4 mb-2 align-items-center">
+        <div class="col-0">
+            <select id="genre-filter" multiples="multiples" asp-for="MovieGenre" asp-items="Model.Genres" class="select2-genre" style="width:200px">
+                <option value="">All Genres</option>
+            </select>
+        </div>
+        
+    </div>
+</form>
+
+<table id="table"
+       data-toggle="table"
+       data-pagination="true"
+       data-query-params="queryParams"
+       data-id-field="id"
+       data-page-list="[10, 25, 50, 100, all]"
+       data-side-pagination="server"
+       data-url="/Genre/paginate"
+       data-method="POST"
+       data-search="false"
+       data-locale="en-US">
+    <thead>
+        <tr>
+            <th data-field="id">ID</th>
+            <th data-field="name">Name</th>
+            <th data-field="" data-formatter="operateFormatter">Actions</th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts {
+    <script>
+        var $table = $('#table')
+        var $remove = $('#remove')
+        var selections = []
+
+        function getIdSelections() {
+            return $.map($table.bootstrapTable('getSelections'), function (row) {
+                return row.id
+            })
+        }
+
+        function responseHandler(res) {
+            $.each(res.rows, function (i, row) {
+                row.state = $.inArray(row.id, selections) !== -1
+            })
+            return res
+        }
+
+        function detailFormatter(index, row) {
+            var html = []
+            $.each(row, function (key, value) {
+                html.push('<p><b>' + key + ':</b> ' + value + '</p>')
+            })
+            return html.join('')
+        }
+
+        function operateFormatter(value, row, index) {
+            return [
+                '<div style="display: flex; gap: 10px">',
+                `<a class="remove" href="/Genre/Delete/${row.id}" title="Remove">`,
+                '<i class="fa fa-trash"></i>',
+                '</a>  ',
+                '</div>'
+            ].join('');
+        }
+
+        function totalTextFormatter(data) {
+            return 'Total'
+        }
+
+        function totalNameFormatter(data) {
+            return data.length
+        }
+
+        function totalPriceFormatter(data) {
+            var field = this.field
+            return '$' + data.map(function (row) {
+                return +row[field].substring(1)
+            }).reduce(function (sum, i) {
+                return sum + i
+            }, 0)
+        }
+
+        $(document).ready(function () {
+            $('.select2-genre').select2();
+        });
+
+        function queryParams(params) {
+            const genreFilter = $('#genre-filter').val();
+
+            var search = [];
+            search.push({
+                name: "Genre",
+                value: genreFilter
+            });
+
+            params.search = search;
+            return JSON.stringify(params);
+        }
+
+    </script>
+}

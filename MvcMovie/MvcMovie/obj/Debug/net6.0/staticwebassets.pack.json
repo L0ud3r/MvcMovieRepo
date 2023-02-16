@@ -7393,8 +7393,36 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\css\\styles.cf58507dd785c10c7bc8.css",
+      "PackagePath": "staticwebassets\\css\\styles.cf58507dd785c10c7bc8.css"
+    },
+    {
       "Id": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\js\\bootstrap\\409-es2015.b6985469298bb03d9459.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap\\409-es2015.b6985469298bb03d9459.js"
+    },
+    {
+      "Id": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\js\\bootstrap\\main-es2015.747223c4ce7e3cc7e736.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap\\main-es2015.747223c4ce7e3cc7e736.js"
+    },
+    {
+      "Id": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\js\\bootstrap\\polyfills-es2015.1db1c6d807fbf3566de2.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap\\polyfills-es2015.1db1c6d807fbf3566de2.js"
+    },
+    {
+      "Id": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\js\\bootstrap\\runtime-es2015.eb8675a0d143596d4b3a.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap\\runtime-es2015.eb8675a0d143596d4b3a.js"
+    },
+    {
+      "Id": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\js\\bootstrap\\scripts.7db5a8a1df1d2146c813.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap\\scripts.7db5a8a1df1d2146c813.js"
+    },
+    {
+      "Id": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\js\\bootstrap\\vendor-es2015.043b25eb210aefe1f2ca.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap\\vendor-es2015.043b25eb210aefe1f2ca.js"
     },
     {
       "Id": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\js\\genreexistsjson.js",

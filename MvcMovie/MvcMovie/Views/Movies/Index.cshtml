@@ -8,20 +8,38 @@
 <h1>Movies</h1>
 
 <form id="search-form" asp-controller="Movies" asp-action="Index" method="get">
-    <div class="d-flex flex-row mt-4 mb-3 align-items-center">
+    <div class="d-flex flex-row mt-4 mb-2 align-items-center">
         <div class="col-0">
-            <select id="genre-filter" name="states[]" multiples="multiples" asp-for="MovieGenre" asp-items="Model.Genres" class="form-control genre-filter">
-            <option value="">All</option>
-        </select>
+            <select id="genre-filter" multiples="multiples" asp-for="MovieGenre" asp-items="Model.Genres" class="select2-genre" style="width:200px">
+                <option value="">All Genres</option>
+            </select>
         </div>
-        <div class="input-group col-3">
+       <div class="input-group col-3">
             <input type="text" id="title-filter" asp-for="SearchString" class="form-control border-0 small" placeholder="Movie..." />
             <input type="submit" id="search-button" value="Filter" class="btn btn-primary" />
         </div>
+         <!--<div class="col-1 d-flex gap-1 align-items-center" style="width: 500px">
+            <div>
+                <select id="title-filter" multiples="multiples" asp-for="SearchString"
+                asp-items="@(
+                    from item in Model.Movies
+                    select new SelectListItem {
+                        Text = item.Title,
+                        Value = item.Title.ToString()
+                    }
+                )" class="select2-movie" style="width:200px">
+
+                    <option value="">All Movies</option>
+                </select>
+            </div>
+            <div class="col-2 text-right">
+                <input type="submit" id="search-button" value="Filter" class="btn btn-primary" />
+            </div>
+        </div>-->
     </div>
 </form>
 
-<a asp-action="Create" class="btn btn-primary btn-icon-split">
+<a asp-action="Create" class="btn btn-primary btn-icon-split mb-3">
     <span class="icon text-white-50">
         <i class="fa fa-plus"></i>
     </span>
@@ -37,12 +55,13 @@
        data-side-pagination="server"
        data-url="/Movies/paginate"
        data-method="POST"
-       data-search="true">
+       data-search="false"
+       data-locale="en-US">
     <thead>
         <tr>
-            <th data-field="id">ID</th>
+            @*<th data-field="id">ID</th>*@
             <th data-field="title">Title</th>
-            <th data-field="releaseDate">Release Date</th>
+            <th data-field="releaseDate" data-formatter="dateFormat">Release Date</th>
             <th data-field="genreName">Genre</th>
             <th data-field="" data-formatter="operateFormatter">Actions</th>
         </tr>
@@ -127,6 +146,11 @@
             }, 0)
         }
 
+        $(document).ready(function () {
+            $('.select2-genre').select2();
+            $('.select2-movie').select2();
+        });
+
         function queryParams(params) {
             const genreFilter = $('#genre-filter').val();
             const titleFilter = $('#title-filter').val();
@@ -143,12 +167,24 @@
             return JSON.stringify(params);
         }
 
-    </script>
+        function dateFormat(value, row, index) {
+            if (value) {
+                var date = new Date(value);
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
 
-    <script>
-        $(document).ready(function () {
-            $('.genre-filter').select2();
-        });
+                // Adiciona um zero à esquerda para dias e meses menores que 10
+                day = day < 10 ? '0' + day : day;
+                month = month < 10 ? '0' + month : month;
+
+                // Formata a data no formato desejado
+                return day + '-' + month + '-' + year;
+            } else {
+                return '-';
+            }
+        }
+
     </script>
 }
 
