@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GIUQa7PeLLXRQQnn0+6ZC6CeRouzoVQmABRgpZ6meyI=",
+  "Hash": "p8PmAcuBGRLaLwy0l8k+xxdOEU/j921lRIOkNaZ8Zm0=",
   "Source": "MvcMovie",
   "BasePath": "_content/MvcMovie",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\MvcMovie.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\css\\sidebar.css",
+      "SourceId": "MvcMovie",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\",
+      "BasePath": "_content/MvcMovie",
+      "RelativePath": "css/sidebar.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\sidebar.css"
     },
     {
       "Identity": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\css\\site.css",

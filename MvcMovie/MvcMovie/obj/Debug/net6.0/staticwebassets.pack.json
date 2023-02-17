@@ -7389,6 +7389,10 @@
       "PackagePath": "staticwebassets\\Template\\vendor\\jquery\\jquery.slim.min.map"
     },
     {
+      "Id": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\css\\sidebar.css",
+      "PackagePath": "staticwebassets\\css\\sidebar.css"
+    },
+    {
       "Id": "C:\\Programming\\MvcMovieRepo\\MvcMovie\\MvcMovie\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
