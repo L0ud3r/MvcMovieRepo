@@ -40,7 +40,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Movies -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="@Url.Action("Index", "Movies")">
                     <i class="fas fa-ticket-alt"></i>
                     <span>Movies</span>
@@ -323,5 +323,24 @@
 
     <partial name="/Views/Shared/App/_scripts.cshtml"></partial>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            var url = window.location;
+            // Will only work if string in href matches with location
+            $('ul.navbar-nav a[href="' + url + '"]').parent().addClass('active');
+
+            // Will also work for relative and absolute hrefs
+            $('ul.navbar-nav a').filter(function () {
+                return this.href == url;
+            }).parent().addClass('active');
+
+            $('ul.navbar-nav .nav-item').on('click', function () {
+                $('ul.navbar-nav .nav-item').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+    </script>
 </body>
+
 </html>
+
