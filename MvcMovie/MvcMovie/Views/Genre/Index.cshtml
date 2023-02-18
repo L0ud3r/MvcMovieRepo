@@ -43,6 +43,29 @@
     </thead>
 </table>
 
+
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this genre?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Yes" below if you want to remove this genre.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+                <form asp-controller="Genre" asp-action="Delete" method="post">
+                    <input type="hidden" id="delete-genre-id" name="id" value="" />
+                    <button type="submit" class="btn btn-primary" href="@Url.Action("Index", "Genre")">Yes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     <script>
         var $table = $('#table')
@@ -71,14 +94,18 @@
         }
 
         function operateFormatter(value, row, index) {
-            return [
-                '<div style="display: flex; gap: 10px">',
-                `<a class="remove" href="/Genre/Delete/${row.id}" title="Remove">`,
-                '<i class="fa fa-trash"></i>',
-                '</a>  ',
-                '</div>'
-            ].join('');
-        }
+    return [
+        '<div style="display: flex; gap: 10px">',
+        `<a class="remove" href="#" title="Remove" onclick="deleteGenre(${row.id})" data-toggle="modal" data-target="#deleteConfirmModal">`,
+        '<i class="fa fa-trash"></i>',
+        '</a>  ',
+        '</div>'
+    ].join('');
+}
+
+function deleteGenre(id) {
+    $('#delete-genre-id').val(id);
+}
 
         function totalTextFormatter(data) {
             return 'Total'

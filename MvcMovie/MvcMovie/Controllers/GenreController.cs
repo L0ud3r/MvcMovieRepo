@@ -86,6 +86,27 @@ namespace MvcMovie.Controllers
             return View(genre);
         }
 
+        // POST: Genre/Delete/{id}
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            if (_genreRepository.Get() == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Genre' is null.");
+            }
+
+            var genre = _genreRepository.Get().Where(x => x.Id == id).SingleOrDefault();
+            int x = id;
+            if (genre != null)
+            {
+                _genreRepository.Delete(id);
+            }
+
+            _genreRepository.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
         [HttpPost]
         public async Task<JsonResult> Paginate([FromBody] BootstrapModel model)
         {

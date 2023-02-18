@@ -138,7 +138,7 @@ namespace MvcMovie.Controllers
             }
         }
 
-        #region Login
+        #region Login and Logout
         public static bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512(passwordSalt))
@@ -193,13 +193,29 @@ namespace MvcMovie.Controllers
 
                 // Armazenar token de sessão
                 HttpContext.Session.SetString("token", token);
+                HttpContext.Session.SetString("teste", "Boas");
+                Console.WriteLine(HttpContext.Session.GetString("token") + " <- Esta é a token");
 
-                Console.WriteLine(HttpContext.Session.GetString("token"));
+                Console.WriteLine(HttpContext.Session.GetString("teste") + " <- Este é o Teste");
 
                 return RedirectToAction("Index", "Movies");
             }
 
             return new JsonResult("Wrong Email");
+        }
+
+        [HttpPost]
+        public IActionResult Logout()
+        {
+            // Check if the session token exists
+            if (HttpContext.Session.TryGetValue("token", out byte[] token))
+            {
+                // Remove the session token
+                HttpContext.Session.Remove("token");
+            }
+
+            // Redirect to the login page or any other page as needed
+            return RedirectToAction("Login", "User");
         }
 
         #endregion
