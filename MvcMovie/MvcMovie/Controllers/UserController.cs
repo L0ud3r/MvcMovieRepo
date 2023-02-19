@@ -28,7 +28,7 @@ namespace MvcMovie.Controllers
             _userRepository = userRepository;
         }
 
-        public async Task<User> GetUserByEmailAsync(string email)
+        public async Task<User> GetUserByEmail(string email)
         {
             return _userRepository.Get().Where(x => x.Email == email).SingleOrDefault();
         }
@@ -38,10 +38,15 @@ namespace MvcMovie.Controllers
         {
             var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
 
+            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n");
+            Console.WriteLine(User.Identity.IsAuthenticated);
+            Console.WriteLine(HttpContext.Session.GetString("token"));
+            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n");
+
             var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
             string userMail = claimMail?.Value;
 
-            var user = await GetUserByEmailAsync(userMail);
+            var user = await GetUserByEmail(userMail);
 
             if (user == null)
             {
@@ -207,11 +212,12 @@ namespace MvcMovie.Controllers
         {
             List<Claim> claims = new List<Claim>
             {
+                new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Role, "User")
             };
 
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
