@@ -5,14 +5,14 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit Account</h1>
-
+<h1>Edit account</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Password" value="password"/>
             <div class="form-group">
                 <label asp-for="Username" class="control-label"></label>
                 <input asp-for="Username" class="form-control" />
@@ -24,29 +24,16 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Edit" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
 <div>
     <a asp-action="Index" class="btn btn-dark btn-icon-split">
         <span class="icon text-white-50">
             <i class="fas fa-arrow-left"></i>
         </span>
-        <span class="text">Back to List</span>
+        <span class="text">Cancel</span>
     </a>
 </div>
-
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            $('.select2-genre-movie').select2();
-        });
-    </script>
-
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

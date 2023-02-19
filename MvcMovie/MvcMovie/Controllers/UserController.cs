@@ -118,13 +118,11 @@ namespace MvcMovie.Controllers
 
         #endregion
 
-        // GET: Movies/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _userRepository.Get() == null)
-            {
+            if (_userRepository.Get() == null)
                 return NotFound();
-            }
 
             var user = _userRepository.Get().Where(x => x.Id == id).SingleOrDefault();
 
@@ -135,27 +133,26 @@ namespace MvcMovie.Controllers
             {
                 Id = user.Id,
                 Username = user.Username,
-                Email= user.Email
+                Email = user.Email,
+                Password = ""
             });
         }
 
-        // POST: Movies/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Email")] UserViewModel user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Email,Password")] UserViewModel user)
         {
             if (id != user.Id)
-            {
                 return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    User userEdit = new User();
+                    User userEdit = _userRepository.Get().FirstOrDefault(x => x.Id == user.Id);
+
+                    if (userEdit == null)
+                        return NotFound();
 
                     userEdit.Username = user.Username;
                     userEdit.Email = user.Email;
@@ -170,7 +167,7 @@ namespace MvcMovie.Controllers
                     return NotFound();
                 }
                 // Redirects to the list of movies (Movies/Index)
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "User");
             }
             return View(user);
         }
