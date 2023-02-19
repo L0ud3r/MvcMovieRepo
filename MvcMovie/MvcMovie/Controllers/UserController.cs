@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using MvcMovie.Models;
 using MvcMovieDAL;
 using MvcMovieDAL.Entities;
+using Newtonsoft.Json.Linq;
 using NuGet.Common;
 using System.Drawing;
 using System.IdentityModel.Tokens.Jwt;
@@ -27,12 +28,34 @@ namespace MvcMovie.Controllers
             _userRepository = userRepository;
         }
 
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            return _userRepository.Get().Where(x => x.Email == email).SingleOrDefault();
+        }
 
         // GET: UserController
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
 
-            return View();
+            var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+            string userMail = claimMail?.Value;
+
+            var user = await GetUserByEmailAsync(userMail);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var userModel = new UserViewModel
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email
+            };
+
+            return View(userModel);
         }
 
         // GET: UserController/Details/5
@@ -93,28 +116,63 @@ namespace MvcMovie.Controllers
             }
         }
 
-
         #endregion
 
-        // GET: UserController/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Movies/Edit/5
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            if (id == null || _userRepository.Get() == null)
+            {
+                return NotFound();
+            }
+
+            var user = _userRepository.Get().Where(x => x.Id == id).SingleOrDefault();
+
+            if (user == null)
+                return null;
+
+            return View(new UserViewModel()
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email= user.Email
+            });
         }
 
-        // POST: UserController/Edit/5
+        // POST: Movies/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Email")] UserViewModel user)
         {
-            try
+            if (id != user.Id)
             {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    User userEdit = new User();
+
+                    userEdit.Username = user.Username;
+                    userEdit.Email = user.Email;
+
+                    userEdit.UpdatedDate = DateTime.Now;
+
+                    _userRepository.Update(userEdit);
+                    _userRepository.Save();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
+                // Redirects to the list of movies (Movies/Index)
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(user);
         }
 
         // GET: UserController/Delete/5
@@ -193,10 +251,6 @@ namespace MvcMovie.Controllers
 
                 // Armazenar token de sessão
                 HttpContext.Session.SetString("token", token);
-                HttpContext.Session.SetString("teste", "Boas");
-                Console.WriteLine(HttpContext.Session.GetString("token") + " <- Esta é a token");
-
-                Console.WriteLine(HttpContext.Session.GetString("teste") + " <- Este é o Teste");
 
                 return RedirectToAction("Index", "Movies");
             }
