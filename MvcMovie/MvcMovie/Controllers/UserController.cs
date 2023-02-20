@@ -38,11 +38,6 @@ namespace MvcMovie.Controllers
         {
             var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
 
-            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n");
-            Console.WriteLine(User.Identity.IsAuthenticated);
-            Console.WriteLine(HttpContext.Session.GetString("token"));
-            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n");
-
             var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
             string userMail = claimMail?.Value;
 

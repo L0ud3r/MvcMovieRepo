@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using MvcMovieDAL.Migrations;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace MvcMovie.Controllers
 {
@@ -25,6 +27,10 @@ namespace MvcMovie.Controllers
             _favouriteRepository = favouriteRepository;
             _userRepository = userRepository;
         }
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return _userRepository.Get().Where(x => x.Email == email).SingleOrDefault();
+        }
 
         // GET: FavouritesController
         public async Task<ActionResult> Index(string movieGenre, string searchString)
@@ -34,9 +40,14 @@ namespace MvcMovie.Controllers
                                              orderby m.Genre.Name
                                              select m.Genre.Name).AsQueryable();
 
-            //OBTER ID DO CLIENTE PELA TOKEN
+            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
 
-            var movies = _favouriteRepository.Get().Where(x => x.User.Id == 2).Include(x => x.Movie).AsQueryable();
+            var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+            string userMail = claimMail?.Value;
+
+            var user = await GetUserByEmail(userMail);
+
+            var movies = _favouriteRepository.Get().Where(x => x.User.Id == user.Id).Include(x => x.Movie).AsQueryable();
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -65,12 +76,16 @@ namespace MvcMovie.Controllers
             return View(movieGenreVM);
         }
 
-        public async Task<ActionResult> Update(int movieId, string action)
+        public async Task<IActionResult> Update(int movieId, string action)
         {
-            //BUSCAR ID PELA TOKEN
-            var userId = 2;
+            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
 
-            var favorite = _favouriteRepository.Get().SingleOrDefault(f => f.Movie.Id == movieId && f.User.Id == userId);
+            var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+            string userMail = claimMail?.Value;
+
+            var user = await GetUserByEmail(userMail);
+
+            var favorite = _favouriteRepository.Get().SingleOrDefault(f => f.Movie.Id == movieId && f.User.Id == user.Id);
 
             if (favorite == null)
             {
@@ -78,7 +93,7 @@ namespace MvcMovie.Controllers
                 var newFavorite = new Favourite {  };
 
                 newFavorite.Movie = _movieRepository.Get().Where(x => x.Id == movieId).SingleOrDefault();
-                newFavorite.User = _userRepository.Get().Where(x => x.Id == userId).SingleOrDefault();
+                newFavorite.User = _userRepository.Get().Where(x => x.Id == user.Id).SingleOrDefault();
 
                 _favouriteRepository.Insert(newFavorite);
                 _favouriteRepository.Save();
@@ -94,12 +109,16 @@ namespace MvcMovie.Controllers
             return Json(new { success = true });
         }
 
-        public async Task<ActionResult> Remove(int movieId, string action)
+        public async Task<IActionResult> Remove(int movieId, string action)
         {
-            //BUSCAR ID PELA TOKEN
-            var userId = 2;
+            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
 
-            var favorite = _favouriteRepository.Get().SingleOrDefault(f => f.Movie.Id == movieId && f.User.Id == userId);
+            var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+            string userMail = claimMail?.Value;
+
+            var user = await GetUserByEmail(userMail);
+
+            var favorite = _favouriteRepository.Get().SingleOrDefault(f => f.Movie.Id == movieId && f.User.Id == user.Id);
             
             if (favorite != null)
             {
@@ -112,14 +131,20 @@ namespace MvcMovie.Controllers
             return Json(new { success = true });
         }
 
-        [HttpGet]
-        public ActionResult<bool> IsFavourite(int movieId)
-        {
-            var userId = 2;
-            var isFavourite = _favouriteRepository.Get().Any(f => f.Movie.Id == movieId && f.User.Id == userId);
+        //[HttpGet]
+        //public async Task<IActionResult<bool>> IsFavourite(int movieId)
+        //{
+        //    var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
 
-            return Json(new { success = isFavourite });
-        }
+        //    var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+        //    string userMail = claimMail?.Value;
+
+        //    var user = await GetUserByEmail(userMail);
+
+        //    var isFavourite = _favouriteRepository.Get().Any(f => f.Movie.Id == movieId && f.User.Id == user.Id);
+
+        //    return Json(new { success = isFavourite });
+        //}
 
         // GET: FavouritesController/Details/5
         public ActionResult Details(int id)
@@ -170,17 +195,21 @@ namespace MvcMovie.Controllers
         }
 
         // GET: FavouritesController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null || _favouriteRepository.Get() == null)
             {
                 return NotFound();
             }
 
-            //TOKEN
-            var userId = 2;
+            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
 
-            var movieFav = _favouriteRepository.Get().Where(x => x.Movie.Id == id && x.User.Id == userId).SingleOrDefault();
+            var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+            string userMail = claimMail?.Value;
+
+            var user = await GetUserByEmail(userMail);
+
+            var movieFav = _favouriteRepository.Get().Where(x => x.Movie.Id == id && x.User.Id == user.Id).SingleOrDefault();
 
             MovieViewModel movieView = new MovieViewModel();
 
@@ -204,10 +233,14 @@ namespace MvcMovie.Controllers
                 return Problem("Entity set 'MvcMovieContext.Favourites' is null.");
             }
 
-            //OBTER PELA TOKEN
-            var userId = 2;
+            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
 
-            var movieFav = _favouriteRepository.Get().Where(x => x.Movie.Id == id && x.User.Id == userId).SingleOrDefault();
+            var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+            string userMail = claimMail?.Value;
+
+            var user = await GetUserByEmail(userMail);
+
+            var movieFav = _favouriteRepository.Get().Where(x => x.Movie.Id == id && x.User.Id == user.Id).SingleOrDefault();
 
             if (movieFav != null)
             {
@@ -223,7 +256,14 @@ namespace MvcMovie.Controllers
         {
             model.Limit = model.Limit.HasValue ? model.Limit.Value : int.MaxValue;
 
-            var query = _favouriteRepository.Get().Where(x => x.User.Id == 2).Include(x => x.Movie).AsQueryable();
+            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
+
+            var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+            string userMail = claimMail?.Value;
+
+            var user = await GetUserByEmail(userMail);
+
+            var query = _favouriteRepository.Get().Where(x => x.User.Id == user.Id).Include(x => x.Movie).AsQueryable();
 
             var genreName = model.Search.FirstOrDefault(x => x.Name == "Genre");
 
