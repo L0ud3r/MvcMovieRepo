@@ -65,14 +65,14 @@ namespace MvcMovie.Controllers
             return View(movieGenreVM);
         }
 
-        public ActionResult Update(int movieId, string action)
+        public async Task<ActionResult> Update(int movieId, string action)
         {
             //BUSCAR ID PELA TOKEN
             var userId = 2;
 
             var favorite = _favouriteRepository.Get().SingleOrDefault(f => f.Movie.Id == movieId && f.User.Id == userId);
 
-            if (favorite == null && action == "add")
+            if (favorite == null)
             {
                 // Add the movie to the user's favorites
                 var newFavorite = new Favourite {  };
@@ -82,13 +82,32 @@ namespace MvcMovie.Controllers
 
                 _favouriteRepository.Insert(newFavorite);
                 _favouriteRepository.Save();
+
             }
-            else if (favorite != null && action == "remove")
+            //else if (favorite != null && action == "remove")
+            //{
+            //    // Remove the movie from the user's favorites
+            //    _favouriteRepository.Delete(favorite.Id);
+            //    _favouriteRepository.Save();
+            //}
+
+            return Json(new { success = true });
+        }
+
+        public async Task<ActionResult> Remove(int movieId, string action)
+        {
+            //BUSCAR ID PELA TOKEN
+            var userId = 2;
+
+            var favorite = _favouriteRepository.Get().SingleOrDefault(f => f.Movie.Id == movieId && f.User.Id == userId);
+            
+            if (favorite != null)
             {
                 // Remove the movie from the user's favorites
                 _favouriteRepository.Delete(favorite.Id);
                 _favouriteRepository.Save();
             }
+            
 
             return Json(new { success = true });
         }

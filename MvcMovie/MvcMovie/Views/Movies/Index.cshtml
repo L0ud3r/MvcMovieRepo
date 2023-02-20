@@ -150,31 +150,25 @@
                 `<a class="details" href="/Movies/Details/${row.id}" title="Details">`,
                 '<i class="fa fa-eye"></i>',
                 '</a>',
-                `<a class="like" href="@Url.Action("Index","Favourites") title="${title}" data-id="${row.id}" data-in-favorites="${inFavorites}">`,
+                `<a class="like" href="@Url.Action("Index","Favourites")" title="Like" data-id="${row.id}">`,
                 '<i class="fa fa-heart"></i>',
                 '</a>  ',
                 '</div>'
             ].join('');
         }
 
-        $(document).on('click', '.like', function () {
+        $(document).on('click', '.like', function() {
             var movieId = $(this).data('id');
-            var inFavorites = $(this).data('in-favorites');
-            var action = inFavorites ? 'remove' : 'add';
+            var action = 'add'; // Or 'remove' depending on whether the movie is already in the user's favorites
             $.ajax({
                 url: '/Favourites/update',
                 method: 'POST',
                 data: { movieId: movieId, action: action },
-                success: function () {
-                    var newInFavorites = !inFavorites;
-                    $(this).data('in-favorites', newInFavorites);
-                    var newIcon = newInFavorites ? 'fa-heart' : 'fa-heart-broken';
-                    var newTitle = newInFavorites ? 'Remove from favorites' : 'Add to favorites';
-                    $(this).find('i').removeClass('fa-heart fa-heart-broken').addClass(newIcon);
-                    $(this).attr('title', newTitle);
-                    alert('Movie added/removed to favorites!');
+                success: function() {
+                    alert('Movie added/removed to favourites!');
+                    window.location.href = '/Favourites/Index';
                 },
-                error: function () {
+                error: function() {
                     alert('An error occurred');
                 }
             });
