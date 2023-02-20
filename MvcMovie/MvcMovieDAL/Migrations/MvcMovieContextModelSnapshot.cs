@@ -22,6 +22,44 @@ namespace MvcMovieDAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("MvcMovieDAL.Entities.Favourite", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Favourite");
+                });
+
             modelBuilder.Entity("MvcMovieDAL.Entities.Genre", b =>
                 {
                     b.Property<int>("Id")
@@ -143,6 +181,25 @@ namespace MvcMovieDAL.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("MvcMovieDAL.Entities.Favourite", b =>
+                {
+                    b.HasOne("MvcMovieDAL.Entities.Movie", "Movie")
+                        .WithMany("Favourites")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MvcMovieDAL.Entities.User", "User")
+                        .WithMany("Favourites")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("MvcMovieDAL.Entities.Movie", b =>
                 {
                     b.HasOne("MvcMovieDAL.Entities.Genre", "Genre")
@@ -157,6 +214,16 @@ namespace MvcMovieDAL.Migrations
             modelBuilder.Entity("MvcMovieDAL.Entities.Genre", b =>
                 {
                     b.Navigation("Movies");
+                });
+
+            modelBuilder.Entity("MvcMovieDAL.Entities.Movie", b =>
+                {
+                    b.Navigation("Favourites");
+                });
+
+            modelBuilder.Entity("MvcMovieDAL.Entities.User", b =>
+                {
+                    b.Navigation("Favourites");
                 });
 #pragma warning restore 612, 618
         }

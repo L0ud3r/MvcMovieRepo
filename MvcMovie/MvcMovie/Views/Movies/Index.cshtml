@@ -123,6 +123,22 @@
         }
 
         function operateFormatter(value, row, index) {
+            var inFavorites = row.inFavorites === true; // assuming the `inFavorites` property is returned by the server
+            var icon = inFavorites ? 'fa-heart' : 'fa-heart-broken';
+            var title = inFavorites ? 'Remove from favorites' : 'Add to favorites';
+
+            $.ajax({
+                url: '/Favourites/IsFavourite',
+                data: { movieId: row.id },
+                type: 'GET',
+                success: function(result) {
+                    if (result) {
+                        likeIcon = 'fa fa-heart';
+                        likeTitle = 'Add to favorites';
+                    }
+                }
+            });
+
             return [
                 '<div style="display: flex; gap: 10px">',
                 `<a class="remove" href="#" title="Remove" onclick="deleteMovie(${row.id})" data-toggle="modal" data-target="#deleteConfirmModal">`,
@@ -134,12 +150,35 @@
                 `<a class="details" href="/Movies/Details/${row.id}" title="Details">`,
                 '<i class="fa fa-eye"></i>',
                 '</a>',
-                `<a class="like" href="javascript:void(0)" title="Like" onclick="alert(\'${row.title} added to favourites!\')">`,
+                `<a class="like" href="@Url.Action("Index","Favourites") title="${title}" data-id="${row.id}" data-in-favorites="${inFavorites}">`,
                 '<i class="fa fa-heart"></i>',
                 '</a>  ',
                 '</div>'
             ].join('');
         }
+
+        $(document).on('click', '.like', function () {
+            var movieId = $(this).data('id');
+            var inFavorites = $(this).data('in-favorites');
+            var action = inFavorites ? 'remove' : 'add';
+            $.ajax({
+                url: '/Favourites/update',
+                method: 'POST',
+                data: { movieId: movieId, action: action },
+                success: function () {
+                    var newInFavorites = !inFavorites;
+                    $(this).data('in-favorites', newInFavorites);
+                    var newIcon = newInFavorites ? 'fa-heart' : 'fa-heart-broken';
+                    var newTitle = newInFavorites ? 'Remove from favorites' : 'Add to favorites';
+                    $(this).find('i').removeClass('fa-heart fa-heart-broken').addClass(newIcon);
+                    $(this).attr('title', newTitle);
+                    alert('Movie added/removed to favorites!');
+                },
+                error: function () {
+                    alert('An error occurred');
+                }
+            });
+        });
 
         function deleteMovie(id) {
             $('#delete-movie-id').val(id);

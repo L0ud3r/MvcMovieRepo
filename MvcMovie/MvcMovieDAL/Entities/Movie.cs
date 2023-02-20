@@ -12,11 +12,17 @@ namespace MvcMovieDAL.Entities
 {
     public class Movie : DefaultEntity
     {
+        public Movie()
+        {
+            Favourites = new HashSet<Favourite>();
+        }
+
         public string? Title { get; set; }
         public DateTime ReleaseDate { get; set; }
         public decimal Price { get; set; }
         public string? Rating { get; set; }
         public int GenreId { get; set; }
         public virtual Genre Genre { get; set; }
+        public virtual ICollection<Favourite> Favourites { get; set; }
     }
 }
