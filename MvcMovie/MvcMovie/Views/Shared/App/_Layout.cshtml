@@ -22,6 +22,11 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        .nav-item:hover{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body id="page-top">
 
@@ -44,10 +49,17 @@
 
             <!-- Nav Item - Movies -->
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index", "Movies")">
+                <a class="nav-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-ticket-alt"></i>
                     <span>Movies</span>
                 </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Movies:</h6>
+                        <a class="collapse-item" href="@Url.Action("Index", "Movies")">All Movies</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "Movies")">Favourites</a>
+                    </div>
+                </div>
             </li>
 
             <!-- Nav Item - Genres -->

@@ -15,6 +15,7 @@ builder.Services.AddDbContext<MvcMovieContext>(options =>
 builder.Services.AddScoped<IRepository<Movie>, Repository<Movie, MvcMovieContext>>();
 builder.Services.AddScoped<IRepository<Genre>, Repository<Genre, MvcMovieContext>>();
 builder.Services.AddScoped<IRepository<User>, Repository<User, MvcMovieContext>>();
+builder.Services.AddScoped<IRepository<Favourite>, Repository<Favourite, MvcMovieContext>>();
 
 // Add services to the container.
 //builder.Services.AddControllersWithViews().AddRazorOptions(options => options.AllowRecompilingViewsOnFileChange.Date = true);
@@ -43,8 +44,6 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = false,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Issuer"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
             .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value))
     };

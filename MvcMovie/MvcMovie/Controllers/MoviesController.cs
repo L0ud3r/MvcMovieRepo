@@ -54,9 +54,6 @@ namespace MvcMovie.Controllers
             };
 
             return View(movieGenreVM);
-
-            //Return entire list in database
-            //return View(await _context.Movie.ToListAsync());
         }
 
         [HttpPost]
