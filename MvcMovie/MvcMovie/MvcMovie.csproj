@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\User\RecoverPassword.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\User\RecoverPassword.cshtml" />
     <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\COMMIT_EDITMSG" />
     <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\config" />
     <None Include="wwwroot\lib\bootstrap\v-dashboard\.git\description" />
@@ -101,6 +106,14 @@
     <Folder Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\info\" />
     <Folder Include="wwwroot\lib\bootstrap\v-dashboard\.git\objects\pack\" />
     <Folder Include="wwwroot\lib\bootstrap\v-dashboard\.git\refs\tags\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\User\RecoverPassword.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\User\RecoverPassword.cshtml" />
   </ItemGroup>
 
 </Project>

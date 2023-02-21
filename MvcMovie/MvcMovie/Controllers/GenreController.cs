@@ -97,7 +97,7 @@ namespace MvcMovie.Controllers
             }
 
             var genre = _genreRepository.Get().Where(x => x.Id == id).SingleOrDefault();
-            int x = id;
+            
             if (genre != null)
             {
                 _genreRepository.Delete(id);

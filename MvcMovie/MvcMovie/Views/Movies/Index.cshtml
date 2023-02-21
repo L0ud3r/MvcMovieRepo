@@ -46,10 +46,13 @@
     <span class="text">Add Movie</span>
 </a>
 
-<table id="table"
+<table class="table-borderless"
+       id="table"
        data-toggle="table"
        data-query-params="queryParams"
        data-pagination="true"
+       @*data-detail-view="true"*@
+       data-detail-formatter="detailsTab"
        data-id-field="id"
        data-page-list="[10, 25, 50, 100, all]"
        data-side-pagination="server"
@@ -57,7 +60,7 @@
        data-method="POST"
        data-search="false"
        data-locale="en-US">
-    <thead>
+    <thead class="thead-light">
         <tr>
             @*<th data-field="id">ID</th>*@
             <th data-field="title">Title</th>
@@ -120,6 +123,13 @@
 
         function favAlert() {
             alert("Added to favourites!");
+        }
+
+        function detailsTab(index, row) {
+            var html = [];
+            html.push('<p><b>Title:</b> ' + row.title + '</p>');
+            html.push('<p><b>Id:</b> ' + row.id + '</p>');
+            return html.join('');
         }
 
         function operateFormatter(value, row, index) {

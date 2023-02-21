@@ -29,7 +29,7 @@ namespace MvcMovie.Controllers
         }
         public async Task<User> GetUserByEmail(string email)
         {
-            return _userRepository.Get().Where(x => x.Email == email).SingleOrDefault();
+            return _userRepository.Get().Where(x => x.Email == email && x.Active == true).SingleOrDefault();
         }
 
         // GET: FavouritesController
@@ -47,7 +47,7 @@ namespace MvcMovie.Controllers
 
             var user = await GetUserByEmail(userMail);
 
-            var movies = _favouriteRepository.Get().Where(x => x.User.Id == user.Id).Include(x => x.Movie).AsQueryable();
+            var movies = _favouriteRepository.Get().Where(x => x.User.Id == user.Id && x.Active == true).Include(x => x.Movie).AsQueryable();
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -89,11 +89,10 @@ namespace MvcMovie.Controllers
 
             if (favorite == null)
             {
-                // Add the movie to the user's favorites
                 var newFavorite = new Favourite {  };
 
-                newFavorite.Movie = _movieRepository.Get().Where(x => x.Id == movieId).SingleOrDefault();
-                newFavorite.User = _userRepository.Get().Where(x => x.Id == user.Id).SingleOrDefault();
+                newFavorite.Movie = _movieRepository.Get().Where(x => x.Id == movieId && x.Active == true).SingleOrDefault();
+                newFavorite.User = _userRepository.Get().Where(x => x.Id == user.Id && x.Active == true).SingleOrDefault();
 
                 _favouriteRepository.Insert(newFavorite);
                 _favouriteRepository.Save();

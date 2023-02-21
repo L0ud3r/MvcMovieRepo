@@ -30,7 +30,7 @@ namespace MvcMovie.Controllers
 
         public async Task<User> GetUserByEmail(string email)
         {
-            return _userRepository.Get().Where(x => x.Email == email).SingleOrDefault();
+            return _userRepository.Get().Where(x => x.Email == email && x.Active == true).SingleOrDefault();
         }
 
         // GET: UserController
@@ -124,7 +124,7 @@ namespace MvcMovie.Controllers
             if (_userRepository.Get() == null)
                 return NotFound();
 
-            var user = _userRepository.Get().Where(x => x.Id == id).SingleOrDefault();
+            var user = _userRepository.Get().Where(x => x.Id == id && x.Active == true).SingleOrDefault();
 
             if (user == null)
                 return null;
@@ -149,7 +149,7 @@ namespace MvcMovie.Controllers
             {
                 try
                 {
-                    User userEdit = _userRepository.Get().FirstOrDefault(x => x.Id == user.Id);
+                    User userEdit = _userRepository.Get().FirstOrDefault(x => x.Id == user.Id && x.Active == true);
 
                     if (userEdit == null)
                         return NotFound();
@@ -191,6 +191,31 @@ namespace MvcMovie.Controllers
             {
                 return View();
             }
+        }
+
+        // POST: User/Remove/{id}
+        [HttpPost, ActionName("Remove")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Remove(int id)
+        {
+            if (_userRepository.Get() == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.User' is null.");
+            }
+
+            var user = _userRepository.Get().Where(x => x.Id == id).SingleOrDefault();
+            
+            if (user != null)
+            {
+                user.Active = false;
+
+                //Inativar todas as outras ligacoes?
+
+                _userRepository.Update(user);
+            }
+
+            _userRepository.Save();
+            return RedirectToAction("Login", "User");
         }
 
         #region Login and Logout
@@ -236,7 +261,7 @@ namespace MvcMovie.Controllers
         public IActionResult Login([Bind("Email, Password")] UserViewModel account)
         {
             //Procurar na database user com email
-            var user = _userRepository.Get().Where(x => x.Email == account.Email).FirstOrDefault();
+            var user = _userRepository.Get().Where(x => x.Email == account.Email && x.Active == true).FirstOrDefault();
 
             if(user != null)
             {
@@ -257,7 +282,7 @@ namespace MvcMovie.Controllers
         }
 
         [HttpPost]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
             // Check if the session token exists
             if (HttpContext.Session.TryGetValue("token", out byte[] token))
@@ -268,6 +293,12 @@ namespace MvcMovie.Controllers
 
             // Redirect to the login page or any other page as needed
             return RedirectToAction("Login", "User");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> RecoverPassword()
+        {
+            return View();
         }
 
         #endregion
