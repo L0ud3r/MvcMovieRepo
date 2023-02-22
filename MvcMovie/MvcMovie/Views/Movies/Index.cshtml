@@ -10,32 +10,14 @@
 <form id="search-form" asp-controller="Movies" asp-action="Index" method="get">
     <div class="d-flex flex-row mt-4 mb-2 align-items-center">
         <div class="col-0">
-            <select id="genre-filter" multiples="multiples" asp-for="MovieGenre" asp-items="Model.Genres" class="select2-genre" style="width:200px">
+            <select id="genre-filter" multiples="multiples" class="select2-genre" style="width:200px">
                 <option value="">All Genres</option>
             </select>
         </div>
-       <div class="input-group col-3">
+        <div class="input-group col-3">
             <input type="text" id="title-filter" asp-for="SearchString" class="form-control border-0 small" placeholder="Movie..." />
-            <input type="submit" id="search-button" value="Filter" class="btn btn-primary" />
+            <input type="submit" id="search-button" value="Filter" onclick="submitSearch(event)" class="btn btn-primary" />
         </div>
-         <!--<div class="col-1 d-flex gap-1 align-items-center" style="width: 500px">
-            <div>
-                <select id="title-filter" multiples="multiples" asp-for="SearchString"
-                asp-items="@(
-                    from item in Model.Movies
-                    select new SelectListItem {
-                        Text = item.Title,
-                        Value = item.Title.ToString()
-                    }
-                )" class="select2-movie" style="width:200px">
-
-                    <option value="">All Movies</option>
-                </select>
-            </div>
-            <div class="col-2 text-right">
-                <input type="submit" id="search-button" value="Filter" class="btn btn-primary" />
-            </div>
-        </div>-->
     </div>
 </form>
 
@@ -51,7 +33,6 @@
        data-toggle="table"
        data-query-params="queryParams"
        data-pagination="true"
-       @*data-detail-view="true"*@
        data-detail-formatter="detailsTab"
        data-id-field="id"
        data-page-list="[10, 25, 50, 100, all]"
@@ -62,7 +43,6 @@
        data-locale="en-US">
     <thead class="thead-light">
         <tr>
-            @*<th data-field="id">ID</th>*@
             <th data-field="title">Title</th>
             <th data-field="releaseDate" data-formatter="dateFormat">Release Date</th>
             <th data-field="genreName">Genre</th>
@@ -87,7 +67,7 @@
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
                 <form asp-controller="Movies" asp-action="Delete" method="post">
                     <input type="hidden" id="delete-movie-id" name="id" value="" />
-                    <button type="submit" class="btn btn-primary" href="@Url.Action("Index", "Movies")">Yes</button>
+                    <button type="submit" class="btn btn-primary">Yes</button>
                 </form>
             </div>
         </div>
@@ -96,9 +76,28 @@
 
 @section scripts {
     <script>
+        $(function() {
+        var select = $('#genre-filter');
+    
+        $.ajax({
+                url: 'https://localhost:7022/Genre/UsedGenres',
+                type: 'GET',
+                success: function(response) {
+                    $.each(response, function(index, item) {
+                        select.append('<option>' + item.text + '</option>');
+                    });
+                }
+            });
+        });
+
         var $table = $('#table')
         var $remove = $('#remove')
         var selections = []
+
+        function submitSearch(event){
+            event.preventDefault()
+            $('#table').bootstrapTable('refresh')
+        }
 
         function getIdSelections() {
             return $.map($table.bootstrapTable('getSelections'), function (row) {
@@ -225,6 +224,42 @@
             params.search = search;
             return JSON.stringify(params);
         }
+
+        //$(document).ready(function() {
+        //    // Bind a handler to the search form submission
+        //    $('#search-form').submit(function(event) {
+        //        // Prevent the default form submission behavior
+        //        event.preventDefault();
+        //        // Get the values from the form
+        //        var genre = $('#genre-filter').val();
+        //        var title = $('#title-filter').val();
+        //        // Send the search request to the server
+        //        $.ajax({
+        //            url: 'https://localhost:7022/Movies/Paginate',
+        //            type: 'POST',
+        //            data: JSON.stringify({
+        //                offset: 0,
+        //                limit: 0,
+        //                search: [
+        //                    {
+        //                        name: 'Genre',
+        //                        value: genre
+        //                    },
+        //                    {
+        //                        name: 'Title',
+        //                        value: title
+        //                    }
+        //                ]
+        //            }),
+        //            success: function(result) {
+        //                // Update the table with the search results
+        //            },
+        //            error: function(xhr, status, error) {
+        //                console.log('An error occurred while performing the search: ' + error);
+        //            }
+        //        });
+        //    });
+        //});
 
         function dateFormat(value, row, index) {
             if (value) {

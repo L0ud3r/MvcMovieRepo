@@ -1,20 +1,9 @@
-﻿@model MvcMovie.Models.UserViewModel
+﻿@model MvcMovie.Models.LoginViewModel
 
 @{
     Layout = "/Views/Shared/App/_LayoutAuth.cshtml";
     ViewData["Title"] = "Login";
 }
-
-@*<div class="d-flex flex-column text-center" style="">
-    <h1 class="text-center">Login</h1>
-
-    <br />
-    <div class="row" style="justify-content:center;">
-        <div class="col-md-4">
-            
-        </div>
-    </div>
-</div>*@
 
 <section class="vh-100">
     <div class="container py-5 h-100">
@@ -29,7 +18,7 @@
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
 
-                                <form asp-action="Login">
+                                <form id="login-form" method="post">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                         <i class="fas fa-film fa-2x me-3" style="color: dodgerblue;"></i>
@@ -40,13 +29,13 @@
 
                                     <div class="form-outline mb-4">
                                         <label asp-for="Email" class="control-label"></label>
-                                        <input asp-for="Email" class="form-control" />
+                                        <input asp-for="Email" type="email" id="email" class="form-control" />
                                         <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-outline mb-4">
                                         <label asp-for="Password" class="control-label"></label>
-                                        <input asp-for="Password" type="password" class="form-control" />
+                                        <input asp-for="Password" type="password" id="password" class="form-control" />
                                         <span asp-validation-for="Password" class="text-danger"></span>
                                     </div>
 
@@ -71,3 +60,34 @@
         </div>
     </div>
 </section>
+
+@section Scripts{
+    <script>
+        $(function() {
+            $('#login-form').submit(function (event) {
+                event.preventDefault();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var data = {
+                    email: email,
+                    password: password
+                };
+                $.ajax({
+                    url: 'https://localhost:7022/User/Login',
+                    type: 'POST',
+                    contentType: 'application/json-patch+json',
+                    data: JSON.stringify(data),
+                    success: function (response) {
+                        console.log('Login successful:', response);
+                        window.location.href = 'https://localhost:7233/Movies/Index';
+                        localStorage.setItem('token', response);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log('Login failed:', errorThrown);
+                        // Handle the error, such as displaying an error message
+                    }
+                });
+            });
+        });
+    </script>
+}
