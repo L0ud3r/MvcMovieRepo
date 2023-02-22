@@ -24,6 +24,8 @@ namespace MvcMovie.API
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
 
+            builder.Services.AddDistributedMemoryCache();
+
             // Add services to the container.
             builder.Services.AddControllers().AddNewtonsoftJson(
                 options => {
