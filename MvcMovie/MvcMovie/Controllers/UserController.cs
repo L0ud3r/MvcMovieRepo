@@ -301,6 +301,29 @@ namespace MvcMovie.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> RecoverPassword([Bind("Email, Password")] UserViewModel account)
+        {
+            //Procurar na database user com email
+            var user = _userRepository.Get().Where(x => x.Email == account.Email && x.Active == true).FirstOrDefault();
+
+            if (user != null)
+            {
+                CreatePasswordHash(account.Password, out byte[] passwordHash, out byte[] passwordSalt);
+                user.PassHash = Convert.ToBase64String(passwordHash);
+                user.PassSalt = Convert.ToBase64String(passwordSalt);
+
+                user.UpdatedDate = DateTime.Now;
+
+                _userRepository.Update(user);
+                _userRepository.Save();
+
+                return RedirectToAction("Login", "User");
+            }
+
+            return View();
+        }
+
         #endregion
 
     }
