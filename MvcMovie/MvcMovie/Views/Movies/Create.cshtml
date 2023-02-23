@@ -25,7 +25,7 @@
             <div>
                 <label asp-for="Genre" class="control-label"></label>
                 <div class="mb-3">
-                    <select class="select2-genre-movie" multiples="multiples" id="genre" style="width: 100%;" asp-for="Genre" asp-items="Model.Genres">
+                    <select class="select2-genre-movie" multiples="multiples" id="genre" style="width: 100%;">
                         <option value="">-</option>
                     </select>
                 </div>
@@ -61,7 +61,22 @@
     <script>
         $(document).ready(function () {
             $('.select2-genre-movie').select2();
-     });
+        });
+
+        $(function () {
+            var select = $('#genre');
+
+            $.ajax({
+                url: 'https://localhost:7022/Genre/List',
+                type: 'GET',
+                success: function (response) {
+                    $.each(response, function (index, item) {
+                        console.log(response);
+                        select.append('<option>' + item.text + '</option>');
+                    });
+                }
+            });
+        });
     </script>
 
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

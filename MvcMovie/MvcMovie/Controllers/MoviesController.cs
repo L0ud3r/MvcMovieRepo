@@ -61,25 +61,27 @@ namespace MvcMovie.Controllers
         //    return View(movieGenreVM);
         //}
 
-        //// ATUALIZAR METODO PARA NAO ACEDER À BD
-        //// COM JS METER Genres NAS OPTIONS DO SELECT
-        //// GET: Movies/Create
-        //public async Task<IActionResult> Create()
-        //{
-        //    // Use LINQ to get list of genres.
-        //    IQueryable<string> genreQuery = (from m in _genreRepository.Get()
-        //                                     orderby m.Name
-        //                                     select m.Name).AsQueryable();
+        // ATUALIZAR METODO PARA NAO ACEDER À BD
+        // COM JS METER Genres NAS OPTIONS DO SELECT
+        // GET: Movies/Create
+        public async Task<IActionResult> Create()
+        {
+            return View();
+            
+            //// Use LINQ to get list of genres.
+            //IQueryable<string> genreQuery = (from m in _genreRepository.Get()
+            //                                 orderby m.Name
+            //                                 select m.Name).AsQueryable();
 
-        //    //Verificar quando estiver vazio
+            ////Verificar quando estiver vazio
 
-        //    var movieGenreVM = new MovieAllGenresViewModel
-        //    (
-        //        new SelectList(genreQuery)
-        //    );
+            //var movieGenreVM = new MovieAllGenresViewModel
+            //(
+            //    new SelectList(genreQuery)
+            //);
 
-        //    return View(movieGenreVM);
-        //}
+            //return View(movieGenreVM);
+        }
 
         //// ATUALIZAR METODO PARA NAO ACEDER À BD
         //// COM JS BUSCAR A INFO PARA METER NOS PLACEHOLDERS

@@ -19,6 +19,19 @@ namespace MvcMovie.API.Controllers
         {
             _genreRepository = genreRepository;
             _movieRepository = movieRepository;
+
+        }
+
+        [HttpGet("List")]
+        public async Task<IActionResult> List()
+        {
+            IQueryable<string> genreQuery = (from m in _genreRepository.Get()
+                                             orderby m.Name
+                                             select m.Name).AsQueryable();
+
+            var usedGenres = new SelectList(await genreQuery.Distinct().ToListAsync());
+
+            return new JsonResult(usedGenres);
         }
 
         [HttpGet("UsedGenres")]
