@@ -57,9 +57,9 @@
             <div class="modal-body">Select "Yes" below if you want to remove this genre.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
-                <form asp-controller="Genre" asp-action="Delete" method="post">
+                <form id="deleteGenre" method="post">
                     <input type="hidden" id="delete-genre-id" name="id" value="" />
-                    <button type="submit" class="btn btn-primary" href="@Url.Action("Index", "Genre")">Yes</button>
+                    <button type="submit" class="btn btn-primary">Yes</button>
                 </form>
             </div>
         </div>
@@ -68,9 +68,51 @@
 
 @section Scripts {
     <script>
+        $(function () {
+            var select = $('#genre-filter');
+
+            $.ajax({
+                url: 'https://localhost:7022/Genre/List',
+                type: 'GET',
+                success: function (response) {
+                    $.each(response, function (index, item) {
+                        select.append('<option>' + item.text + '</option>');
+                    });
+                }
+            });
+
+            function deleteGenreForm(e) {
+                var id = $('#delete-genre-id').val();
+
+                $.ajax({
+                    url: `https://localhost:7022/Genre/Delete?id=${id}`,
+                    type: 'POST',
+                    contentType: 'application/json-patch+json',
+                    success: function (response) {
+                        alert("Genre deleted successfully!")
+                        //$('#table').bootstrapTable('refresh')
+                        location.reload();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Something went wrong...")
+                    }
+                });
+            }
+
+            $('#deleteGenre').on('submit', function (event) {
+                event.preventDefault();
+                deleteGenreForm(event);
+            });
+        });
+
         var $table = $('#table')
         var $remove = $('#remove')
         var selections = []
+
+        function submitSearch(event) {
+            event.preventDefault()
+            $('#table').bootstrapTable('refresh')
+        }
 
         function getIdSelections() {
             return $.map($table.bootstrapTable('getSelections'), function (row) {
