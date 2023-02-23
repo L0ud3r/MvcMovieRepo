@@ -10,22 +10,22 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form id="create-movie-form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
+                <input asp-for="Title" id="title" class="form-control" data-val="true" data-val-required="The Title field is required" data-val-length-min="1" data-val-length-max="500" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ReleaseDate" class="control-label"></label>
-                <input asp-for="ReleaseDate" class="form-control" />
+                <input asp-for="ReleaseDate" id="date" class="form-control" data-val="true" data-val-required="The Release Date field is required" />
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
             </div>
             <div>
                 <label asp-for="Genre" class="control-label"></label>
                 <div class="mb-3">
-                    <select class="select2-genre-movie" multiples="multiples" id="genre" style="width: 100%;">
+                    <select asp-for="Genre" class="select2-genre-movie" multiples="multiples" id="genre" style="width: 100%;" data-val="true" data-val-required="The Genre field is required" data-val-regex-pattern="^[A-Z]+[a-zA-Z\s]*$" data-val-regex="The Genre field must start with a capital letter and contain only letters or spaces.">
                         <option value="">-</option>
                     </select>
                 </div>
@@ -33,12 +33,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
+                <input asp-for="Price" id="price" class="form-control" data-val="true" data-val-required="The Price field is required" data-val-range-min="1" data-val-range-max="100" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
+               <input asp-for="Rating" id="rating" class="form-control" data-val="true" data-val-required="The Rating field is required"  data-val-regex-pattern="^[A-Z]+[a-zA-Z0-9'\s-]*$" data-val-regex="The Rating field must start with a capital letter and contain only letters, numbers, spaces, hyphens, single quotes, or double quotes. It must also be 5 characters long." data-val-length="5" />
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -61,9 +61,120 @@
     <script>
         $(document).ready(function () {
             $('.select2-genre-movie').select2();
-        });
 
-        $(function () {
+            //function submitMovieForm() {
+            //    var title = $('#title').val();
+            //    var date = $('#date').val();
+            //    var genre = $('#genre').val();
+            //    var price = $('#price').val();
+            //    var rating = $('#rating').val();
+
+            //    var data = {
+            //        title: title,
+            //        releaseDate: date,
+            //        genre: genre,
+            //        price: price,
+            //        rating: rating
+            //    };
+
+            //    $.ajax({
+            //        url: 'https://localhost:7022/Movies/Create',
+            //        type: 'POST',
+            //        contentType: 'application/json-patch+json',
+            //        data: JSON.stringify(data),
+            //        success: function (response) {
+            //            alert("Movie created successfully!")
+            //            window.location.href = 'https://localhost:7233/Movies/Index';
+            //        },
+            //        error: function (jqXHR, textStatus, errorThrown) {
+            //            alert("Something went wrong...")
+            //        }
+            //    });
+            //}
+
+            function submitMovieForm(e) {
+                // Get form data
+                var formData = new FormData(document.getElementById("create-movie-form"));
+
+                // Validate form data
+                var title = formData.get("Title");
+                var releaseDate = formData.get("ReleaseDate");
+                var genre = formData.get("Genre");
+                var price = formData.get("Price");
+                var rating = formData.get("Rating");
+
+                var titleRegex = /^[a-zA-Z\s]+$/;
+                var genreRegex = /^[A-Z]+[a-zA-Z\s]*$/;
+                var ratingRegex = /^[A-Z]+[a-zA-Z0-9'\s-]*$/;
+
+                var isValid = true;
+
+                if (!titleRegex.test(title)) {
+                    $("#title").addClass("is-invalid");
+                    $("#title-validation").text("Please enter a valid title.");
+                    isValid = false;
+                } else {
+                    $("#title").removeClass("is-invalid");
+                    $("#title-validation").text("");
+                }
+
+                if (!genreRegex.test(genre)) {
+                    $("#genre").addClass("is-invalid");
+                    $("#genre-validation").text("Please enter a valid genre.");
+                    isValid = false;
+                } else {
+                    $("#genre").removeClass("is-invalid");
+                    $("#genre-validation").text("");
+                }
+
+                if (!ratingRegex.test(rating)) {
+                    $("#rating").addClass("is-invalid");
+                    $("#rating-validation").text("Please enter a valid rating.");
+                    isValid = false;
+                } else {
+                    $("#rating").removeClass("is-invalid");
+                    $("#rating-validation").text("");
+                }
+
+                if (isNaN(parseFloat(price))) {
+                    $("#price").addClass("is-invalid");
+                    $("#price-validation").text("Please enter a valid price.");
+                    isValid = false;
+                } else {
+                    $("#price").removeClass("is-invalid");
+                    $("#price-validation").text("");
+                }
+
+                if (isValid) {
+                    var data = {
+                        title: title,
+                        releaseDate: releaseDate,
+                        genre: genre,
+                        price: price,
+                        rating: rating
+                    };
+
+                    $.ajax({
+                        url: 'https://localhost:7022/Movies/Create',
+                        type: 'POST',
+                        contentType: 'application/json-patch+json',
+                        data: JSON.stringify(data),
+                        success: function () {
+                            alert("Movie created successfully!")
+                            window.location.href = 'https://localhost:7233/Movies/Index';
+                        },
+                        error: function () {
+                            alert("An error occurred while creating the movie.");
+                        }
+                    });
+                }
+            }
+
+            $('#create-movie-form').on('submit', function (event) {
+                event.preventDefault();
+                submitMovieForm(event);
+            });
+
             var select = $('#genre');
 
             $.ajax({

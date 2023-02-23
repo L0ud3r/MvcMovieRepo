@@ -123,12 +123,10 @@ namespace MvcMovie.API.Controllers
 
         [HttpPost("Edit")]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] MovieViewModel movie)
+        public async Task<IActionResult> Edit([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] MovieViewModel movie)
         {
-            if (id != movie.Id)
-            {
+            if (_movieRepository.Exists(movie.Id) == false)
                 return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
@@ -152,6 +150,7 @@ namespace MvcMovie.API.Controllers
                     else
                         movieEdit.GenreId = genre.Id;
 
+                    movieEdit.Active = true;
                     movieEdit.UpdatedDate = DateTime.Now;
 
                     _movieRepository.Update(movieEdit);

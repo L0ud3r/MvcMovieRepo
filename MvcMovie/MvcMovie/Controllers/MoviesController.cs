@@ -67,20 +67,24 @@ namespace MvcMovie.Controllers
         public async Task<IActionResult> Create()
         {
             return View();
-            
-            //// Use LINQ to get list of genres.
-            //IQueryable<string> genreQuery = (from m in _genreRepository.Get()
-            //                                 orderby m.Name
-            //                                 select m.Name).AsQueryable();
+        }
 
-            ////Verificar quando estiver vazio
+        public async Task<IActionResult> Details(int id)
+        {
+            var viewModelMovie = new MovieViewModel();
 
-            //var movieGenreVM = new MovieAllGenresViewModel
-            //(
-            //    new SelectList(genreQuery)
-            //);
+            viewModelMovie.Id = id;
 
-            //return View(movieGenreVM);
+            return View(viewModelMovie);
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var viewModelMovie = new MovieAllGenresViewModel();
+
+            viewModelMovie.Id = id;
+
+            return View(viewModelMovie);
         }
 
         //// ATUALIZAR METODO PARA NAO ACEDER À BD
@@ -122,37 +126,6 @@ namespace MvcMovie.Controllers
         //    movieGenreVM.Genre = movie.GenreName;
 
         //    return View(movieGenreVM);
-        //}
-
-        //// APAGAR METODO
-        //// GET: Movies/Delete/5
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    if (id == null || _movieRepository.Get() == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var movie = _movieRepository.Get().Where(x => x.Id == id).Include(x => x.Genre).Select(x => new
-        //    {
-        //        x.Id,
-        //        x.Title,
-        //        x.ReleaseDate,
-        //        GenreName = x.Genre.Name,
-        //        x.Price,
-        //        x.Rating
-        //    }).SingleOrDefault();
-
-        //    MovieViewModel movieView = new MovieViewModel();
-
-        //    movieView.Id = movie.Id;
-        //    movieView.Title = movie.Title;
-        //    movieView.Price = movie.Price;
-        //    movieView.ReleaseDate = movie.ReleaseDate;
-        //    movieView.Rating = movie.Rating;
-        //    movieView.Genre = movie.GenreName;
-
-        //    return View(movieView);
         //}
     }
 }

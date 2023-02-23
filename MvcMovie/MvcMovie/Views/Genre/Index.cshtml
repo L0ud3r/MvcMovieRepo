@@ -11,7 +11,7 @@
     <p>
         <div class="input-group" style="width: 50%">
             <input type="text" id="genre-filter" asp-for="MovieGenre" class="form-control" placeholder="Genre..." />
-            <input type="submit" id="search-button" value="Filter" class="btn btn-primary" />
+            <input type="submit" id="search-button" value="Filter" onclick="submitSearch(event)" class="btn btn-primary" />
         </div>
     </p>
 </form>
@@ -30,7 +30,7 @@
        data-id-field="id"
        data-page-list="[10, 25, 50, 100, all]"
        data-side-pagination="server"
-       data-url="/Genre/paginate"
+       data-url="https://localhost:7022/Genre/Paginate"
        data-method="POST"
        data-search="false"
        data-locale="en-US">

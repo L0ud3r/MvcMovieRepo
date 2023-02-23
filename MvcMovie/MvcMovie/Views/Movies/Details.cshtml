@@ -8,37 +8,33 @@
 <h1>Details</h1>
 
 <div>
+    <input type="hidden" id="id" value="@Html.DisplayFor(model => model.Id)"/>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
+        <dd class = "col-sm-10" id="title">
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ReleaseDate)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReleaseDate)
+        <dd class="col-sm-10" id="date">
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Genre)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Genre)
+        <dd class="col-sm-10" id="genre">
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Price)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
+        <dd class="col-sm-10" id="price">
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Rating)
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Rating)
+        <dd class="col-sm-10" id="rating">
         </dd>
     </dl>
 </div>
@@ -57,3 +53,39 @@
         <span class="text">Back to List</span>
     </a>
 </div>
+
+@section Scripts{
+    <script>
+        $(function () {
+
+            var movieId = $('#id').val();
+
+            $.ajax({    
+                url: `https://localhost:7022/Movies/Details?id=${movieId}`,
+                type: 'GET',
+                success: function (response) {
+                    document.getElementById('title').innerHTML = response.title;
+
+                    var date = new Date(response.releaseDate);
+                    var day = date.getDate();
+                    var month = date.getMonth() + 1;
+                    var year = date.getFullYear();
+
+                    day = day < 10 ? '0' + day : day;
+                    month = month < 10 ? '0' + month : month;
+                    date = day + '-' + month + '-' + year;
+
+                    document.getElementById('date').innerHTML = date;
+
+                    document.getElementById('genre').innerHTML = response.genre;
+                    document.getElementById('price').innerHTML = response.price;
+                    document.getElementById('rating').innerHTML = response.rating;
+                },
+                error:function (jqXHR, textStatus, errorThrown) {
+                    alert("Something went wrong...")
+                }
+            });
+        });
+
+    </script>
+}

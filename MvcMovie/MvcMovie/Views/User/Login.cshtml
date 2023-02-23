@@ -78,13 +78,11 @@
                     contentType: 'application/json-patch+json',
                     data: JSON.stringify(data),
                     success: function (response) {
-                        console.log('Login successful:', response);
-                        window.location.href = 'https://localhost:7233/Movies/Index';
                         localStorage.setItem('token', response);
+                        window.location.href = 'https://localhost:7233/Movies/Index';
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        console.log('Login failed:', errorThrown);
-                        // Handle the error, such as displaying an error message
+                        alert("Login failed")
                     }
                 });
             });

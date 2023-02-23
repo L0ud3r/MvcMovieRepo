@@ -84,6 +84,8 @@ namespace MvcMovie.API.Controllers
             return View(genre);
         }
 
+
+
         [HttpPost("Delete"), ActionName("Delete")]
         //[ValidateAntiForgeryToken]
         public ActionResult Delete(int id)

@@ -89,5 +89,11 @@ namespace MvcMovie.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
     }
 }

@@ -22,6 +22,8 @@ namespace MvcMovie.Models
             Genres = genres;
         }
 
+        public MovieAllGenresViewModel() { }
+
         public SelectList? Genres { get; set; }
     }
 }
