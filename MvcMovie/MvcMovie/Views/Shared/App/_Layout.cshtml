@@ -328,8 +328,8 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <form asp-controller="User" asp-action="Logout" method="post">
-                        <button type="submit" class="btn btn-primary" href="@Url.Action("Login", "User")">Logout</button>
+                    <form id="logout-form" method="post">
+                        <button type="submit" class="btn btn-primary">Logout</button>
                     </form>
                 </div>
             </div>
@@ -340,7 +340,24 @@
     @await RenderSectionAsync("Scripts", required: false)
     <script>
         $(document).ready(function () {
+            $('#logout-form').submit(function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: 'https://localhost:7022/User/Logout',
+                    method: 'POST',
+                    success: function (response) {
+                        localStorage.removeItem('token');
+                        window.location.href = 'https://localhost:7233/User/Login';
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+            
             var url = window.location;
+
             // Will only work if string in href matches with location
             $('ul.navbar-nav a[href="' + url + '"]').parent().addClass('active');
 

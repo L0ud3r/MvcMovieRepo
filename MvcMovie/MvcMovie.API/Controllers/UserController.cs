@@ -26,11 +26,16 @@ namespace MvcMovie.API.Controllers
             _userRepository = userRepository;
         }
 
-        //[HttpPost("GetUserByEmail")]
-        //public async Task<User> GetUserByEmail(string email)
-        //{
-        //    return _userRepository.Get().Where(x => x.Email == email && x.Active == true).SingleOrDefault();
-        //}
+        [HttpGet("GetUserByToken")]
+        public async Task<User> GetUserByToken(string token)
+        {
+            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(token);
+
+            var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+            string userMail = claimMail?.Value;
+
+            return _userRepository.Get().Where(x => x.Email == userMail && x.Active == true).SingleOrDefault();
+        }
 
         // POST: UserController/Create
         [HttpPost("Register")]

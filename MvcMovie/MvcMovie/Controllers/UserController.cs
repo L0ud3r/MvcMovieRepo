@@ -95,5 +95,13 @@ namespace MvcMovie.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var userModel = new UserViewModel();
+
+            return View(userModel);
+        }
     }
 }
