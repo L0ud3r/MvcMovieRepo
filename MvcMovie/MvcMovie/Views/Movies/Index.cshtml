@@ -193,16 +193,15 @@
 
         $(document).on('click', '.like', function() {
             var movieId = $(this).data('id');
-            var action = 'add'; // Or 'remove' depending on whether the movie is already in the user's favorites
+            var token = localStorage.getItem('token');
+
             $.ajax({
-                url: '/Favourites/update',
+                url: `https://localhost:7022/Favourites/Update?movieId=${movieId}&token=${token}`,
                 method: 'POST',
-                data: { movieId: movieId, action: action },
-                success: function() {
+                success: function () {
                     alert('Movie added/removed to favourites!');
-                    window.location.href = '/Favourites/Index';
                 },
-                error: function() {
+                error: function () {
                     alert('An error occurred');
                 }
             });

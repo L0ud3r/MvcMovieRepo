@@ -28,20 +28,26 @@ namespace MvcMovie.API.Controllers
             _favouriteRepository = favouriteRepository;
             _userRepository = userRepository;
         }
-        private User GetUserByEmail(string email)
-        {
-            return _userRepository.Get().Where(x => x.Email == email && x.Active == true).SingleOrDefault();
-        }
 
-        [HttpPost("Update")]
-        public async Task<IActionResult> Update(int movieId, string action)
+        private User GetUserByToken(string token)
         {
-            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
+            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(token);
 
             var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
             string userMail = claimMail?.Value;
 
-            var user = GetUserByEmail(userMail);
+            return _userRepository.Get().Where(x => x.Email == userMail && x.Active == true).SingleOrDefault();
+        }
+
+        [HttpPost("Update")]
+        public async Task<IActionResult> Update(int movieId, string token)
+        {
+            //    var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(token);
+
+            //    var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+            //    string userMail = claimMail?.Value;
+
+            var user = GetUserByToken(token);
 
             var favorite = _favouriteRepository.Get().SingleOrDefault(f => f.Movie.Id == movieId && f.User.Id == user.Id);
 
@@ -67,14 +73,14 @@ namespace MvcMovie.API.Controllers
         }
 
         [HttpPost("Remove")]
-        public async Task<IActionResult> Remove(int movieId, string action)
+        public async Task<IActionResult> Remove(int movieId, string token)
         {
-            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
+            //var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
 
-            var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
-            string userMail = claimMail?.Value;
+            //var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+            //string userMail = claimMail?.Value;
 
-            var user = GetUserByEmail(userMail);
+            var user = GetUserByToken(token);
 
             var favorite = _favouriteRepository.Get().SingleOrDefault(f => f.Movie.Id == movieId && f.User.Id == user.Id);
 
@@ -107,19 +113,14 @@ namespace MvcMovie.API.Controllers
         // POST: FavouritesController/Delete/5
         [HttpPost("Delete"), ActionName("Delete")]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, string token)
         {
             if (_favouriteRepository.Get() == null)
             {
                 return Problem("Entity set 'MvcMovieContext.Favourites' is null.");
             }
 
-            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
-
-            var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
-            string userMail = claimMail?.Value;
-
-            var user = GetUserByEmail(userMail);
+            var user = GetUserByToken(token);
 
             var movieFav = _favouriteRepository.Get().Where(x => x.Movie.Id == id && x.User.Id == user.Id).SingleOrDefault();
 
@@ -137,12 +138,14 @@ namespace MvcMovie.API.Controllers
         {
             model.Limit = model.Limit.HasValue && model.Limit != 0 ? model.Limit.Value : int.MaxValue;
 
-            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
+            var token = model.Search.FirstOrDefault(x => x.Name == "Token");
+
+            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(token.Value.ToString());
 
             var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
             string userMail = claimMail?.Value;
 
-            var user = GetUserByEmail(userMail);
+            var user = GetUserByToken(token.Value.ToString());
 
             var query = _favouriteRepository.Get().Where(x => x.User.Id == user.Id).Include(x => x.Movie).AsQueryable();
 
