@@ -30,7 +30,7 @@
         <dt class = "col-sm-2">
             Account ID
         </dt>
-        <dd class = "col-sm-10" manifest="id">
+        <dd class = "col-sm-10" id="id">
         </dd>
     </dl>
 </div>
@@ -63,8 +63,8 @@
             <div class="modal-body">Select "Yes" below if you want to delete your account.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
-                <form asp-controller="User" asp-action="Remove" method="post">
-                    <input type="hidden" id="account-id" name="id" value="" />
+                <form id="delete-acc-form" method="post">
+                    <input type="hidden" id="account-id" name="id" />
                     <button type="submit" class="btn btn-primary" href="@Url.Action("Login", "User")">Yes</button>
                 </form>
             </div>
@@ -74,11 +74,23 @@
 
 @section scripts {
     <script>
-        function deleteMovie(id) {
-            $('#account-id').val(id);
-        }
 
-        
+        $('#delete-acc-form').on('submit', function (event) {
+            event.preventDefault();
+            var id = document.getElementById('id').innerHTML;
+
+            $.ajax({
+                url: `https://localhost:7022/User/Remove?id=${id}`,
+                type: 'POST',
+                contentType: 'application/json-patch+json',
+                success: function (response) {
+                    window.location.href = 'https://localhost:7233/User/Login';
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Something went wrong...")
+                }
+            });
+        });
 
         $(document).ready(function () {
             var token = localStorage.getItem('token');
@@ -88,20 +100,16 @@
 
             $.ajax({
                 url: 'https://localhost:7022/User/GetUserByToken',
-                method: 'POST',
+                method: 'GET',
                 dataType: 'json',
                 data: data,
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
                 success: function (response) {
-                    alert("boas");
-                    document.getElementById('username').innerHTML = response.name;
+                    document.getElementById('username').innerHTML = response.username;
                     document.getElementById('email').innerHTML = response.email;
                     document.getElementById('id').innerHTML = response.id;
                 },
                 error: function (xhr, status, error) {
-                    alert(xhr.responseText);
+                    alert("Error on loading your data...");
                 }
             });
         });

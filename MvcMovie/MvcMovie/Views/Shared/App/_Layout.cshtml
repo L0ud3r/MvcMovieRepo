@@ -255,14 +255,15 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @if (User.Identity.IsAuthenticated)
+                                @*@if (User.Identity.IsAuthenticated)
                                 {
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">@User.Identity.Name</span>
                                 }
                                 else
                                 {
-                                    <span>Please sign in to access your account.</span>
-                                }
+                                    <span></span>
+                                }*@
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="topbar-username">Please sign in to access your account.</span>
                                 
                                 <img class="img-profile rounded-circle"
                                      src="~/startbootstrap-sb-admin-2-gh-pages/img/undraw_profile.svg">
@@ -354,6 +355,24 @@
                         console.log(xhr.responseText);
                     }
                 });
+            });
+
+            var token = localStorage.getItem('token');
+            var data = {
+                token: token
+            };
+
+            $.ajax({
+                url: 'https://localhost:7022/User/GetUserByToken',
+                method: 'GET',
+                dataType: 'json',
+                data: data,
+                success: function (response) {
+                    document.getElementById('topbar-username').innerHTML = response.username;
+                },
+                error: function (xhr, status, error) {
+                    alert("Error on loading your data...");
+                }
             });
             
             var url = window.location;

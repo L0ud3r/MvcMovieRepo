@@ -81,8 +81,8 @@
                         localStorage.setItem('token', response);
                         window.location.href = 'https://localhost:7233/Movies/Index';
                     },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        alert("Login failed")
+                    error: function (response) {
+                        alert("Login failed: " + response.responseJSON)
                     }
                 });
             });

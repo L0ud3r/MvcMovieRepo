@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MvcMovie.API.Controllers
 {
@@ -200,7 +201,7 @@ namespace MvcMovie.API.Controllers
             {
                 if (!VerifyPasswordHash(account.Password, Convert.FromBase64String(user.PassHash), Convert.FromBase64String(user.PassSalt)))
                 {
-                    return BadRequest("Wrong Password");
+                    return new JsonResult(false) { StatusCode = 400, Value = "Wrong Password" };
                 }
 
                 string token = CreateToken(user);
@@ -211,7 +212,7 @@ namespace MvcMovie.API.Controllers
                 return new JsonResult(true) { StatusCode = 200, Value = token };
             }
 
-            return BadRequest("Wrong Email");
+            return new JsonResult(false) { StatusCode = 400, Value = "Wrong Email" };
         }
 
         [HttpPost("Logout")]
