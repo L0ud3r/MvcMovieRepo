@@ -92,16 +92,16 @@ namespace MvcMovie.API.Controllers
 
         [HttpPost("Edit")]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Email,Password")] UserViewModel user)
+        public async Task<IActionResult> Edit([Bind("Id,Username,Email,Password")] UserViewModel user)
         {
-            if (id != user.Id)
-                return NotFound();
+            //if (id != user.Id)
+            //    return NotFound();
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    User userEdit = _userRepository.Get().FirstOrDefault(x => x.Id == user.Id || x.Id == id && x.Active == true);
+                    User userEdit = _userRepository.Get().FirstOrDefault(x => x.Id == user.Id && x.Active == true);
 
                     if (userEdit == null)
                         return NotFound();

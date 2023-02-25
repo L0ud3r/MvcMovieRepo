@@ -9,18 +9,17 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form id="edit-user-form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="Password" value="password"/>
+            <input type="hidden" asp-for="Id" id="id-user" value="@Model.Id"/>
             <div class="form-group">
                 <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
+                <input asp-for="Username" id="username" class="form-control" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" id="email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -37,3 +36,67 @@
         <span class="text">Cancel</span>
     </a>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            function submitUserForm(e) {
+                var formData = new FormData(document.getElementById("edit-user-form"));
+
+                var username = formData.get("Username");
+                var email = formData.get("Email");
+                var id = formData.get("Id");
+
+                var data = {
+                    id: id,
+                    username: username,
+                    email: email,
+                    password: "password"
+                };
+
+                $.ajax({
+                    url: 'https://localhost:7022/User/Edit',
+                    type: 'POST',
+                    contentType: 'application/json-patch+json',
+                    data: JSON.stringify(data),
+                    success: function () {
+                        alert("Account editted successfully!")
+                        window.location.href = 'https://localhost:7233/User/Index';
+                    },
+                    error: function () {
+                        alert("An error occurred...");
+                        window.location.href = 'https://localhost:7233/User/Index';
+                    }
+                });
+            }
+
+            $('#edit-user-form').on('submit', function (event) {
+                event.preventDefault();
+                submitUserForm(event);
+            });
+
+            var token = localStorage.getItem('token');
+            var data = {
+                token: token
+            };
+
+            $.ajax({
+                url: 'https://localhost:7022/User/GetUserByToken',
+                method: 'GET',
+                dataType: 'json',
+                data: data,
+                success: function (response) {
+                    document.getElementById('username').setAttribute('value', response.username);
+                    document.getElementById('email').setAttribute('value', response.email);
+                },
+                error: function (xhr, status, error) {
+                    alert("Error on loading your data...");
+                }
+            });
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -97,6 +97,16 @@ namespace MvcMovie.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var userViewModel = new UserViewModel();
+
+            userViewModel.Id = id;
+
+            return View(userViewModel);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var userModel = new UserViewModel();

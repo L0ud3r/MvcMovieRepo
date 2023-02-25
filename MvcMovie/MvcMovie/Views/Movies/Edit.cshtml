@@ -127,7 +127,6 @@
                         price: price,
                         rating: rating
                     };
-                    console.log(data);
                     $.ajax({
                         url: 'https://localhost:7022/Movies/Edit',
                         type: 'POST',
@@ -138,7 +137,7 @@
                             window.location.href = 'https://localhost:7233/Movies/Index';
                         },
                         error: function () {
-                            alert("An error occurred while creating the movie.");
+                            alert("An error occurred...");
                         }
                     });
                 }
