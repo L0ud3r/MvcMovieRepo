@@ -27,7 +27,7 @@ namespace MvcMovie.API.Controllers
             _userRepository = userRepository;
         }
 
-        [HttpGet("GetUserByToken")]
+        [HttpPost("GetUserByToken")]
         public async Task<User> GetUserByToken(string token)
         {
             var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(token);
@@ -131,7 +131,7 @@ namespace MvcMovie.API.Controllers
             return BadRequest();
         }
 
-        // POST: User/Remove/{id}
+        // POST: User/Remove
         [HttpPost("Remove"), ActionName("Remove")]
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Remove(int id)

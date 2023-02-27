@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcMovie.API", "MvcMovie.AP
 		{E7817400-6748-4DEF-B5CE-1D255BF4881D} = {E7817400-6748-4DEF-B5CE-1D255BF4881D}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMovie.App", "MvcMovie.App\MvcMovie.App.csproj", "{95861851-EC39-48F3-AEF0-FBB9B81943C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{B69ABBC6-7018-4B32-9BB3-ECE3B5C8D781}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B69ABBC6-7018-4B32-9BB3-ECE3B5C8D781}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B69ABBC6-7018-4B32-9BB3-ECE3B5C8D781}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95861851-EC39-48F3-AEF0-FBB9B81943C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95861851-EC39-48F3-AEF0-FBB9B81943C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95861851-EC39-48F3-AEF0-FBB9B81943C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95861851-EC39-48F3-AEF0-FBB9B81943C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

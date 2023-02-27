@@ -83,8 +83,8 @@
             };
 
             $.ajax({
-                url: 'https://localhost:7022/User/GetUserByToken',
-                method: 'GET',
+                url: `https://localhost:7022/User/GetUserByToken?token=${token}`,
+                method: 'POST',
                 dataType: 'json',
                 data: data,
                 success: function (response) {

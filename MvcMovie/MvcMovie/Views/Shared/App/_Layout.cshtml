@@ -7,9 +7,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Movie App</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MvcMovie.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/styles.cf58507dd785c10c7bc8.css" asp-append-version="true" />
     <!-- Custom fonts for this template-->
     <link href="~/startbootstrap-sb-admin-2-gh-pages/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -307,11 +304,12 @@
             };
 
             $.ajax({
-                url: 'https://localhost:7022/User/GetUserByToken',
-                method: 'GET',
+                url: `https://localhost:7022/User/GetUserByToken?token=${token}`,
+                method: 'POST',
                 dataType: 'json',
                 data: data,
                 success: function (response) {
+                    console.log(response)
                     document.getElementById('topbar-username').innerHTML = response.username;
                 },
                 error: function (xhr, status, error) {
