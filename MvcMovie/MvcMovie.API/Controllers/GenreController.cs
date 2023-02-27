@@ -38,8 +38,9 @@ namespace MvcMovie.API.Controllers
         public async Task<IActionResult> UsedGenres()
         {
             IQueryable<string> genreQuery = (from m in _movieRepository.Get()
-                                                orderby m.Genre.Name
-                                                select m.Genre.Name).AsQueryable();
+                                              orderby m.Genre.Name
+                                              select m.Genre.Name).AsQueryable();
+
 
             var usedGenres = new SelectList(await genreQuery.Distinct().ToListAsync());
 

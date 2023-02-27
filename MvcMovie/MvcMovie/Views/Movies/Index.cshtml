@@ -82,6 +82,7 @@
                 url: 'https://localhost:7022/Genre/UsedGenres',
                 type: 'GET',
                 success: function(response) {
+                    console.log(response);
                     $.each(response, function(index, item) {
                         select.append('<option>' + item.text + '</option>');
                     });

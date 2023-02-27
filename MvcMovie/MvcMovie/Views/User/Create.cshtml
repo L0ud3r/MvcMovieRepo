@@ -64,20 +64,25 @@
 
                                     <div class="form-outline mb-4">
                                         <label asp-for="Username" class="control-label"></label>
-                                        <input asp-for="Username" id = "username" class="form-control" />
+                                        <input asp-for="Username" id="username" class="form-control" type="text" required />
                                         <span asp-validation-for="Username" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-outline mb-4">
                                         <label asp-for="Email" class="control-label"></label>
-                                        <input asp-for="Email" id="email" class="form-control" />
+                                        <input asp-for="Email" id="email" class="form-control" type="email" required/>
                                         <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-outline mb-4">
                                         <label asp-for="Password" class="control-label"></label>
-                                        <input asp-for="Password" id="password" type="password" class="form-control" />
+                                        <input asp-for="Password" id="password" type="password" class="form-control" required />
                                         <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="control-label">Confirm Password</label>
+                                        <input id="password-confirm" type="password" class="form-control" required />
                                     </div>
 
                                     <div class="pt-1 mb-4">
@@ -111,30 +116,36 @@
         $(function () {
             $('#register-form').submit(function (event) {
                 event.preventDefault();
-                
+
                 var username = $('#username').val();
                 var email = $('#email').val();
                 var password = $('#password').val();
+                var passwordConfirm = $('#password-confirm').val();
 
-                var data = {
-                    username: username,
-                    email: email,
-                    password: password
-                };
+                if(password != passwordConfirm){
+                    alert("Passwords don't match!")
+                }
+                else{
+                    var data = {
+                        username: username,
+                        email: email,
+                        password: password
+                    };
 
-                $.ajax({
-                    url: 'https://localhost:7022/User/Register',
-                    type: 'POST',
-                    contentType: 'application/json-patch+json',
-                    data: JSON.stringify(data),
-                    success: function (response) {
-                        alert("Account created successfully!")
-                        window.location.href = 'https://localhost:7233';
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log('Register failed:', errorThrown);
-                    }
-                });
+                    $.ajax({
+                        url: 'https://localhost:7022/User/Register',
+                        type: 'POST',
+                        contentType: 'application/json-patch+json',
+                        data: JSON.stringify(data),
+                        success: function (response) {
+                            alert("Account created successfully!")
+                            window.location.href = 'https://localhost:7233';
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log('Register failed:', textStatus);
+                        }
+                    });
+                }
             });
         });
     </script>

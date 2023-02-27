@@ -15,18 +15,18 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" id="title" class="form-control" />
+                <input asp-for="Title" id="title" type="text" class="form-control" required />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ReleaseDate" class="control-label"></label>
-                <input asp-for="ReleaseDate" id="date" class="form-control" />
+                <input asp-for="ReleaseDate" id="date" type="date" class="form-control" required />
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
             </div>
             <div>
                 <label asp-for="Genre" class="control-label"></label>
                 <div class="mb-3">
-                    <select asp-for="Genre" class="select2-genre-movie" multiples="multiples" id="genre" style="width: 100%;" data-val="true" data-val-required="The Genre field is required" data-val-regex-pattern="^[A-Z]+[a-zA-Z\s]*$" data-val-regex="The Genre field must start with a capital letter and contain only letters or spaces.">
+                    <select asp-for="Genre" class="select2-genre-movie" multiples="multiples" id="genre" style="width: 100%;" required>
                         <option value="">-</option>
                     </select>
                 </div>
@@ -34,16 +34,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" id="price" class="form-control" />
+                <input asp-for="Price" id="price" class="form-control" required type="number" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" id="rating" class="form-control" />
+                <input asp-for="Rating" id="rating" class="form-control" type="text" required />
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-success" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </form>
     </div>
@@ -67,58 +67,16 @@
 
 
             function submitMovieForm(e) {
-                // Get form data
                 var formData = new FormData(document.getElementById("edit-movie-form"));
-
-                // Validate form data
+                
                 var title = formData.get("Title");
                 var releaseDate = formData.get("ReleaseDate");
                 var genre = formData.get("Genre");
                 var price = formData.get("Price");
                 var rating = formData.get("Rating");
 
-                var genreRegex = /^[A-Z]+[a-zA-Z\s]*$/;
-                var ratingRegex = /^[A-Z]+[a-zA-Z0-9'\s-]*$/;
-
-                var isValid = true;
-
-                if (!title) {
-                    $("#title").addClass("is-invalid");
-                    $("#title-validation").text("Please enter a valid title.");
-                    isValid = false;
-                } else {
-                    $("#title").removeClass("is-invalid");
-                    $("#title-validation").text("");
-                }
-
-                if (!genreRegex.test(genre)) {
-                    $("#genre").addClass("is-invalid");
-                    $("#genre-validation").text("Please enter a valid genre.");
-                    isValid = false;
-                } else {
-                    $("#genre").removeClass("is-invalid");
-                    $("#genre-validation").text("");
-                }
-
-                if (!ratingRegex.test(rating)) {
-                    $("#rating").addClass("is-invalid");
-                    $("#rating-validation").text("Please enter a valid rating.");
-                    isValid = false;
-                } else {
-                    $("#rating").removeClass("is-invalid");
-                    $("#rating-validation").text("");
-                }
-
-                if (isNaN(parseFloat(price))) {
-                    $("#price").addClass("is-invalid");
-                    $("#price-validation").text("Please enter a valid price.");
-                    isValid = false;
-                } else {
-                    $("#price").removeClass("is-invalid");
-                    $("#price-validation").text("");
-                }
-
-                if (isValid) {
+                if (document.getElementById("edit-movie-form").checkValidity()) {
+                
                     var data = {
                         id: movieId,
                         title: title,
