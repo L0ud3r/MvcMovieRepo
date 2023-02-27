@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -19,10 +20,10 @@ import { CreateGenreComponent } from './genre/create/create.component'
 import { CreateMovieComponent } from './movie/create/create.component'
 import { DetailsMovieComponent } from './movie/details/details.component'
 import { EditMovieComponent } from './movie/edit/edit.component'
+import { LoginComponent } from './user/login/login.component';
 import { CreateUserComponent } from './user/create/create.component'
-import { LoginComponent } from './user/login/login.component'
+import { RecoverPasswordComponent } from './user/recoverpassword/recoverpassword.component';
 import { EditUserComponent } from './user/edit/edit.component'
-import { RecoverPasswordComponent } from './user/recoverpassword/recoverpassword.component'
 
 @NgModule({
   declarations: [
@@ -40,13 +41,14 @@ import { RecoverPasswordComponent } from './user/recoverpassword/recoverpassword
     CreateMovieComponent,
     DetailsMovieComponent,
     EditMovieComponent,
-    CreateUserComponent,
     LoginComponent,
-    EditUserComponent,
-    RecoverPasswordComponent
+    CreateUserComponent,
+    RecoverPasswordComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
