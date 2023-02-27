@@ -11,6 +11,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Azure.Core;
+using System.Net;
+using Microsoft.Extensions.Primitives;
 
 namespace MvcMovie.API.Controllers
 {
@@ -34,6 +38,10 @@ namespace MvcMovie.API.Controllers
 
             var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
             string userMail = claimMail?.Value;
+
+            // Validate that we have a bearer token.
+
+            //string emailCliente = User.FindFirstValue(ClaimTypes.Email);
 
             return _userRepository.Get().Where(x => x.Email == userMail && x.Active == true).SingleOrDefault();
         }
@@ -187,6 +195,18 @@ namespace MvcMovie.API.Controllers
                 signingCredentials: creds);
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            // Disable issuer and audience validation
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                IssuerSigningKey = key
+            };
+
+            // Verify if the token is valid
+            var handler = new JwtSecurityTokenHandler();
+            var result = handler.ValidateToken(jwt, tokenValidationParameters, out var validatedToken);
 
             return jwt;
         }

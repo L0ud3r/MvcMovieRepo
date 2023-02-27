@@ -1,12 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using MvcMovie.Models;
-using MvcMovieDAL;
-using MvcMovieDAL.Entities;
-using MvcMovieInfra;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);

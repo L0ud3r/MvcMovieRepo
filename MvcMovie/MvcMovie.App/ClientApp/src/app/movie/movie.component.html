@@ -1,1 +1,67 @@
-<p>movie works!</p>
+<h1>Movies</h1>
+
+<form id="search-form" asp-controller="Movies" asp-action="Index" method="get">
+    <div class="d-flex flex-row mt-4 mb-2 align-items-center">
+        <div class="col-0">
+            <select id="genre-filter" multiples="multiples" class="select2-genre" style="width:200px">
+                <option value="">All Genres</option>
+            </select>
+        </div>
+        <div class="input-group col-3">
+            <input type="text" id="title-filter" asp-for="SearchString" class="form-control border-0 small" placeholder="Movie..." />
+            <input type="submit" id="search-button" value="Filter" onclick="submitSearch(event)" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+<a asp-action="Create" class="btn btn-primary btn-icon-split mb-3">
+    <span class="icon text-white-50">
+        <i class="fa fa-plus"></i>
+    </span>
+    <span class="text">Add Movie</span>
+</a>
+
+<table class="table-borderless"
+       id="table"
+       data-toggle="table"
+       data-query-params="queryParams"
+       data-pagination="true"
+       data-detail-formatter="detailsTab"
+       data-id-field="id"
+       data-page-list="[10, 25, 50, 100, all]"
+       data-side-pagination="server"
+       data-url="https://localhost:7022/Movies/Paginate"
+       data-method="POST"
+       data-search="false"
+       data-locale="en-US">
+    <thead class="thead-light">
+        <tr>
+            <th data-field="title">Title</th>
+            <th data-field="releaseDate" data-formatter="dateFormat">Release Date</th>
+            <th data-field="genreName">Genre</th>
+            <th data-field="" data-formatter="operateFormatter">Actions</th>
+        </tr>
+    </thead>
+</table>
+
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to remove this movie?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Yes" below if you want to remove this movie.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+                <form id="deleteMovie" method="post">
+                    <input type="hidden" id="delete-movie-id" name="id" value="" />
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

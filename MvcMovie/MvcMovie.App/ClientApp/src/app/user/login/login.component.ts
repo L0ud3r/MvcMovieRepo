@@ -20,11 +20,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    console.log(this.conta);
-
     this.service.login(this.conta).subscribe(
       data => {
-        console.log(data);
         localStorage.setItem('token', data.toString());
         this.router.navigateByUrl('/movies').then(() =>{
           this.router.navigate([decodeURI('/movies')]);

@@ -8,14 +8,14 @@ import { Observable } from 'rxjs';
 export class SharedService {
   readonly APIUrl="https://localhost:7022"
 
-  //headersAuth = new HttpHeaders().append("Authorization", `Bearer ${localStorage.getItem('token')}`);
+  headersAuth = new HttpHeaders().append("Authorization", `Bearer ${localStorage.getItem('token')}`);
 
   constructor(private http:HttpClient) { }
 
   //#region User
 
   getUserbyToken(token:any):Observable<any[]>{
-    return this.http.post<any>(this.APIUrl+'/User/GetUserByToken', token)
+    return this.http.post<any>(this.APIUrl+'/User/GetUserByToken?token='+token, token)
   }
 
   login(account:any):Observable<any[]>{
