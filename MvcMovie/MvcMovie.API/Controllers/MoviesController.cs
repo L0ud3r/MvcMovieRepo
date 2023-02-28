@@ -60,7 +60,7 @@ namespace MvcMovie.API.Controllers
 
         [HttpPost("Create")]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] MovieViewModel movie)
+        public async Task<IActionResult> Create([Bind("Title,ReleaseDate,Genre,Price,Rating")] MovieViewModel movie)
         {
             if (ModelState.IsValid)
             {

@@ -47,23 +47,23 @@ export class SharedService {
   //#region Movies
 
   movieDetails(id:any):Observable<any[]>{
-    return this.http.get<any>(this.APIUrl+'Movies/Details?id=' + id.toString())
+    return this.http.get<any>(this.APIUrl+'/Movies/Details?id=' + id.toString())
   }
 
   movieCreate(movie:any):Observable<any[]>{
-    return this.http.post<any>(this.APIUrl+'Movies/Create', movie)
+    return this.http.post<any>(this.APIUrl+'/Movies/Create', movie)
   }
 
   movieEdit(movie:any):Observable<any[]>{
-    return this.http.post<any>(this.APIUrl+'Movies/Edit', movie)
+    return this.http.post<any>(this.APIUrl+'/Movies/Edit', movie)
   }
 
   movieDelete(movie:any):Observable<any[]>{
-    return this.http.post<any>(this.APIUrl+'Movies/Delete', movie)
+    return this.http.post<any>(this.APIUrl+'/Movies/Delete', movie)
   }
 
   paginateMovies(model:any):Observable<any[]>{
-    return this.http.post<any>(this.APIUrl+'Movies/Paginate', model)
+    return this.http.post<any>(this.APIUrl+'/Movies/Paginate', model)
   }
 
   //#endregion
@@ -95,15 +95,15 @@ export class SharedService {
   //#region Favourites
 
   updateFavourite(idWithToken:any):Observable<any>{
-    return this.http.post<any>(this.APIUrl+'/Genre/Update', idWithToken)
+    return this.http.post<any>(this.APIUrl+'/Favourites/Update', idWithToken)
   }
 
   removeFavourite(idWithToken:any):Observable<any>{
-    return this.http.post<any>(this.APIUrl+'/Genre/Remove', idWithToken)
+    return this.http.post<any>(this.APIUrl+'/Favourites/Remove', idWithToken)
   }
 
   deleteFavourite(id:any):Observable<any>{
-    return this.http.post<any>(this.APIUrl+'/Genre/Delete', id)
+    return this.http.post<any>(this.APIUrl+'/Favourites/Delete', id)
   }
 
   paginateFavourites(id:any):Observable<any>{
