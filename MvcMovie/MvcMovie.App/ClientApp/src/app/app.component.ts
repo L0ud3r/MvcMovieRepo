@@ -18,7 +18,6 @@ export class AppComponent {
   userInfo(): void {
     this.service.getUserbyToken(localStorage.getItem('token')).subscribe(
       data => {
-        console.log(data);
         this.conta = data;
       },
       error => {

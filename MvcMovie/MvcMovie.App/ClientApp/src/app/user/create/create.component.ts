@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateUserComponent implements OnInit {
 
-  constructor() { }
+  conta:any= {
+    Username: "",
+    Email: "",
+    Password: ""
+  };
+
+  confirmPassword : String = ""
+
+  constructor(private service: SharedService, private router : Router) { }
 
   ngOnInit(): void {
+  }
+
+  registerUser() : void{
+    this.service.register(this.conta).subscribe(
+      data => {
+        alert("Account created successfully!")
+        this.router.navigateByUrl('/login').then(() =>{
+          this.router.navigate([decodeURI('/login')]);
+        });
+      },
+      error => {
+        alert('Error on creating account...');
+    });
   }
 
 }

@@ -65,3 +65,234 @@
         </div>
     </div>
 </div>
+
+<script>
+  $(function() {
+      var select = $('#genre-filter');
+
+      $.ajax({
+          url: 'https://localhost:7022/Genre/UsedGenres',
+          type: 'GET',
+          success: function(response) {
+              console.log(response);
+              $.each(response, function(index, item) {
+                  select.append('<option>' + item.text + '</option>');
+              });
+          }
+      });
+
+      function deleteMovieForm(e) {
+          var id = $('#delete-movie-id').val();
+
+          $.ajax({
+              url: `https://localhost:7022/Movies/Delete?id=${id}`,
+              type: 'POST',
+              contentType: 'application/json-patch+json',
+              success: function (response) {
+                  alert("Movie deleted successfully!")
+                  //$('#table').bootstrapTable('refresh')
+                  location.reload();
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                  alert("Something went wrong...")
+              }
+          });
+      }
+
+      $('#deleteMovie').on('submit', function (event) {
+          event.preventDefault();
+          deleteMovieForm(event);
+      });
+  });
+
+  var $table = $('#table')
+  var $remove = $('#remove')
+  var selections = []
+
+  function submitSearch(event){
+      event.preventDefault()
+      $('#table').bootstrapTable('refresh')
+  }
+
+  function getIdSelections() {
+      return $.map($table.bootstrapTable('getSelections'), function (row) {
+          return row.id
+      })
+  }
+
+  function responseHandler(res) {
+      $.each(res.rows, function (i, row) {
+          row.state = $.inArray(row.id, selections) !== -1
+      })
+      return res
+  }
+
+  function detailFormatter(index, row) {
+      var html = []
+      $.each(row, function (key, value) {
+          html.push('<p><b>' + key + ':</b> ' + value + '</p>')
+      })
+      return html.join('')
+  }
+
+  function favAlert() {
+      alert("Added to favourites!");
+  }
+
+  function detailsTab(index, row) {
+      var html = [];
+      html.push('<p><b>Title:</b> ' + row.title + '</p>');
+      html.push('<p><b>Id:</b> ' + row.id + '</p>');
+      return html.join('');
+  }
+
+  function operateFormatter(value, row, index) {
+      var inFavorites = row.inFavorites === true; // assuming the `inFavorites` property is returned by the server
+      var icon = inFavorites ? 'fa-heart' : 'fa-heart-broken';
+      var title = inFavorites ? 'Remove from favorites' : 'Add to favorites';
+
+      $.ajax({
+          url: '/Favourites/IsFavourite',
+          data: { movieId: row.id },
+          type: 'GET',
+          success: function(result) {
+              if (result) {
+                  likeIcon = 'fa fa-heart';
+                  likeTitle = 'Add to favorites';
+              }
+          }
+      });
+
+
+
+
+      return [
+          '<div style="display: flex; gap: 10px">',
+          `<a class="remove" href="#" title="Remove" onclick="deleteMovie(${row.id})" data-toggle="modal" data-target="#deleteConfirmModal">`,
+          '<i class="fa fa-trash"></i>',
+          '</a>  ',
+          `<a class="edit" href="/Movies/Edit/${row.id}" title="Edit">`,
+          '<i class="fa fa-pen"></i>',
+          '</a>  ',
+          `<a class="details" href="/Movies/Details/${row.id}" title="Details">`,
+          '<i class="fa fa-eye"></i>',
+          '</a>',
+          `<a class="like" href="@Url.Action("Index","Favourites")" title="Like" data-id="${row.id}">`,
+          '<i class="fa fa-heart"></i>',
+          '</a>  ',
+          '</div>'
+      ].join('');
+  }
+
+  $(document).on('click', '.like', function() {
+      var movieId = $(this).data('id');
+      var token = localStorage.getItem('token');
+
+      $.ajax({
+          url: `https://localhost:7022/Favourites/Update?movieId=${movieId}&token=${token}`,
+          method: 'POST',
+          success: function () {
+              alert('Movie added/removed to favourites!');
+          },
+          error: function () {
+              alert('An error occurred');
+          }
+      });
+  });
+
+  function deleteMovie(id) {
+      $('#delete-movie-id').val(id);
+  }
+
+  function totalTextFormatter(data) {
+      return 'Total'
+  }
+
+  function totalNameFormatter(data) {
+      return data.length
+  }
+
+  function totalPriceFormatter(data) {
+      var field = this.field
+      return '$' + data.map(function (row) {
+          return +row[field].substring(1)
+      }).reduce(function (sum, i) {
+          return sum + i
+      }, 0)
+  }
+
+  $(document).ready(function () {
+      $('.select2-genre').select2();
+      $('.select2-movie').select2();
+  });
+
+  function queryParams(params) {
+      const genreFilter = $('#genre-filter').val();
+      const titleFilter = $('#title-filter').val();
+      var search = [];
+      search.push({
+          name: "Genre",
+          value: genreFilter
+      });
+      search.push({
+          name: "Title",
+          value: titleFilter
+      });
+      params.search = search;
+      return JSON.stringify(params);
+  }
+
+  //$(document).ready(function() {
+  //    // Bind a handler to the search form submission
+  //    $('#search-form').submit(function(event) {
+  //        // Prevent the default form submission behavior
+  //        event.preventDefault();
+  //        // Get the values from the form
+  //        var genre = $('#genre-filter').val();
+  //        var title = $('#title-filter').val();
+  //        // Send the search request to the server
+  //        $.ajax({
+  //            url: 'https://localhost:7022/Movies/Paginate',
+  //            type: 'POST',
+  //            data: JSON.stringify({
+  //                offset: 0,
+  //                limit: 0,
+  //                search: [
+  //                    {
+  //                        name: 'Genre',
+  //                        value: genre
+  //                    },
+  //                    {
+  //                        name: 'Title',
+  //                        value: title
+  //                    }
+  //                ]
+  //            }),
+  //            success: function(result) {
+  //                // Update the table with the search results
+  //            },
+  //            error: function(xhr, status, error) {
+  //                console.log('An error occurred while performing the search: ' + error);
+  //            }
+  //        });
+  //    });
+  //});
+
+  function dateFormat(value, row, index) {
+      if (value) {
+          var date = new Date(value);
+          var day = date.getDate();
+          var month = date.getMonth() + 1;
+          var year = date.getFullYear();
+
+          // Adiciona um zero à esquerda para dias e meses menores que 10
+          day = day < 10 ? '0' + day : day;
+          month = month < 10 ? '0' + month : month;
+
+          // Formata a data no formato desejado
+          return day + '-' + month + '-' + year;
+      } else {
+          return '-';
+      }
+  }
+</script>
