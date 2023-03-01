@@ -40,7 +40,7 @@ namespace MvcMovie.API.Controllers
         }
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update(int movieId, string token)
+        public async Task<IActionResult> Update([FromBody] int movieId, string token)
         {
             //    var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(token);
 
@@ -73,7 +73,7 @@ namespace MvcMovie.API.Controllers
         }
 
         [HttpPost("Remove")]
-        public async Task<IActionResult> Remove(int movieId, string token)
+        public async Task<IActionResult> Remove([FromBody] int movieId, string token)
         {
             //var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
 

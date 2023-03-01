@@ -23,7 +23,11 @@ export class FavouriteComponent implements OnInit {
     limit: 0,
     search: [
       {
-        name: "",
+        name: "Genre",
+        value: ""
+      },
+      {
+        name: "Title",
         value: ""
       }
     ]
@@ -49,11 +53,24 @@ export class FavouriteComponent implements OnInit {
     this.service.paginateFavourites(this.model, localStorage.getItem('token')!).subscribe(
       (data : any) => {
         this.movies = data.rows;
-        console.log(this.movies)
       },
       error => {
         alert('Error on obtaining movies...');
       }
     );
+  }
+
+  removeFavorite(id:number):void {
+    console.log
+    this.service.removeFavourite(id, localStorage.getItem('token')!).subscribe(
+      data => {
+        alert("Movie removed from favorites!")
+        this.paginate()
+      },
+      error => {
+        alert("Error on removing movie from favorites...")
+
+      }
+    )
   }
 }

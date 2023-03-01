@@ -20,6 +20,7 @@ export class MovieComponent implements OnInit {
 
   genres: string[] = [];
   movies: any[] = []
+  idMovie: number = 0
 
   model = {
     offset: 0,
@@ -63,5 +64,31 @@ export class MovieComponent implements OnInit {
         alert('Error on obtaining movies...');
       }
     );
+  }
+
+  saveMovieId(id:number):void{
+    this.idMovie = id
+  }
+
+  deleteMovie():void{
+    this.service.movieDelete(this.idMovie).subscribe(
+      data => {
+        this.paginate()
+      },
+      error => {
+        alert('Error on deleting genre...')
+      }
+    )
+  }
+
+  addFavourites(id:number):void{
+    this.service.updateFavourite(id, localStorage.getItem('token')!).subscribe(
+      data => {
+        alert("Movie added to favorites!")
+      },
+      error => {
+        alert("Error on adding movie to favorites...")
+      }
+    )
   }
 }

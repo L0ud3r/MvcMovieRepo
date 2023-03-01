@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { SharedService } from 'src/app/shared.service';
 import { format } from 'date-fns';
@@ -17,7 +17,18 @@ export class EditMovieComponent implements OnInit {
 
   movie : any = {}
 
-  constructor(private service: SharedService, private router: ActivatedRoute) { }
+  movieEditted = {
+    Id: 0,
+    Title: "",
+    ReleaseDate: "",
+    Genre: "",
+    Price: "",
+    Rating: "",
+  }
+
+  date : any;
+
+  constructor(private service: SharedService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.getAllGenres()
@@ -36,9 +47,9 @@ export class EditMovieComponent implements OnInit {
   }
 
   movieInfo():void{
-    const idMovie = this.router.snapshot.paramMap.get('id');
+    this.movie.id = this.route.snapshot.paramMap.get('id');
 
-    this.service.movieDetails(idMovie).subscribe(
+    this.service.movieDetails(this.movie.id).subscribe(
       data => {
         this.movie = data
 
@@ -49,8 +60,8 @@ export class EditMovieComponent implements OnInit {
             selectElement.options[i].selected = true;
         }
 
-        const date = new Date(this.movie.releaseDate);
-        const formattedDate = format(date, 'dd/MM/yyyy');
+        const releaseDate = new Date(this.movie.releaseDate).toISOString().slice(0, 10);
+        this.movie.releaseDate = releaseDate;
       },
       error => {
         alert('Error on getting movie details...')
@@ -58,4 +69,31 @@ export class EditMovieComponent implements OnInit {
     )
   }
 
+  movieEdit():void{
+    this.movieEditted.Id = this.movie.id
+
+    if(!this.movieEditted.Title)
+      this.movieEditted.Title = this.movie.title
+    if(!this.movieEditted.ReleaseDate)
+      this.movieEditted.ReleaseDate = this.movie.releaseDate
+    if(!this.movieEditted.Genre)
+      this.movieEditted.Genre = this.movie.genre
+    if(!this.movieEditted.Price)
+      this.movieEditted.Price = this.movie.price
+    if(!this.movieEditted.Rating)
+      this.movieEditted.Rating = this.movie.rating
+
+    this.service.movieEdit(this.movieEditted).subscribe(
+      data => {
+        console.log(data)
+        alert('Movie editted successfully!')
+        this.router.navigateByUrl('/movies').then(() =>{
+          this.router.navigate([decodeURI('/movies')]);
+        });
+      },
+      error => {
+        alert('Error on editing movie...')
+      }
+    )
+  }
 }

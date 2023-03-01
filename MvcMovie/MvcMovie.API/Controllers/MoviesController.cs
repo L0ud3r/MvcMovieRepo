@@ -25,7 +25,6 @@ namespace MvcMovie.API.Controllers
             _genreRepository = genreRepository;
         }
 
-        // GET: Movies/Details/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Details(int id)
         {
@@ -121,7 +120,7 @@ namespace MvcMovie.API.Controllers
             return NotFound();
         }
 
-        [HttpPost("Edit")]
+        [HttpPatch]
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] MovieViewModel movie)
         {
@@ -185,7 +184,7 @@ namespace MvcMovie.API.Controllers
         }
 
         // POST: Movies/Delete/5
-        [HttpPost("Delete"), ActionName("Delete")]
+        [HttpDelete("{id}"), ActionName("Delete")]
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

@@ -61,7 +61,7 @@
             var movieId = $('#id').val();
 
             $.ajax({    
-                url: `https://localhost:7022/Movies/Details?id=${movieId}`,
+                url: `https://localhost:7022/Movies/${movieId}`,
                 type: 'GET',
                 success: function (response) {
                     document.getElementById('title').innerHTML = response.title;

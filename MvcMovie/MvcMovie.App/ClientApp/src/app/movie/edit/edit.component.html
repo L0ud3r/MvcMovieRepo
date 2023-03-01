@@ -8,19 +8,18 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label">Title</label>
-                <input value="{{movie.title}}" asp-for="Title" id="title" type="text" class="form-control" required />
+                <input [(ngModel)]="movieEditted.Title" [ngModelOptions]="{standalone: true}" value="{{movie.title}}" asp-for="Title" id="title" type="text" class="form-control" required />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ReleaseDate" class="control-label">Release Date</label>
-                <input value="{{movie.releaseDate | date: 'dd/MM/yyyy'}}" asp-for="ReleaseDate" id="date" type="date" class="form-control" required />
+                <input value="{{movie.releaseDate}}" [(ngModel)]="movieEditted.ReleaseDate" [ngModelOptions]="{standalone: true}" asp-for="ReleaseDate" id="date" type="date" class="form-control" required />
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
             </div>
             <div>
                 <label asp-for="Genre" class="control-label">Genre</label>
                 <div class="mb-3">
-                  <!-- value="{{movie.genre}}" -->
-                    <select asp-for="Genre" class="select2-genre-movie" multiples="multiples" id="genre" style="width: 100%;" required>
+                    <select value="{{movie.genre}}" [(ngModel)]="movieEditted.Genre" [ngModelOptions]="{standalone: true}" asp-for="Genre" class="select2-genre-movie" multiples="multiples" id="genre" style="width: 100%;" required>
                         <option value="">-</option>
                         <option *ngFor="let genre of genres">{{genre}}</option>
                     </select>
@@ -29,16 +28,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label">Price</label>
-                <input value="{{movie.price}}" asp-for="Price" id="price" class="form-control" required type="number" />
+                <input value="{{movie.price}}" [(ngModel)]="movieEditted.Price" [ngModelOptions]="{standalone: true}" asp-for="Price" id="price" class="form-control" required type="number" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Rating" class="control-label">Rating</label>
-                <input value="{{movie.rating}}" asp-for="Rating" id="rating" class="form-control" type="text" required />
+                <input value="{{movie.rating}}" [(ngModel)]="movieEditted.Rating" [ngModelOptions]="{standalone: true}" asp-for="Rating" id="rating" class="form-control" type="text" required />
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-success" />
+                <input type="submit" value="Create" (click)="movieEdit()" class="btn btn-success" />
             </div>
         </form>
     </div>

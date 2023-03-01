@@ -37,7 +37,7 @@
         <td>{{movie.releaseDate | date:"dd/MM/yyyy"}}</td>
         <td>{{movie.genreName}}</td>
         <div style="display: flex; gap: 10px">
-            <a class="remove" routerLink="#" title="Remove">
+            <a class="remove" href="#" title="Remove" data-toggle="modal" data-target="#deleteConfirmModal" (click)="saveMovieId(movie.id)">
              <fa-icon [icon]="faTrashCan"></fa-icon>
             </a>
             <a class="edit" routerLink="/movies/edit/{{movie.id}}" title="Edit">
@@ -46,7 +46,7 @@
             <a class="details" routerLink="/movies/details/{{movie.id}}" title="Details">
               <fa-icon [icon]="faEye"></fa-icon>
             </a>
-            <a class="like" routerLink="#" title="Like">
+            <a class="like" routerLink="#" title="Like" (click)="addFavourites(movie.id)">
               <fa-icon [icon]="faHeart"></fa-icon>
             </a>
         </div>
@@ -69,7 +69,7 @@
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
                 <form id="deleteMovie" method="post">
                     <input type="hidden" id="delete-movie-id" name="id" value="" />
-                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <button (click)="deleteMovie()" type="submit" class="btn btn-primary" data-dismiss="modal">Yes</button>
                 </form>
             </div>
         </div>

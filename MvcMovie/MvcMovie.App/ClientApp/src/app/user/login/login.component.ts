@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
       data => {
         localStorage.setItem('token', data.toString());
         this.router.navigateByUrl('/movies').then(() =>{
+          location.reload();
           this.router.navigate([decodeURI('/movies')]);
         });
       },

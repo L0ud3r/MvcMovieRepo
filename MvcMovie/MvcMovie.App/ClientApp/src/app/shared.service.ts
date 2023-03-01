@@ -54,12 +54,12 @@ export class SharedService {
     return this.http.post<any>(this.APIUrl+'/Movies/Create', movie)
   }
 
-  movieEdit(movie:any):Observable<any[]>{
-    return this.http.post<any>(this.APIUrl+'/Movies/Edit', movie)
+  movieEdit(movie:any){
+    return this.http.patch(this.APIUrl+'/Movies/', movie)
   }
 
-  movieDelete(movie:any):Observable<any[]>{
-    return this.http.post<any>(this.APIUrl+'/Movies/Delete', movie)
+  movieDelete(id:any):Observable<any[]>{
+    return this.http.delete<any>(this.APIUrl+'/Movies/' + id)
   }
 
   paginateMovies(model:any):Observable<any[]>{
@@ -94,12 +94,12 @@ export class SharedService {
 
   //#region Favourites
 
-  updateFavourite(idWithToken:any):Observable<any>{
-    return this.http.post<any>(this.APIUrl+'/Favourites/Update', idWithToken)
+  updateFavourite(id:any, token:string){
+    return this.http.post(this.APIUrl+'/Favourites/Update?token=' + token, id)
   }
 
-  removeFavourite(idWithToken:any):Observable<any>{
-    return this.http.post<any>(this.APIUrl+'/Favourites/Remove', idWithToken)
+  removeFavourite(id:any, token:string){
+    return this.http.post(this.APIUrl+'/Favourites/Remove?token=' + token, id)
   }
 
   deleteFavourite(idWithToken:any):Observable<any>{

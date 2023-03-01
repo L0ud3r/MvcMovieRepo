@@ -34,4 +34,12 @@ export class AppComponent {
       }
     );
   }
+
+  logout(): void{
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/login').then(() =>{
+      location.reload();
+      this.router.navigate([decodeURI('/login')]);
+    });
+  }
 }
