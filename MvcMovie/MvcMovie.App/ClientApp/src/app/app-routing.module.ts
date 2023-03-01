@@ -48,11 +48,11 @@ const routes: Routes = [
     component: CreateMovieComponent
   },
   {
-    path: 'movies/details',
+    path: 'movies/details/:id',
     component: DetailsMovieComponent
   },
   {
-    path: 'movies/edit',
+    path: 'movies/edit/:id',
     component: EditMovieComponent
   },
   {

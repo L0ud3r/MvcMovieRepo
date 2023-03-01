@@ -3,14 +3,14 @@
 <form id="search-form" asp-controller="Movies" asp-action="Index" method="get">
     <div class="d-flex flex-row mt-4 mb-2 align-items-center">
         <div class="col-0">
-            <select id="genre-filter" multiples="multiples" class="select2-genre" style="width:200px">
+            <select [(ngModel)]="model.search[0].value" [ngModelOptions]="{standalone: true}" id="genre-filter" multiples="multiples" class="select2-genre" style="width:200px">
                 <option value="">All Genres</option>
                 <option *ngFor="let genre of genres">{{genre}}</option>
             </select>
         </div>
         <div class="input-group col-3">
-            <input type="text" id="title-filter" asp-for="SearchString" class="form-control border-0 small" placeholder="Movie..." />
-            <input type="submit" id="search-button" value="Filter" onclick="submitSearch(event)" class="btn btn-primary" />
+            <input [(ngModel)]="model.search[1].value" [ngModelOptions]="{standalone: true}" type="text" id="title-filter" asp-for="SearchString" class="form-control border-0 small" placeholder="Movie..." />
+            <input type="submit" id="search-button" value="Filter" (click)="paginate()" class="btn btn-primary" />
         </div>
     </div>
 </form>
@@ -40,10 +40,10 @@
             <a class="remove" routerLink="#" title="Remove">
              <fa-icon [icon]="faTrashCan"></fa-icon>
             </a>
-            <a class="edit" routerLink="/movies/edit" title="Edit">
+            <a class="edit" routerLink="/movies/edit/{{movie.id}}" title="Edit">
               <fa-icon [icon]="faPencil"></fa-icon>
             </a>
-            <a class="details" routerLink="/movies/details" title="Details">
+            <a class="details" routerLink="/movies/details/{{movie.id}}" title="Details">
               <fa-icon [icon]="faEye"></fa-icon>
             </a>
             <a class="like" routerLink="#" title="Like">

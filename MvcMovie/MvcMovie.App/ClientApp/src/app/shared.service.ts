@@ -47,7 +47,7 @@ export class SharedService {
   //#region Movies
 
   movieDetails(id:any):Observable<any[]>{
-    return this.http.get<any>(this.APIUrl+'/Movies/Details?id=' + id.toString())
+    return this.http.get<any>(this.APIUrl+'/Movies/'+id)
   }
 
   movieCreate(movie:any):Observable<any[]>{

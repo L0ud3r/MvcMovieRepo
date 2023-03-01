@@ -26,7 +26,11 @@ export class MovieComponent implements OnInit {
     limit: 0,
     search: [
       {
-        name: "",
+        name: "Genre",
+        value: ""
+      },
+      {
+        name: "Title",
         value: ""
       }
     ]

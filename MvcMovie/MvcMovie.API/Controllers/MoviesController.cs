@@ -26,7 +26,7 @@ namespace MvcMovie.API.Controllers
         }
 
         // GET: Movies/Details/5
-        [HttpGet("Details")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Details(int id)
         {
             if (id < 0 || !_movieRepository.Exists(id))

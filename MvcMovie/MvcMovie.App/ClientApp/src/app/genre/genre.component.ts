@@ -52,17 +52,11 @@ export class GenreComponent implements OnInit {
   deleteGenre():void{
     this.service.deleteGenre(this.genreId).subscribe(
       data => {
-        alert('Genre deleted successfully!')
-        this.router.navigateByUrl('/genres').then(() =>{
-          this.router.navigate([decodeURI('/genres')]);
-        });
+        this.paginate()
       },
       error => {
         alert('Error on deleting genre...')
       }
     )
-
-    const deleteConfirmModal = document.getElementById('deleteConfirmModal') as HTMLElement;
-    //deleteConfirmModal.modal('hide');
   }
 }
