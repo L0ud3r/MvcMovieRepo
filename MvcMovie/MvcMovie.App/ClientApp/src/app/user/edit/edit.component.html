@@ -1,1 +1,31 @@
-<p>edit works!</p>
+<h1>Edit account</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="edit-user-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" id="id-user" value="@Model.Id"/>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label">Username</label>
+                <input [(ngModel)]="account.username" [ngModelOptions]="{standalone: true}" asp-for="Username" id="username" class="form-control" minlength="2" required />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email</label>
+                <input [(ngModel)]="account.email" [ngModelOptions]="{standalone: true}" asp-for="Email" id="email" type="email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input (click)="editAccount()" type="submit" value="Edit" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-dark btn-icon-split">
+        <span class="icon text-white-50">
+          <fa-icon [icon]="faArrowLeft"></fa-icon>
+        </span>
+        <span class="text" routerLink="/user" >Cancel</span>
+    </a>
+</div>

@@ -140,7 +140,7 @@ namespace MvcMovie.API.Controllers
         }
 
         // POST: User/Remove
-        [HttpPost("Remove"), ActionName("Remove")]
+        [HttpDelete("{id}"), ActionName("Remove")]
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Remove(int id)
         {

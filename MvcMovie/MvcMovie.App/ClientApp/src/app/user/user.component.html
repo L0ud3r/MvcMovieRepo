@@ -1,1 +1,69 @@
-<p>user works!</p>
+<div>
+  <div class="d-flex align-items-center" style="gap: 15px">
+      <img src="../assets/images/undraw_profile.svg" class="img-profile rounded-circle"
+           style="height: 5rem; width: 5rem;" />
+      <div class="d-flex align-items-center" style="gap:10px">
+          <h1 id="username">{{account.username}}</h1>
+          <div>
+              <a routerLink="edit" id="edit-button" class="btn btn-light btn-icon-split">
+                  <span class="icon text-white-50">
+                    <fa-icon [icon]="faPen"></fa-icon>
+                  </span>
+              </a>
+          </div>
+      </div>
+  </div>
+
+  <hr />
+  <dl class="row">
+      <dt class="col-sm-2">
+          Email
+      </dt>
+      <dd class="col-sm-10" id="email">
+        {{account.email}}
+      </dd>
+      <dt class = "col-sm-2">
+          Account ID
+      </dt>
+      <dd class = "col-sm-10" id="id">
+        {{account.id}}
+      </dd>
+  </dl>
+</div>
+<div class="d-flex" style="gap: 10px;">
+  <a routerLink="/movies" class="btn btn-primary btn-icon-split">
+      <span class="icon text-white-50">
+        <fa-icon [icon]="faHome"></fa-icon>
+      </span>
+      <span class="text">Movies</span>
+  </a>
+  <a class="btn btn-danger btn-icon-split" href="#" title="Remove" data-toggle="modal" data-target="#deleteConfirmModal">
+      <span class="icon text-white-50">
+        <fa-icon [icon]="faTrash"></fa-icon>
+      </span>
+      <span class="text">Delete Account</span>
+  </a>
+</div>
+
+
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete your account?</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+              </button>
+          </div>
+          <div class="modal-body">Select "Yes" below if you want to delete your account.</div>
+          <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+              <form id="delete-acc-form" method="post">
+                  <input type="hidden" id="account-id" name="id" />
+                  <button (click)="deleteAccount()" type="submit" class="btn btn-primary" data-dismiss="modal">Yes</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>

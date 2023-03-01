@@ -35,7 +35,7 @@ export class SharedService {
   }
 
   removeUser(id:any):Observable<any[]>{
-    return this.http.post<any>(this.APIUrl+'/User/Remove', id)
+    return this.http.delete<any>(this.APIUrl+'/User/'+id)
   }
 
   recoverPassword(account:any):Observable<any[]>{

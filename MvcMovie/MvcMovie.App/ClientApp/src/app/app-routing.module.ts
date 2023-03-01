@@ -28,6 +28,10 @@ const routes: Routes = [
     component: UserComponent
   },
   {
+    path: 'user/edit',
+    component: EditUserComponent
+  },
+  {
     path: 'movies',
     component: MovieComponent
   },
