@@ -134,18 +134,11 @@ namespace MvcMovie.API.Controllers
         }
 
         [HttpPost("Paginate")]
-        public async Task<JsonResult> Paginate([FromBody] BootstrapModel model)
+        public async Task<JsonResult> Paginate([FromBody] BootstrapModel model, string token)
         {
             model.Limit = model.Limit.HasValue && model.Limit != 0 ? model.Limit.Value : int.MaxValue;
 
-            var token = model.Search.FirstOrDefault(x => x.Name == "Token");
-
-            var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(token.Value.ToString());
-
-            var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
-            string userMail = claimMail?.Value;
-
-            var user = GetUserByToken(token.Value.ToString());
+            var user = GetUserByToken(token);
 
             var query = _favouriteRepository.Get().Where(x => x.User.Id == user.Id).Include(x => x.Movie).AsQueryable();
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
-import { faFilm } from '@fortawesome/free-solid-svg-icons';
+import { faFilm, faTicket, faMask, faBars, faAngleUp, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,8 +8,15 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  faFilm = faFilm;
-  conta:any = {};
+  faFilm = faFilm
+  faTicket = faTicket
+  faMask = faMask
+  faBars = faBars
+  faAngleUp = faAngleUp
+  faUser = faUser
+  faSignOutAlt = faSignOutAlt
+
+  conta:any = {}
 
   constructor(private service: SharedService, private router : Router) { }
 

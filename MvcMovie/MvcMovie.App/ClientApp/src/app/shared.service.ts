@@ -82,12 +82,12 @@ export class SharedService {
     return this.http.post<any>(this.APIUrl+'/Genre/Create', genre)
   }
 
-  deleteGenre(id:any):Observable<any>{
-    return this.http.post<any>(this.APIUrl+'/Genre/Delete', id)
+  deleteGenre(id:any){
+    return this.http.delete(this.APIUrl+'/Genre/'+id);
   }
 
-  paginateGenres(id:any):Observable<any>{
-    return this.http.post<any>(this.APIUrl+'/Genre/Paginate', id)
+  paginateGenres(model:any):Observable<any>{
+    return this.http.post<any>(this.APIUrl+'/Genre/Paginate', model)
   }
 
   //#endregion
@@ -102,12 +102,12 @@ export class SharedService {
     return this.http.post<any>(this.APIUrl+'/Favourites/Remove', idWithToken)
   }
 
-  deleteFavourite(id:any):Observable<any>{
-    return this.http.post<any>(this.APIUrl+'/Favourites/Delete', id)
+  deleteFavourite(idWithToken:any):Observable<any>{
+    return this.http.post<any>(this.APIUrl+'/Favourites/Delete', idWithToken)
   }
 
-  paginateFavourites(id:any):Observable<any>{
-    return this.http.post<any>(this.APIUrl+'/Favourites/Paginate', id)
+  paginateFavourites(model:any, token:string):Observable<any>{
+    return this.http.post<any>(this.APIUrl+'/Favourites/Paginate?token=' + token, model)
   }
 
   //#endregion

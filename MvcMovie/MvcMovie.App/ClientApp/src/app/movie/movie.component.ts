@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faHeart, faPencil, faTrashCan, faEye, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { SharedService } from 'src/app/shared.service';
 import { Router } from '@angular/router';
 
@@ -12,6 +12,12 @@ import { Router } from '@angular/router';
 export class MovieComponent implements OnInit {
 
   faCoffee = faCoffee
+  faHeart = faHeart
+  faPencil = faPencil
+  faTrashCan = faTrashCan
+  faEye = faEye
+  faPlus = faPlus
+
   genres: string[] = [];
   movies: any[] = []
 
@@ -30,10 +36,10 @@ export class MovieComponent implements OnInit {
 
   ngOnInit(): void {
     this.paginate()
-    this.getAllGenres()
+    this.getUsedGenres()
   }
 
-  getAllGenres(): void {
+  getUsedGenres(): void {
     this.service.usedGenres().subscribe(
       (data: { disabled: boolean, group: any, selected: boolean, text: string, value: any }[]) => {
         this.genres = data.map(genre => genre.text);

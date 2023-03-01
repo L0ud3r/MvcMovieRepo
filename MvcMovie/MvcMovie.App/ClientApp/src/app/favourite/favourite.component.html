@@ -1,1 +1,44 @@
-<p>favourite works!</p>
+<h1>Your Favourite Movies</h1>
+
+<form id="search-form" asp-controller="Favourites" asp-action="Index" method="get">
+    <div class="d-flex flex-row mt-4 mb-2 align-items-center">
+        <div class="col-0">
+            <select id="genre-filter" multiples="multiples" class="select2-genre" style="width:200px">
+                <option value="">All Genres</option>
+                <option *ngFor="let genre of genres">{{genre}}</option>
+            </select>
+        </div>
+        <div class="input-group col-3">
+            <input type="text" id="title-filter" asp-for="SearchString" class="form-control border-0 small" placeholder="Movie..." />
+            <input type="submit" id="search-button" value="Filter" onclick="submitSearch(event)" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th data-field="title">Title</th>
+            <th data-field="releaseDate">Release Date</th>
+            <th data-field="genreName">Genre</th>
+            <th data-field="">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let movie of movies">
+            <td>{{movie.title}}</td>
+            <td>{{movie.releaseDate | date:"dd/MM/yyyy"}}</td>
+            <td>{{movie.genre}}</td>
+            <td>
+              <div style="display: flex; gap: 10px">
+              <a routerLink="/movies/details" class="details" title="Details">
+                <fa-icon [icon]="faEye"></fa-icon>
+              </a>
+              <a class="like" routerLink="/favourites" title="Like">
+                <fa-icon [icon]="faHeartBroken"></fa-icon>
+              </a>
+              </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

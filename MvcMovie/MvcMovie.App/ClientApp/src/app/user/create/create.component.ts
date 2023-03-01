@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 import { Router } from '@angular/router';
+import { faFilm } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create',
@@ -8,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./create.component.css']
 })
 export class CreateUserComponent implements OnInit {
+
+  faFilm = faFilm
 
   conta:any= {
     Username: "",

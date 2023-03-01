@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 import { Router } from '@angular/router';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./create.component.css']
 })
 export class CreateMovieComponent implements OnInit {
+
+  faArrowLeft = faArrowLeft
 
   movie = {
     Title: "",

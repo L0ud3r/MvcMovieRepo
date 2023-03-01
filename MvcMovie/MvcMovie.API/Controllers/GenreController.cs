@@ -49,7 +49,7 @@ namespace MvcMovie.API.Controllers
 
         [HttpPost("Create")]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] GenreViewModel genre)
+        public async Task<IActionResult> Create([Bind("Name")] GenreViewModel genre)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace MvcMovie.API.Controllers
 
 
 
-        [HttpPost("Delete"), ActionName("Delete")]
+        [HttpDelete("{id}"), ActionName("Delete")]
         //[ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {

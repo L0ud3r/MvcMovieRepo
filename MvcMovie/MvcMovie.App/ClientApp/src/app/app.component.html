@@ -5,7 +5,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/movies">
             <div class="sidebar-brand-icon rotate-n-15">
                 <fa-icon [icon]="faFilm"></fa-icon>
             </div>
@@ -18,22 +18,22 @@
         <!-- Nav Item - Movies -->
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-ticket-alt"></i>
+                <fa-icon [icon]="faTicket" class="pr-2"></fa-icon>
                 <span>Movies</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Movies:</h6>
-                    <a class="collapse-item" href="#">All Movies</a>
-                    <a class="collapse-item" href="#">Favourites</a>
+                    <a class="collapse-item" href="/movies">All Movies</a>
+                    <a class="collapse-item" href="/favourites">Favourites</a>
                 </div>
             </div>
         </li>
 
         <!-- Nav Item - Genres -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-mask"></i>
+            <a class="nav-link" href="/genres">
+                <fa-icon [icon]="faMask" class="pr-1"></fa-icon>
                 <span>Genres</span>
             </a>
         </li>
@@ -62,7 +62,7 @@
 
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
+                  <fa-icon [icon]="faBars"></fa-icon>
                 </button>
 
                 <!-- Topbar Navbar -->
@@ -72,7 +72,6 @@
                     <li class="nav-item dropdown no-arrow d-sm-none">
                         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
                         </a>
                     </li>
 
@@ -91,13 +90,13 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                               aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            <a class="dropdown-item" href="/user">
+                                <fa-icon [icon]="faUser" class="fa-sm fa-fw mr-2 text-gray-400"></fa-icon>
                                 Profile
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <fa-icon [icon]="faSignOutAlt" class="fa-sm fa-fw mr-2 text-gray-400"></fa-icon>
                                 Logout
                             </a>
                         </div>
@@ -132,7 +131,7 @@
 <!-- End of Page Wrapper -->
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
+   <fa-icon [icon]="faAngleUp"></fa-icon>
 </a>
 
 <!-- Logout Modal-->

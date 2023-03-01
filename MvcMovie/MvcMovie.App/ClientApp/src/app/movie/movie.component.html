@@ -17,7 +17,7 @@
 
 <a asp-action="Create" class="btn btn-primary btn-icon-split mb-3">
     <span class="icon text-white-50">
-        <i class="fa fa-plus"></i>
+      <fa-icon [icon]="faPlus"></fa-icon>
     </span>
     <span routerLink="/movies/create" class="text">Add Movie</span>
 </a>
@@ -28,15 +28,28 @@
             <th data-field="title">Title</th>
             <th data-field="releaseDate" data-formatter="dateFormat">Release Date</th>
             <th data-field="genreName">Genre</th>
-            <th data-field="" data-formatter="operateFormatter">Actions</th>
+            <th data-field="">Actions</th>
         </tr>
     </thead>
     <tbody>
       <tr *ngFor="let movie of movies">
         <td>{{movie.title}}</td>
-        <td>{{movie.releaseDate}}</td>
+        <td>{{movie.releaseDate | date:"dd/MM/yyyy"}}</td>
         <td>{{movie.genreName}}</td>
-        <td>ICONS</td>
+        <div style="display: flex; gap: 10px">
+            <a class="remove" routerLink="#" title="Remove">
+             <fa-icon [icon]="faTrashCan"></fa-icon>
+            </a>
+            <a class="edit" routerLink="/movies/edit" title="Edit">
+              <fa-icon [icon]="faPencil"></fa-icon>
+            </a>
+            <a class="details" routerLink="/movies/details" title="Details">
+              <fa-icon [icon]="faEye"></fa-icon>
+            </a>
+            <a class="like" routerLink="#" title="Like">
+              <fa-icon [icon]="faHeart"></fa-icon>
+            </a>
+        </div>
       </tr>
     </tbody>
 </table>
