@@ -16,21 +16,26 @@ export class AppComponent {
   faUser = faUser
   faSignOutAlt = faSignOutAlt
 
-  conta:any = {}
+  account:any = {}
+  isSignedIn:boolean = false
+  currentRoute: string = '';
+
 
   constructor(private service: SharedService, private router : Router) { }
 
   ngOnInit(): void {
     this.userInfo()
+    this.currentRoute = this.router.url;
   }
 
   userInfo(): void {
     this.service.getUserbyToken(localStorage.getItem('token')).subscribe(
       data => {
-        this.conta = data;
+        this.account = data;
+        this.isSignedIn = true;
       },
       error => {
-        this.conta.Username = "Sign in";
+        this.account.Username = "Sign in";
       }
     );
   }

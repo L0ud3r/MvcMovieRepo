@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MvcMovieDAL;
 using MvcMovieDAL.Default;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace MvcMovieInfra
 {
     public class Repository<TEntity, TContext> : IRepository<TEntity>
