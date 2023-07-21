@@ -6,7 +6,6 @@ using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.API.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using MvcMovie.Models;
 using System.Text.Json;
 
 namespace MvcMovie.API.Controllers
@@ -40,22 +39,22 @@ namespace MvcMovie.API.Controllers
         }
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update([FromBody] int movieId, string token)
+        public async Task<IActionResult> Update(MovieUpdateViewModel movie)
         {
             //    var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(token);
 
             //    var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
             //    string userMail = claimMail?.Value;
 
-            var user = GetUserByToken(token);
+            var user = GetUserByToken(movie.token);
 
-            var favorite = _favouriteRepository.Get().SingleOrDefault(f => f.Movie.Id == movieId && f.User.Id == user.Id);
+            var favorite = _favouriteRepository.Get().SingleOrDefault(f => f.Movie.Id == movie.movieId && f.User.Id == user.Id);
 
             if (favorite == null)
             {
                 var newFavorite = new Favourite { };
 
-                newFavorite.Movie = _movieRepository.Get().Where(x => x.Id == movieId && x.Active == true).SingleOrDefault();
+                newFavorite.Movie = _movieRepository.Get().Where(x => x.Id == movie.movieId && x.Active == true).SingleOrDefault();
                 newFavorite.User = _userRepository.Get().Where(x => x.Id == user.Id && x.Active == true).SingleOrDefault();
 
                 _favouriteRepository.Insert(newFavorite);
@@ -73,16 +72,16 @@ namespace MvcMovie.API.Controllers
         }
 
         [HttpPost("Remove")]
-        public async Task<IActionResult> Remove([FromBody] int movieId, string token)
+        public async Task<IActionResult> Remove(MovieUpdateViewModel movie)
         {
             //var tokenDecoded = new JwtSecurityTokenHandler().ReadJwtToken(HttpContext.Session.GetString("token"));
 
             //var claimMail = tokenDecoded.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
             //string userMail = claimMail?.Value;
 
-            var user = GetUserByToken(token);
+            var user = GetUserByToken(movie.token);
 
-            var favorite = _favouriteRepository.Get().SingleOrDefault(f => f.Movie.Id == movieId && f.User.Id == user.Id);
+            var favorite = _favouriteRepository.Get().SingleOrDefault(f => f.Movie.Id == movie.movieId && f.User.Id == user.Id);
 
             if (favorite != null)
             {
@@ -134,11 +133,11 @@ namespace MvcMovie.API.Controllers
         }
 
         [HttpPost("Paginate")]
-        public async Task<JsonResult> Paginate([FromBody] BootstrapModel model, string token)
+        public async Task<JsonResult> Paginate([FromBody] BootstrapModel model)
         {
             model.Limit = model.Limit.HasValue && model.Limit != 0 ? model.Limit.Value : int.MaxValue;
 
-            var user = GetUserByToken(token);
+            var user = GetUserByToken(model.Search.FirstOrDefault(x => x.Name == "Token").Value);
 
             var query = _favouriteRepository.Get().Where(x => x.User.Id == user.Id).Include(x => x.Movie).AsQueryable();
 
