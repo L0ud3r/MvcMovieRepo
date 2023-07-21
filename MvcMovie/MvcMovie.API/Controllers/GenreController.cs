@@ -87,7 +87,7 @@ namespace MvcMovie.API.Controllers
 
 
 
-        [HttpDelete("{id}"), ActionName("Delete")]
+        [HttpDelete("Delete")]
         //[ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {

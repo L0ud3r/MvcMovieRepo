@@ -130,11 +130,16 @@
         }
 
         $(document).on('click', '.like', function () {
-            var movieId = $(this).data('id');
-            var token = localStorage.getItem('token');
+            var data = {
+                movieId: $(this).data('id'),
+                token: localStorage.getItem('token')
+            }
 
             $.ajax({
-                url: `https://localhost:7022/Favourites/Remove?movieId=${movieId}&token=${token}`,
+                url: `https://localhost:7022/Favourites/Remove`,
+                method: 'POST',
+                data: JSON.stringify(data),
+                contentType: "application/json",
                 method: 'POST',
                 success: function () {
                     alert('Movie added/removed to favourites!');
@@ -182,6 +187,7 @@
             const titleFilter = $('#title-filter').val();
             var search = [];
             var token = localStorage.getItem('token');
+
             search.push({
                 name: "Genre",
                 value: genreFilter
@@ -194,6 +200,7 @@
                 name: "Token",
                 value: token
             });
+
             params.search = search;
             return JSON.stringify(params);
         }

@@ -94,7 +94,7 @@
 
                 $.ajax({
                     url: `https://localhost:7022/Movies/Delete?id=${id}`,
-                    type: 'POST',
+                    type: 'DELETE',
                     contentType: 'application/json-patch+json',
                     success: function (response) {
                         alert("Movie deleted successfully!")
@@ -168,6 +168,9 @@
                         likeIcon = 'fa fa-heart';
                         likeTitle = 'Add to favorites';
                     }
+                },
+                error: function(result){
+
                 }
             });
 
@@ -185,7 +188,7 @@
                 `<a class="details" href="/Movies/Details/${row.id}" title="Details">`,
                 '<i class="fa fa-eye"></i>',
                 '</a>',
-                `<a class="like" href="@Url.Action("Index","Favourites")" title="Like" data-id="${row.id}">`,
+                `<a class="like" title="Like" data-id="${row.id}">`,
                 '<i class="fa fa-heart"></i>',
                 '</a>  ',
                 '</div>'
@@ -193,12 +196,16 @@
         }
 
         $(document).on('click', '.like', function() {
-            var movieId = $(this).data('id');
-            var token = localStorage.getItem('token');
+            var data = {
+                movieId: $(this).data('id'),
+                token: localStorage.getItem('token')
+            }
 
             $.ajax({
-                url: `https://localhost:7022/Favourites/Update?movieId=${movieId}&token=${token}`,
+                url: `https://localhost:7022/Favourites/Update`,
                 method: 'POST',
+                data: JSON.stringify(data),
+                contentType: "application/json",
                 success: function () {
                     alert('Movie added/removed to favourites!');
                 },

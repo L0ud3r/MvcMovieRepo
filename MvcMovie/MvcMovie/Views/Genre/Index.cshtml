@@ -83,10 +83,10 @@
 
             function deleteGenreForm(e) {
                 var id = $('#delete-genre-id').val();
-
+                //console.log(id)
                 $.ajax({
                     url: `https://localhost:7022/Genre/Delete?id=${id}`,
-                    type: 'POST',
+                    type: 'DELETE',
                     contentType: 'application/json-patch+json',
                     success: function (response) {
                         alert("Genre deleted successfully!")

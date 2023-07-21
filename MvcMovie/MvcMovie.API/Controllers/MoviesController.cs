@@ -120,7 +120,7 @@ namespace MvcMovie.API.Controllers
             return NotFound();
         }
 
-        [HttpPatch]
+        [HttpPatch("Edit")]
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] MovieViewModel movie)
         {
@@ -184,7 +184,7 @@ namespace MvcMovie.API.Controllers
         }
 
         // POST: Movies/Delete/5
-        [HttpDelete("{id}"), ActionName("Delete")]
+        [HttpDelete("Delete")]
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
